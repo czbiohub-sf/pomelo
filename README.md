@@ -1,40 +1,22 @@
-# CZ Biohub publication repository template 
+[](pomelo.png)
+# PoMeLo
 
-This repo contains a template for starting new publication repository at the Biohub. It is prepared 
-to help to organize publication related materials.
+PoMeLo is a novel R-based bioinformatics approach to identifying metabolic vulnerabilities of bacterial pathogens to host-directed therapeutics. 
 
-## Organization
-The structure of this repo is illustrated below.
-```
-├── figs 
-├── notebooks                 
-│   ├── analysis.ipynb
-├── scripts                 
-│   ├── analysis.sh
-├── LICENSE
-└── README.md
-```
+## Dependencies & R Session Info
+To run PoMeLo locally, R & RStudio must be installed. PoMeLo was developed using R v4.2.2 with RStudio 2022.12.0+353 "Elsbeth Geranium" Release (7d165dcfc1b6d300eb247738db2c7076234f6ef0, 2022-12-03) for macOS
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) RStudio/2022.12.0+353 Chrome/102.0.5005.167 Electron/19.1.3 Safari/537.36
+Attached base R packages:	_stats, graphics, grDevices, utils, datasets, methods, base_
 
-## Usage
-To use this template as the basis of a new publication repo, follow the steps below.
+Other attached packages:
+	_shinyscreenshot_0.2.0, bslib_0.3.1, shinycssloaders_1.0.0, phangorn_2.8.1, ape_5.6-2, seqinr_4.2-16, DT_0.23, forcats_0.5.1, stringr_1.4.0, dplyr_1.0.9, purrr_0.3.4, readr_2.1.2, tidyr_1.2.0, tibble_3.1.7, tidyverse_1.3.1, alakazam_1.2.0, ggplot2_3.3.6, shiny_1.7.1_
 
-1. Choose a name for your project and create a private repo for it on GitHub under the `czbiohub` organization
-using the CZ Biohub publication template. By convention, project names and repo names should be the 
-same, and they should be dash-separated (for example, `my-new-publication`).
+## Running PoMeLo
 
-2. Clone your new repo into a directory named after your new project:
-```sh
-git clone git@github.com/czbiohub:my-new-publication
-```
-
-3. You can start populating your publication repository with your content. You can remove the placeholder
-files like `analysis.ipynb` and `analysis.sh` and place your notebooks and scripts into these folders. 
-Also, you can place your figures into `figs` folder to share high-resolution version of your figures.
-
-4. Feel free to create new folders for the files you like to share with your publication. One thing to 
-note, everything on a GitHub repository is version controlled. If you like to share some datasets together
-with your publication, typically a GitHub repository is not the place. We would suggest you to upload 
-the datasets you like to share to a file storage service(like Google Drive, Dropbox, etc.) and provide a
-link to your datasets here in your publication repository.
+To run PoMeLo locally, clone this repo, open the ```PML_script.R``` file in RStudio, and then click "Source".
 
 
+## Tips
+
+## Citation
+If you use PoMeLo, please cite our publication:
