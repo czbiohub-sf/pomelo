@@ -1,4 +1,4 @@
-![](pomelo.png)
+![](pomelo2.png)
 
 # PoMeLo
 
