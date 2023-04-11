@@ -6,8 +6,8 @@ PoMeLo is a novel R-based bioinformatics approach to identifying metabolic vulne
 
 ## Dependencies & R Session Info
 
-To run PoMeLo locally, R & RStudio must be installed. PoMeLo was developed using R v4.2.2 with RStudio 2022.12.0+353 "Elsbeth Geranium" Release (7d165dcfc1b6d300eb247738db2c7076234f6ef0, 2022-12-03) for macOS
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) RStudio/2022.12.0+353 Chrome/102.0.5005.167 Electron/19.1.3 Safari/537.36
+To run PoMeLo, R & RStudio must be installed. PoMeLo was developed using R v4.2.2 with RStudio 2022.12.0.
+
 Attached base R packages:	_stats, graphics, grDevices, utils, datasets, methods, base_
 
 Other attached packages:
@@ -15,10 +15,33 @@ Other attached packages:
 
 ## Running PoMeLo
 
-To run PoMeLo locally, clone this repo, open the ```PML_script.R``` file in RStudio, and then click "Source".
+To run PoMeLo, clone this repo, open the ```PML_script.R``` file in RStudio, and then click "Source".
 
+PoMeLo is closely linked to analyses using the BV-BRC website (https://www.bv-brc.org/), and requires files generated via BV-BRC. Here is a typical workflow incorporating both BV-BRC & PoMeLo:
+
+* Users will first need to use BV-BRC to select genomes of two related, preferably monophyletic, groups of bacterial species (_target & non-target_). If the user wishes to determine their groupings via analysis of genome loss via a phylogenetically independent contrast approach, see the PIC section below.
+ + When examining genomes in BV-BRC (under the 'genomes' tab) of interested taxa, we recommend including only genomes which are Complete (no WGS), and of Good Quality.
+ + When examining BV-BRC genomes we also recommend to add the "Species" column as one of the viewed columns when viewing and selecting genomes. This column commonly has updated taxonomic information and is superior to the name used in the initial "Genome Name" column.
+ + The genomes should be placed into separate BV-BRC Genome Groups. From the page listing the users' Genome Groups (https://www.bv-brc.org/workspace/yourusername@patricbrc.org/home/Genome%20Groups), next download both the target group & non-target group. Be sure to download each table as .csv and also be sure to not modify these .csv files after downloading, as Excel will drop zeros in genome IDs.
+* It is not required, but the last portion of the PoMeLo pipeline incorporates a BV-BRC phylogenetic tree. If the user would like to include a phylogeny of the two groups, first create a separate Genome Group in BV-BRC incorporating the species in your target and non-target groups - but for this Genome Group, be sure to only include one genome per "Species" column. The user will again need to save this Genome Group as a .csv file.
+ + Within BV-BRC, use the Bacterial Genome Tree tool (https://www.bv-brc.org/app/PhylogeneticTree) under the _Tools & Services_ menu to create the phylogny. Select your Genome Group with one genome per species, but otherwise use default settings (100 genes) & have the output saved to your Genome Groups folder. After ~2-20 hours depending on your group size, the completed phylogeny will be saved to a subfolder.
+ + Find the folder with the completed phylogeny, and download the tree file ending in "_tree.nwk" - this file along with the .csv of the Genome Group will be used by PoMeLo.
+* With these BV-BRC files in hand, start the PoMeLo pipeline. Users will be prompted to select the required files. Note the file "mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab" is in this repo, in the scripts subfolder.
+* All of the output files will be saved in your ~/code directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway. There are prompts throughout the PoMeLo pipeline that will indicate progress, and if there are any intermediate problems.
+
+## PIC analysis
+
+To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICpythonscript.R``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as desribed earlier.
 
 ## Tips
 
+
+
 ## Citation
 If you use PoMeLo, please cite our publication:
+
+**PoMeLo: A Novel Bioinformatic Approach for Identifying Metabolic Vulnerabilities of Pathogens to Inform Host-directed Therapeutics**
+
+Abigail Leigh Glascock, Eric Waltari, Gytis Dudas, Josette Medicielo, Joan Wong, Vida Ahyong
+
+tk 2023; doi: https://doi.org/tk
