@@ -1,4 +1,4 @@
-[](pomelo.jpg)
+![](pomelo.jpg)
 # PoMeLo
 
 PoMeLo is a novel R-based bioinformatics approach to identifying metabolic vulnerabilities of bacterial pathogens to host-directed therapeutics.
