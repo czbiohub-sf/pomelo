@@ -36,7 +36,6 @@ To generate a phylogeny of bacterial species calculating genome size change via 
 ## Tips
 
 
-
 ## Citation
 If you use PoMeLo, please cite our publication:
 
