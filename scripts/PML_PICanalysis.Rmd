@@ -1,0 +1,715 @@
+---
+title: "PoMeLo PIC Analyses"
+output:
+  html_document
+  toc: true
+  toc_float: true
+---
+
+```{r setup, include=FALSE}
+### NOTE ####
+### ONLY RUN NEXT 5 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
+# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse") # package names
+# install.packages(pkgs)
+# library(BiocManager)
+# BiocManager::install("remotes")
+# BiocManager::install("YuLab-SMU/treedataverse")
+library(igraph)
+library(RColorBrewer)
+library(hexbin)
+library(scales)
+library(grid)
+library(lattice)
+library(gdata)
+library(gridExtra)
+library(ape)
+library(reshape2)
+library(tcltk)
+library(hash)
+library(ggplot2)
+library(seqinr)
+library(phangorn)
+library(ggdendro)
+library(phytools)
+library(openxlsx)
+library(coop)
+Sys.sleep(1)
+library(treedataverse)
+library(aplot)
+Sys.sleep(1)
+library(tidyverse)
+library(fs)
+
+## also reticulate setup here...
+library(reticulate)
+#use_virtualenv("miniconda3")
+
+# In general in python:
+#   
+# from abc import xyz as uvw
+#    means in R
+# uvw <- import('abc.xyz')
+
+
+```
+
+## Commands for examining genome streamlining in 2 bacterial groups
+
+INSTALLATION NOTE - YOU NEED TO INSTALL XQUARTZ IF YOU HAVE A MAC because the current code DOES USE tcltk:
+from https://cran.r-project.org/bin/macosx/
+Contains R 4.1.1 framework, R.app GUI 1.77 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7. 
+The latter two components are optional and can be ommitted when choosing "custom install", they are only needed 
+if you want to use the tcltk R package or build package documentation from sources.
+Note: the use of X11 (including tcltk) requires XQuartz to be installed since it is no longer part of OS X. 
+Always re-install XQuartz when upgrading your macOS to a new major version.
+
+
+```{r}
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+dir.create("~/code")
+## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
+setwd("~/code")
+data_dir <- "~/code"
+data_dir0 <- paste(path_home(),"/code", sep="")
+
+```
+
+directions:
+First set of code works to print and examine any phylogeny made using the BV-BRC Phylogenetic Tree Tool
+Second set of code will prune the phylogeny to the target and non-target species and allow the user to show the phylogeny along with the heatmaps...
+
+- First create a genome group that includes all of the species you are interested in - ONLY ONE GENOME PER SPECIES THOUGH!
+- Next go to the Phylogenetic Tree Building (under Services): https://bvbrc.org/app/PhylogeneticTree
+- Add the genome group, select an output name, then submit the job - NOTE THE NUMBER OF SPECIES MUST BE BETWEEN 4-100
+- When run is complete, find the output name and search through the outputs to find the Newick tree file (.nwk)
+
+Next run the following R code, at the prompt select the correct nwk file
+
+## FOR PIC ANALYSES - START HERE RUNNING MANUALLY
+## IF YOU ARE IMPORTING A CUSTOM-BUILD TREE USING THE PATRIC TREE TOOL...
+## NOTE FILES ARE BEING SAVED IN SAVE DIRECTORY AS .RMD FILE, NOT THE data_dir
+
+```{r}
+phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
+phylo$tip.label
+plot.phylo(phylo)
+
+Sys.sleep(2)
+##  also import the same custom datasets's accompanying CSV file...
+
+phylo.data <- read_csv(tk_choose.files(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+                       , col_types = list(
+                         "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
+
+phylo.data <- phylo.data %>%
+  rename(genome_id = "Genome ID") %>%
+  rename(genome_name = "Genome Name") %>%
+  rename(genome_length = Size) %>%
+  rename(taxon_id = "NCBI Taxon ID") %>%
+  select(genome_id, genome_name, Species, taxon_id, genome_length)
+
+## some correcting (not thinning)
+# phylo.data <- phylo.data
+# phylo.data$genome_name <- gsub("Strawberry lethal yellows phytoplasma","Candidatus Phytoplasma australiense",phylo.data$genome_name)
+# Strawberry lethal yellows phytoplasma (CPA) str. NZSb11
+# Species	Candidatus Phytoplasma australiense
+
+phylo.data$genome_name <- gsub("Candidatus ","",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("uncultured ","",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("sp. ","sp_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("strain ","strain_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("OMZ ","OMZ_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("ATCC ","ATCC_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("NCTC ","NCTC_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("MAG ","MAG_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("USDA ","USDA_",phylo.data$genome_name)
+
+phylo.data$genome_name <- gsub("[","",phylo.data$genome_name, fixed = TRUE)
+phylo.data$genome_name <- gsub("]","",phylo.data$genome_name, fixed = TRUE)
+phylo.data$genome_name <- gsub('"',"",phylo.data$genome_name, fixed = TRUE)
+phylo.data$genome_name <- gsub("'","",phylo.data$genome_name, fixed = TRUE)
+
+phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+
+## repeat for Species field
+phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
+phylo.data$Species <- gsub("uncultured ","",phylo.data$Species)
+phylo.data$Species <- gsub("sp. ","sp_",phylo.data$Species)
+phylo.data$Species <- gsub("strain ","strain_",phylo.data$Species)
+phylo.data$Species <- gsub("OMZ ","OMZ_",phylo.data$Species)
+phylo.data$Species <- gsub("ATCC ","ATCC_",phylo.data$Species)
+phylo.data$Species <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$Species)
+phylo.data$Species <- gsub("NCTC ","NCTC_",phylo.data$Species)
+phylo.data$Species <- gsub("MAG ","MAG_",phylo.data$Species)
+phylo.data$Species <- gsub("USDA ","USDA_",phylo.data$Species)
+## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
+phylo.data$Species <- gsub(".*sp.$","null",phylo.data$Species)
+
+phylo.data$Species <- gsub("[","",phylo.data$Species, fixed = TRUE)
+phylo.data$Species <- gsub("]","",phylo.data$Species, fixed = TRUE)
+phylo.data$Species <- gsub('"',"",phylo.data$Species, fixed = TRUE)
+phylo.data$Species <- gsub("'","",phylo.data$Species, fixed = TRUE)
+
+phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Species)
+phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
+phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+
+phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
+#phylo.data$Species <- gsub("null ","",phylo.data$Species)
+## instead of gsub, use coalesce??
+# dfABy %>% mutate(A = coalesce(A,B)) this is replacing all NAs in cregion with the value from locus
+phylo.data <- phylo.data %>% mutate(Species = coalesce(Species,genome_name))
+
+## then pull just genus & species
+## create new column with shorter description
+phylo.data <- phylo.data %>% separate(genome_name, into = c("genus", "species"), sep = " ", remove = FALSE, convert = TRUE, extra = "drop")
+phylo.data <- phylo.data %>% unite("genusspecies", genus, species, sep = "_", remove = TRUE)
+
+## then pull just genus & species
+## create new column with shorter description
+phylo.data <- phylo.data %>% separate(Species, into = c("genus", "species"), sep = " ", remove = FALSE, convert = TRUE, extra = "drop")
+phylo.data <- phylo.data %>% unite("genusspecies2", genus, species, sep = "_", remove = TRUE) %>% relocate(genusspecies2, .after = genusspecies)
+
+## now remove if genusspecies2 doesn't = genusspecies update do not remove, but use the latter genusspecies2 in every case!
+## further down we will replace the collated paths_groupAandB$genusspecies with genusspecies2
+phylo.data_mismatch <- subset(phylo.data , genusspecies != genusspecies2)
+
+phylo.data <- phylo.data %>% 
+  rename(genusspecies1 = genusspecies) %>%
+  rename(genusspecies = genusspecies2) %>%
+  relocate(genusspecies, .before = genusspecies1)
+## replace NAs...
+phylo.data <- phylo.data %>% mutate(genusspecies = coalesce(genusspecies,genusspecies1))
+
+
+phylotipslist <- phylo$tip.label
+phylotipsdf <- as.data.frame(phylotipslist, col.names = "genome_id")
+phylotipsdf <- rename(phylotipsdf, genome_id = phylotipslist)
+phylotips_withname_guidetree <- left_join(phylotipsdf, phylo.data) ## need full list, not curated either, but genome_summary_phylo (but still some missing, see plan B)
+
+phylotips_withname_guidetree$genome_size_mbp <- phylotips_withname_guidetree$genome_length / 1000000
+phylotips_withname_guidetree$genome_size_mbp <- round(phylotips_withname_guidetree$genome_size_mbp, 2)
+
+### ADD A CHECK HERE TO MAKE SURE NO NAS - IF SO NEED TO GIVE USER AN ERROR...
+if (nrow(phylotips_withname_guidetree %>% dplyr::filter(is.na(.[["taxon_id"]])|is.na(.[["genome_size_mbp"]]))) == 0) {
+  print("Your BV-BRC phylogeny has no missing genome values!")
+} else {
+  print("Your BV-BRC phylogeny has some missing genome values:")
+  print(phylotips_withname_guidetree %>% dplyr::filter(is.na(.[["taxon_id"]])|is.na(.[["genome_size_mbp"]])))
+  stop()
+}
+
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree %>% unite("genome_name_length", genusspecies, genome_size_mbp, sep = " ", remove = FALSE)
+## adding gsub to remove ':', also check to make sure no duplicates
+phylotips_withname_guidetree2$genusspecies <- gsub(":","-",phylotips_withname_guidetree2$genusspecies)
+phylotips_withname_guidetree2$genome_name_length <- gsub(":","-",phylotips_withname_guidetree2$genome_name_length)
+phylotips_withname_guidetree2$genome_name <- gsub(":","-",phylotips_withname_guidetree2$genome_name)
+
+# phylotips_withname_guidetree2 %>%
+#   dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))
+
+if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
+  print("Your BV-BRC phylogeny has no duplicate taxon names!")
+} else {
+  print("Your BV-BRC phylogeny has some duplicate taxon names:")
+  print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
+}
+
+## IF YOU HAVE DUPLICATES, REMOVE HERE...
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genusspecies1 != "Rickettsia_heilongjiangensis") %>%
+  dplyr::filter(genusspecies1 != "Rickettsia_raoultii") %>%
+  dplyr::filter(genusspecies1 != "Rickettsia_amblyommii")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genusspecies1 != "Burkholderia_sp_TSV202") %>%
+  dplyr::filter(genome_id != "1795874.3")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genusspecies1 != "Borreliella_bavariensis")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genusspecies1 != "Strawberry_lethal") %>%
+  dplyr::filter(genusspecies1 != "Mycoplasma_ovipneumoniae")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_name != "Brucella melitensis biovar Abortus 2308")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_name != "Klebsiella oxytoca strain_4928STDY7071328")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_id != "1660071.3") %>%
+  dplyr::filter(genome_id != "1660070.3") %>%
+  dplyr::filter(genome_id != "1244528.3") %>%
+  dplyr::filter(genome_id != "1244531.3") %>%
+  dplyr::filter(genome_id != "1660063.4")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genusspecies1 != "Francisella_novicida") %>%
+  dplyr::filter(genusspecies1 != "Thiomicrospira_crunogena")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_name != "Serratia_sp_ATCC_39006")
+
+#and the tree!
+phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
+phylo <- ape::drop.tip(phylo, c("1795874.3", "1439853.3"))
+phylo <- ape::drop.tip(phylo, c("664662.50"))
+phylo <- ape::drop.tip(phylo, c("1232383.3"))
+phylo <- ape::drop.tip(phylo, c("980422.3", "29562.18"))
+phylo <- ape::drop.tip(phylo, c("359391.4"))
+phylo <- ape::drop.tip(phylo, c("571.706"))
+phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4","1244531.3"))
+phylo <- ape::drop.tip(phylo, c("401614.12", "317025.14"))
+phylo <- ape::drop.tip(phylo, c("1232383.3"))
+phylo <- ape::drop.tip(phylo, c("104623.6"))
+
+## check again for duplicates
+if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
+  print("Your BV-BRC phylogeny has no duplicate taxon names!")
+} else {
+  print("Your BV-BRC phylogeny has some duplicate taxon names:")
+  print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
+  print("You will have to manually add two commands (one with dplyr::filter & one with ape::drop.tip) to filter out these names")
+  print("Look for the code snippets after 'IF YOU HAVE DUPLICATES, REMOVE HERE' and replicate")
+  print("Then re-run the pipeline")
+  stop()
+}
+
+
+### printing...
+species <-  phylotips_withname_guidetree2$genome_name_length
+
+
+plot_title <- unlist(strsplit(species[14], "_"))[1]
+#focusplot_title <- unlist(strsplit(species[4], "_"))[1]
+
+print("We've guessed that your taxon plot title should be")
+print(plot_title)
+print("Please rename if this is a bad guess!")
+
+# plot_title <- "Francisella"
+PICplot_title <- paste("PIC_",plot_title, sep="")
+py_plottitle <- r_to_py(PICplot_title)
+PICplot_titlepdf <- paste("PIC_",plot_title, ".pdf", sep="")
+py_plottitlepdf <- r_to_py(PICplot_titlepdf)
+
+write.table(phylotips_withname_guidetree2, file = paste(data_dir,"/phylogeny_focus_",plot_title,Sys.Date(),".tab", sep=""), sep = "\t", row.names = FALSE, quote = FALSE)
+
+## now save just the pathname of this file for python later...
+phylodata00 <- paste(data_dir0,"/phylogeny_focus_",plot_title,Sys.Date(),".tab", sep="")
+## but also need to convert to python https://blog.djnavarro.net/posts/2022-09-09_reticulated-arrow/
+py_phylodata00 <- r_to_py(phylodata00)
+## Within the Python session, an object called r has been created: the Pandas DataFrame object is stored as r.py_phylodata00, and we can manipulate it using Python code in whatever fashion we normally might.
+
+## also save version with just genus+species for pulling A+B species names below...
+phylo0 <- phylo
+
+### check to stop if tip labels are not equal (will crash R if not)
+#n_distinct(phylo$tip.label) == n_distinct(phylotips_withname_guidetree2$genusspecies)
+## check if true!
+if ((n_distinct(phylo$tip.label) == n_distinct(phylotips_withname_guidetree2$genusspecies)) == TRUE) {
+  phylo0$tip.label <- phylotips_withname_guidetree2$genusspecies
+  phylo$tip.label <- phylotips_withname_guidetree2$genome_name_length
+  phylo$tip.label[1]
+  plot.phylo(phylo)
+  phylo0$tip.label[1]
+  Sys.sleep(2)
+} else {
+  print("Your phylotree (.nwk) file and your downloaded table (.csv) of the genome group do not have the same number of taxa.")
+  print("Please check these, re-run in BV-BRC if necessary, then re-run the pipeline")
+  stop()
+}
+
+# phylo0$tip.label <- phylotips_withname_guidetree2$genusspecies
+# phylo$tip.label <- phylotips_withname_guidetree2$genome_name_length
+# phylo$tip.label[1]
+# plot.phylo(phylo)
+# phylo0$tip.label[1]
+
+# Margins area
+par(oma=c(1,2,1,2)) # left & right have 3 lines of space
+# par(mar=c(2,4,2,4) + 0.1)
+# 
+# par(oma=c(1,5,1,5)) # left & right have 3 lines of space
+# par(mar=c(2,4,2,6)) midpoint(tree)
+# plot.phylo(phylo, edge.width=2, cex = 0.5, align.tip.label = TRUE, adj = 1, label.offset = -0.8)
+# plot.phylo(phylo, edge.width=2, cex = 0.5, align.tip.label = TRUE, adj = 0, label.offset = 0)
+plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
+
+# par(mai=c(1.02,0.82,0.82,0.42))
+# par(mai=c(1.02,0.42,0.82,0.32))
+## outer margins seem to help more!!
+# ## bottom, left, top, right
+# par(oma = rep(2, 4))
+par(oma=c(1,4,1,5))
+
+# par(“mai”)/par(“mar”)
+# [1] 0.2 0.2 0.2 0.2
+
+### saving a plot...
+png(filename = paste(data_dir,"/phylogeny_focus_",plot_title,Sys.Date(),".png", sep=""), width = 16, height = 24, units = "in", res = 300)
+# ggsave(filename = paste("phylogeny_thintips_withlabels8x8_",plot_title,Sys.Date(),".png", sep=""), dendro_plot2c, width = 8, height = 8, units = "in", limitsize = FALSE)
+# par(oma=c(1,1,1,3)) # left & right have 3 lines of space
+# par(oma=c(1,5,1,5)) # left & right have 3 lines of space
+# par(mar=c(2,4,2,6))
+
+# par(mar=c(5,6,4,2)+0.1)
+# par(mai=c(1.02,0.82,0.82,0.42))
+par(oma=c(1,4,1,5))
+
+if (Ntip(phylo) < 500) {
+  # plot.phylo(phylo, edge.width=1, cex = 2.2, align.tip.label = TRUE, adj = 0, label.offset = 0, no.margin = FALSE)
+  plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
+} else {
+  plot.phylo(phyloguide.focus.extract, edge.width=2, cex = 0.5, align.tip.label = TRUE, adj = 1, label.offset = 0)
+}
+dev.off()
+
+Sys.sleep(2)
+## don't need an extra tree since we save midpoint rooted just below
+# write.tree(phylo, file = paste("PATRICphylotree_withlabels_",plot_title,Sys.Date(),".nwk", sep=""))
+
+# phylo.toplot <- plot.phylo(phylo, edge.width=0.8, cex = 1.8, align.tip.label = TRUE, adj = 0, label.offset = 0, no.margin = FALSE)
+# ggsave(filename = paste("phylogeny_thintips_withlabels8x8_",plot_title,Sys.Date(),".png", sep=""), phylo.toplot, width = 8, height = 8, units = "in", limitsize = FALSE)
+
+##########
+## FOR PIC ANALYSES - TAKE THE "PHYLOGENY_FOCUS..." TAB FILE & THE "PATRICphylotree..." NWK FILE, AND RUN THEM ON GD JUPYTER NOTEBOOK...
+## but use midpoint rooted phylo!
+write.tree(midpoint(phylo), file = paste(data_dir,"/PATRICphylotree_midpointrooted_withlabels_",plot_title,Sys.Date(),".nwk", sep=""))
+
+## now save just pathname of this tree. data_dir
+phylo00 <- paste(data_dir0,"/PATRICphylotree_midpointrooted_withlabels_",plot_title,Sys.Date(),".nwk", sep="")
+py_phylo00 <- r_to_py(phylo00)
+## nwk file: Within the Python session, an object called r has been created: the Pandas DataFrame object is stored as r.py_phylo00, and we can manipulate it using Python code in whatever fashion we normally might.
+## tab file: Within the Python session, an object called r has been created: the Pandas DataFrame object is stored as r.py_phylodata00, and we can manipulate it using Python code in whatever fashion we normally might.
+
+## also save base_path (will be r.basepath)
+basepath <- r_to_py(data_dir0)
+
+
+#### END R PIC ANALYSIS CODE
+```
+
+Note that the `echo = FALSE` parameter can be added to the code chunk to prevent printing of the R code that generated the plot.
+Next is the python setup code
+
+```{python, echo = FALSE}
+import matplotlib as mpl
+from matplotlib import pyplot as plt
+from matplotlib.gridspec import GridSpec
+from matplotlib.patches import Rectangle,Polygon
+import matplotlib.patheffects as path_effects
+
+mpl.rcParams['pdf.fonttype'] = 42
+mpl.rcParams['ps.fonttype'] = 42
+mpl.rcParams['font.weight'] = 200
+
+import glob,os,csv
+
+import baltic as bt
+import numpy as np
+```
+
+Now the main Python code. First import the .tab file of genome data that accompanies the tree file
+CHECK TO SEE IF WE CAN USE PREVIOUSLY LOADED FILE FROM THE R CODE!!! - try using tk.choosefile alone before reading in tree or csv
+
+```{python}
+genome_data={}
+
+## nwk file: Within the Python session, an object called r has been created: the Pandas DataFrame object is stored as r.py_phylo00, and we can manipulate it using Python code in whatever fashion we normally might.
+## tab file: Within the Python session, an object called r has been created: the Pandas DataFrame object is stored as r.py_phylodata00, and we can manipulate it using Python code in whatever fashion we normally might.
+## now instead of f, we just use r.py_phylodata00 & instead of t we just use r.py_phylo00 !!!!
+## python can't parse ~/code though - need to spell out home directory in first R code...now called data_dir0
+f=r.py_phylodata00
+#f=glob.glob(os.path.join(base_path,'*%s.tab'%(suffix)))[0]
+
+print(f)
+```
+
+Python code is broken into chunks. Next another setup chunk for the imported tab file
+
+```{python}
+for l in csv.DictReader(open(f,'r'),delimiter='\t'):
+  #     print(l.keys())
+  name=l['genome_name_length'].replace(' ','_')
+  genome_data[name]=l
+```
+
+Import the Newick tree file
+
+```{python}
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Rickettsia2023-03-07.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Mycoplasma2023-03-08.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Treponema2023-03-15.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Mycobacterium2023-03-08.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Listeria2023-02-07.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Streptococcus2023-03-09.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Klebsiella2023-03-22.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Neisseria2023-03-09.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Haemophilus2023-03-23.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Campylobacter2023-03-09.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Chlamydia2023-03-30.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Yersinia2023-04-05.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Bartonella2023-03-16.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Francisella2023-04-05.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Burkholderia2023-03-07.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Yersinia2023-03-09.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Mycobacterium2023-02-10.nwk'))[0]
+#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Borrelia2023-03-22.nwk'))[0]
+t=r.py_phylo00
+## note if there are colons in tip names, run will fail...
+print(t)
+
+ll=bt.loadNewick(t) ## import rooted tree
+ll.treeStats()
+```
+
+Chunk that processes the tree file
+
+```{python}
+for k in ll.getExternal(): ## iterate over tips
+  if k.name not in genome_data: ## no genome size available
+    print('%s genome size not available'%(k.name))
+  else: ## genome size available, assign it to tip's traits
+    k.traits['genome_length']=int(genome_data[k.name]['genome_length'])
+
+
+for k in ll.getInternal(): ## iterate over internl nodes
+  if 'pic' in k.traits: del k.traits['pic'] ## remove phylogenetically independent contrasts if they already exist (means this cell was run before)
+  if 'delta_pic' in k.traits: del k.traits['delta_pic'] ## remove differences in phylogenetically independent contrasts if they exist
+
+while len(ll.getParameter('pic',use_trait=True,which=lambda w: w.is_node()))<len(ll.getInternal()): ## loop until there are no nodes without a "pic" trait
+  for k in ll.getInternal(): ## iterate over internal nodes
+    if len(k.children)==len([ch for ch in k.children if 'pic' in ch.traits or ch.is_leaf()]): ## all children annotated or annotatable
+      k.traits['pic']=sum([ch.traits['pic'] if ch.is_node() else np.mean(ch.traits['genome_length']) for ch in k.children])/len(k.children) ## compute PIC by taking mean genome length of all children (if tips) or PIC (if child is a node)
+
+for k in ll.getInternal(): ## iterate over internal nodes
+  if 'pic' in k.parent.traits: ## if parent has a PIC trait compute percent change from parent
+  #         print(k.index,(k.parent.traits['pic']-k.traits['pic'])/k.parent.traits['pic']) ## relative change in genome size
+    k.traits['delta_pic']=(k.traits['pic']-k.parent.traits['pic'])/k.parent.traits['pic']*100 ## turn to percent change
+
+for k in ll.getExternal(): ## repeat for tips
+  k.traits['delta_pic']=(np.mean(k.traits['genome_length'])-k.parent.traits['pic'])/k.parent.traits['pic']*100 ## turn to percent change
+```
+
+Final large chunk that creates the figure. Note there is a place to change the PIC threshold that is shown in the figure. We recommend either 5.0 or 10.0 for 5% or 10% PIC change.
+
+```{python}
+fig,ax = plt.subplots(figsize=(15,30),facecolor='w')
+
+gs = GridSpec(1,2,width_ratios=[2,1],hspace=0.05,wspace=0.02) ## 1 row, 2 columns plot
+ax=plt.subplot(gs[0],zorder=1000,facecolor='none') ## where tree lives
+### NOTE WARNING: MatplotlibDeprecationWarning: Auto-removal of overlapping axes is deprecated since 3.6 and will be removed two minor releases later; explicitly call ax.remove() as needed.
+
+ax2=plt.subplot(gs[1],zorder=1000,facecolor='none') ## where genome sizes live
+
+
+norm=mpl.colors.Normalize(-50,50) ## will normalize delta PIC values from [-50 to 50] to [0 to 1]
+cmap2=mpl.cm.get_cmap('RdBu',10)#mpl.cm.RdBu
+### NOTE WARNING: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+box=ax.get_position()
+axcb = fig.add_axes([box.x0, box.y1+2.0/ll.ySpan, box.x1-box.x0, 1.4/ll.ySpan], frame_on=False) ## add small subaxis to house the colour bar
+
+cb = mpl.colorbar.ColorbarBase(axcb,cmap=cmap2,norm=norm,orientation='horizontal',extend='both',alpha=1.0,drawedges=False) ## add colour bar
+axcb.xaxis.set_label_position('top')
+axcb.set_xlabel('$\Delta$ PIC',size=18) ## set label
+axcb.tick_params(size=5,labelsize=14) ## set tick label size
+axcb.xaxis.set_major_locator(mpl.ticker.MultipleLocator(10)) ## set multiples to mark with ticks
+
+
+### collapse the following to save y-axis space in above which will be Fig 1 of Rickettsia paper
+import copy
+ll2=copy.deepcopy(ll) ## make a copy of the tree
+
+scale=8 ## scale the width of a collapsed clade by this amount
+
+## identify the node from which listed tips descended
+# ca=ll2.commonAncestor(ll2.getExternal(lambda w: '_'.join(w.name.split('_')[:-1]) in ['Wolbachia_endo_Ostrinia','Wolbachia_endo_Ctenocephalides']))
+# # print(ca.leaves)
+# ## collapse clade, give it a name and a width
+# ll2.collapseSubtree(ca,'Wolbachia',widthFunction=lambda k: len(ca.leaves)/scale)
+
+# ca=ll2.commonAncestor(ll2.getExternal(lambda w: '_'.join(w.name.split('_')[:-1]) in ['Rickettsia_monacensis','Rickettsia_parkeri']))
+# # print(ca.leaves)
+# ll2.collapseSubtree(ca,'Rickettsia 2',widthFunction=lambda k: len(ca.leaves)/scale)
+
+# ca=ll2.commonAncestor(ll2.getExternal(lambda w: '_'.join(w.name.split('_')[:-1]) in ['Rickettsia_felis','Rickettsia_australis']))
+# # print(ca.leaves)
+# ll2.collapseSubtree(ca,'Rickettsia 1',widthFunction=lambda k: len(ca.leaves)/scale)
+
+# ca=ll2.commonAncestor(ll2.getExternal(lambda w: '_'.join(w.name.split('_')[:-1]) in ['Magnetococcus_marinus','Brucella_suis']))
+# # print(ca.leaves)
+# ll2.collapseSubtree(ca,'outgroup',widthFunction=lambda k: len(ca.leaves)/scale)
+
+#### end of collapsing clades
+
+## plot tree with branches coloured by delta PIC
+ll2.plotTree(ax,width=3,colour=lambda k: cmap2(norm(k.traits['delta_pic'])),zorder=1,path_effects=[path_effects.Stroke(capstyle="round")])
+## plot tree outline in grey
+ll2.plotTree(ax,width=7,colour='dimgrey',zorder=0,path_effects=[path_effects.Stroke(capstyle="round")])
+
+
+effects=[path_effects.Stroke(linewidth=3.0, foreground='w'),
+         path_effects.Stroke(linewidth=0.5, foreground='k')]
+
+####################################### HERE IS WHERE YOU CHANGE THE PIC THESHOLD IN THE LABELLING ####################################
+########################## add delta PIC if it exceeds 20% - note change to 5%  abs(k.traits['delta_pic'])>=5.0. ########################
+ll2.addText(ax,x_attr=lambda k: k.height-k.length/2,y_attr=lambda k: k.y+0.15,target=lambda k: 'delta_pic' in k.traits and abs(k.traits['delta_pic'])>=15.0,text=lambda k: '+%.1f%%'%(k.traits['delta_pic']) if k.traits['delta_pic']>0 else '%.1f%%'%(k.traits['delta_pic']),path_effects=effects,size=10,va='bottom',ha='center')
+
+ax.plot() ## make sure things are plotted
+
+ax.set_ylim(-0.5,ll2.ySpan+2.5) ## axis limits
+ax.set_xlim(-0.01,ll2.treeHeight+0.05)
+
+ax.set_xticks([]) ## remove labels
+ax.set_xticklabels([])
+ax.set_yticks([])
+ax.set_yticklabels([])
+
+[ax.plot([k.x,ll2.treeHeight*1.01],[k.y,k.y],color='lightgrey',lw=1,ls='--',zorder=0) for k in ll2.getExternal()] ## plot dashed lines running along x axis for each tip
+
+[ax.spines[loc].set_visible(False) for loc in ax.spines] ## remove plot spines
+
+L=0.2
+x=0.3
+y=4
+
+ax.plot([x,x+L],[y,y],lw=4,color='k') ## scale bar
+ax.text(x+L/2,y-0.5,'%.2f\nsubs/site'%(L),ha='center',va='top',size=20) ## scale bar label
+
+#######################################
+
+## plot labels for vacuolar vs intracellular
+for k in ll2.getExternal(): ## iterate over tips
+  
+  x=ll2.treeHeight+0.03
+  y=k.y-(0.5 if k.is_leaf() else (k.width+1)/2)
+  width=(1 if k.is_leaf() else k.width+1)
+  if any(x in k.name for x in ['Rickettsia','Orientia']): ## label Rickettsias
+    ax.add_patch(Rectangle((x,y),0.05,width,facecolor='#48A365',edgecolor='none',alpha=1.0,clip_on=False))
+  elif any(x in k.name for x in ['Ehrlichia','Anaplasma','Wolbachia','Neorickettsia']): ## label vacuolars
+    ax.add_patch(Rectangle((x,y),0.05,width,facecolor='#7F6E85',edgecolor='none',alpha=1.0,clip_on=False))
+
+ax.text(x+0.012,26.5,'cytoplasmic',color='w',size=18,rotation=-90,va='center',ha='center') ## manually add legend to label
+ax.text(x+0.012,10,'vacuolar',color='w',size=18,rotation=-90,va='center',ha='center')
+
+##############################
+
+for i,k in enumerate(sorted(ll2.getExternal(),key=lambda q: q.y)): ## iterate over tips in their y axis order
+  
+  if 'genome_length' in k.traits: ## trait "genome_length" available - dealing with an actual tip
+    value=int(k.traits['genome_length'])
+    ax2.scatter(value,k.y,s=80,facecolor='lightgrey',edgecolor='none',zorder=10) ## plot dot
+    ax2.scatter(value,k.y,s=160,facecolor='k',edgecolor='none',zorder=9) ## plot outline
+  else: ## dealing with collapsed clade - no "genome_length" trait available
+    genome_lengths=[int(genome_data[lf]['genome_length']) for lf in k.leaves] ## get "genome_length" traits from every descendant
+    value=np.mean(genome_lengths) ## mean
+    m,M=min(genome_lengths),max(genome_lengths) ## min,max
+
+    ax2.scatter(value,k.y,s=70,facecolor='lightgrey',edgecolor='none',zorder=11) ## plot dot
+    ax2.scatter(value,k.y,s=140,facecolor='k',edgecolor='none',zorder=10) ## plot outline
+
+    ax2.plot([m,M],[k.y,k.y],color='lightgrey',lw=4,ls='-',zorder=9,solid_capstyle='round') ## plot range
+    ax2.plot([m,M],[k.y,k.y],color='k',lw=8,ls='-',zorder=8,solid_capstyle='round') ## plot outline
+
+    lu=(k.height,k.y+0.03) ## trapezoid coordinates to represent the collapsed "triangle" (it's slightly flared to the left)
+    ru=(k.lastHeight,k.y+k.width/2)
+    rl=(k.lastHeight,k.y-k.width/2)
+    lo=(k.height,k.y-0.1)
+
+    poly=Polygon((lu,ru,rl,lo),facecolor=cmap2(norm(k.traits['delta_pic'])),edgecolor='none',lw=1,zorder=10) ## polygon
+    poly2=Polygon((lu,ru,rl,lo),facecolor='none',edgecolor='dimgrey',lw=4,zorder=0) ## polygon outline
+
+    ax.add_patch(poly) ## add polygon to plot
+    ax.add_patch(poly2) ## add outline
+
+ax2.plot([1,1e9],[k.y,k.y],color='lightgrey',lw=1,ls='--') ## add dashed line running along x-axis
+
+
+ax2.plot() ## force matplotlib to plot polygons 
+ax2.set_ylim(ax.get_ylim()) ## set y-axis limit to match
+
+glimits=ll.getParameter('genome_length',use_trait=True,which=lambda q: q.is_leaf()) ## get all genome sizes from all tips
+ax2.set_xlim(min(glimits)*0.6,max(glimits)*1.1) ## set x-axis limits
+
+fmt=lambda y,pos: '0.0' if (y==0.0 or y==np.nan) else r'$%.2f\times10^{%d}$'%(y*(10**-int(np.log10(y))),int(np.log10(y))) ## scientific format for genome size tick labels
+
+ax2.xaxis.set_major_locator(mpl.ticker.MaxNLocator(7)) ## 7 labelled ticks
+ax2.xaxis.set_minor_locator(mpl.ticker.MaxNLocator(7*4)) ## 7*4 minor ticks
+
+ax2.xaxis.set_major_formatter(mpl.ticker.FuncFormatter(fmt)) ## format ticks
+ax2.grid(axis='x',ls='-',color='dimgrey') ## add x-axis grid lines
+ax2.tick_params(axis='x',rotation=90,labelsize=18) ## set x-axis label sizes and rotation
+
+ax2.tick_params(axis='y',size=0) ## no ticks for y-axis
+ax2.xaxis.set_label_position('top') ## label top of axis
+ax2.set_xlabel('genome size (nt)',size=20) ## add x-axis label
+
+[ax2.spines[loc].set_visible(False) for loc in ax2.spines if loc not in ['bottom']] ## no spines for plot
+
+ax2.yaxis.tick_right() ## label ticks on the right
+
+ylabels=[]
+ypos=[]
+for k in sorted(ll2.getExternal(),key=lambda w: w.y): ## iterate over all tips in their order
+  name=None
+  if isinstance(k,bt.clade): ## rename tips if dealing with a collapsed clade
+    if k.name=='Wolbachia':
+      name='Wolbachia'
+    elif k.name=='Rickettsia 1':
+      name='Rickettsia australis and relatives'
+    elif k.name=='Rickettsia 2':
+      name='Rickettsia parkeri,\nRickettsia rickettsii\nand relatives'
+    elif k.name=='outgroup':
+      name='other Alphaproteobacteria'
+
+  else: ## format regular tip names
+    name=' '.join(k.name.split('_')[:-1])
+  ylabels.append(name)
+  ypos.append(k.y)
+
+ax2.set_yticks(ypos) 
+ax2.set_yticklabels(ylabels) ## label tips
+
+###### old manual way of saving
+# path was plt.savefig('/Users/.../pathogen_metabolism_project/PIC_Streptococcus_Enterococcus250.pdf',dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Rickettsia20.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Campylobacter5.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Klebsiella5.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Haemophilus5.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Chlamydia10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Bartonella10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Francisella10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Yersinia10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Mycobacterium10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Yersinia5.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Burkholderia95.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Bartonella1_Brucella50_10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Mycoplasma10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Neisseria5.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_TreponemaBorellia95.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Borellia10.pdf'),dpi=300,bbox_inches='tight')
+#plt.savefig(os.path.join(base_path,'PIC_Streptococcus_Enterococcus_test.pdf'),dpi=300,bbox_inches='tight')
+
+### lets also save the PDF via the loaded species name from the R code... - use r.basepath
+## saving both as png & pdf - but png is missing genome sizes, only has tree, so use pdf
+#plt.savefig(os.path.join(r.basepath,r.py_plottitle),dpi=300,bbox_inches='tight')
+plt.savefig(os.path.join(r.basepath,r.py_plottitlepdf),dpi=300,bbox_inches='tight')
+
+plt.show()
+```
