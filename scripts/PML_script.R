@@ -2470,7 +2470,7 @@ species <-  phylotips_withname_guidetree2$genome_name_length
 # print(plot_title)
 # print("Please rename if this is a bad guess!")
 
-write.table(phylotips_withname_guidetree2, file = paste("supplemental_plots_ec_by_taxon_per_pathway/phylogeny_focus_",plot_title,Sys.Date(),".tab"), sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(phylotips_withname_guidetree2, file = paste("supplemental_plots_ec_by_taxon_per_pathway/phylogeny_focus_",plot_title,Sys.Date(),".tab", sep=""), sep = "\t", row.names = FALSE, quote = FALSE)
 
 ## also save version with just genus+species for pulling A+B species names below...
 phylo0 <- phylo
