@@ -305,7 +305,7 @@ print("Please rename if this is a bad guess!")
 # plot_title <- "Francisella"
 PICplot_title <- paste("PIC_",plot_title, sep="")
 py_plottitle <- r_to_py(PICplot_title)
-PICplot_titlepdf <- paste("PIC_",plot_title, ".pdf", sep="")
+PICplot_titlepdf <- paste("PIC_",plot_title,Sys.Date(), ".pdf", sep="")
 py_plottitlepdf <- r_to_py(PICplot_titlepdf)
 
 write.table(phylotips_withname_guidetree2, file = paste(data_dir,"/phylogeny_focus_",plot_title,Sys.Date(),".tab", sep=""), sep = "\t", row.names = FALSE, quote = FALSE)
