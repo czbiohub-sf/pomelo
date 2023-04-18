@@ -2649,12 +2649,26 @@ mrca.a <- ape::getMRCA(phylo0, species.aonly)
 testrootb <- try(ape::root(phylo0, node = mrca.b, resolve.root = TRUE), silent = TRUE)
 testroota <- try(ape::root(phylo0, node = mrca.a, resolve.root = TRUE), silent = TRUE)
 
+if ((n_distinct(species.aonly) < 2) & (n_distinct(species.bonly) < 2)) {
+  print("Your target and non-target group are both a single species, you cannot make a phylogeny!")
+  stop()
+} else {
+  Sys.sleep(2)
+}
+
+
 if (class(testrootb) == "phylo") {
   print("Phylogeny is rooted by the non-target group.")
   phylo0_mp <- ape::root(phylo0, node = mrca.b, resolve.root = TRUE)
 } else if (class(testroota) == "phylo") {
   print("Phylogeny is rooted by the target group.")
   phylo0_mp <- ape::root(phylo0, node = mrca.a, resolve.root = TRUE)
+} else if (n_distinct(species.aonly) < 2) {
+  print("Phylogeny is rooted by the target group, as it contains a single species.")
+  phylo0_mp <- ape::root(phylo0, outgroup = species.aonly, resolve.root = TRUE)
+} else if (n_distinct(species.bonly) < 2) {
+  print("Phylogeny is rooted by the non-target group, as it contains a single species.")
+  phylo0_mp <- ape::root(phylo0, outgroup = species.bonly, resolve.root = TRUE)
 } else {
   print("We were unable to root your phylogeny by either the target group or the non-target group.")
   print("As a result, we are using midpoint rooting.")
