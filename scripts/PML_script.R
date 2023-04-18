@@ -149,6 +149,7 @@ listAf$genomename <- gsub("USDA ","USDA_",listAf$genomename)
 listAf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listAf$genomename)
 listAf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$genomename)
 listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomename)
+listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
 listAf$genomename <- gsub("endo_Culex ","endo_Culex_",listAf$genomename)
 listAf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listAf$genomename)
 
@@ -185,6 +186,7 @@ listAf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$Species)
 listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
 listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
 listAf$Species <- gsub("endo_Aedes ","endo_Aedes_",listAf$Species)
+listAf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$Species)
 ## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
 listAf$Species <- gsub(".*sp.$","null",listAf$Species)
 
@@ -266,6 +268,7 @@ listBf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$genomenam
 listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomename)
 listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
 listBf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listBf$genomename)
+listBf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$genomename)
 
 listBf$genomename <- gsub("[","",listBf$genomename, fixed = TRUE)
 listBf$genomename <- gsub("]","",listBf$genomename, fixed = TRUE)
@@ -302,6 +305,7 @@ listBf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$Species)
 listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
 listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
 listBf$Species <- gsub("endo_Aedes ","endo_Aedes_",listBf$Species)
+listBf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$Species)
 
 listBf$Species <- gsub("[","",listBf$Species, fixed = TRUE)
 listBf$Species <- gsub("]","",listBf$Species, fixed = TRUE)
@@ -440,6 +444,7 @@ paths_groupAandB$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",paths
 paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Aedes ","endo_Aedes_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",paths_groupAandB$genome_name)
 
 paths_groupAandB$genome_name <- gsub("[","",paths_groupAandB$genome_name, fixed = TRUE)
 paths_groupAandB$genome_name <- gsub("]","",paths_groupAandB$genome_name, fixed = TRUE)
@@ -2312,6 +2317,7 @@ phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$
 phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -2340,6 +2346,7 @@ phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Spec
 phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)

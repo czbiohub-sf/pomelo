@@ -141,6 +141,7 @@ phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_n
 phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
 
 ## repeat for Species field
@@ -169,6 +170,7 @@ phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
@@ -301,6 +303,7 @@ plot_title <- unlist(strsplit(species[14], "_"))[1]
 print("We've guessed that your taxon plot title should be")
 print(plot_title)
 print("Please rename if this is a bad guess!")
+Sys.sleep(2)
 
 # plot_title <- "Francisella"
 PICplot_title <- paste("PIC_",plot_title, sep="")
@@ -401,6 +404,12 @@ py_phylo00 <- r_to_py(phylo00)
 ## also save base_path (will be r.basepath)
 basepath <- r_to_py(data_dir0)
 
+## for PIC python code, prompt user for threshold??
+Sys.sleep(2)
+PICthreshold <- readline(prompt = "Enter your desired PIC percentage thrshold (as an integer) : ")
+PICthreshold <- as.integer(PICthreshold)
+py_PICthreshold <- r_to_py(PICthreshold)
+Sys.sleep(2)
 
 #### END R PIC ANALYSIS CODE
 ```
@@ -568,8 +577,9 @@ effects=[path_effects.Stroke(linewidth=3.0, foreground='w'),
          path_effects.Stroke(linewidth=0.5, foreground='k')]
 
 ####################################### HERE IS WHERE YOU CHANGE THE PIC THESHOLD IN THE LABELLING ####################################
-########################## add delta PIC if it exceeds 20% - note change to 5%  abs(k.traits['delta_pic'])>=5.0. ########################
-ll2.addText(ax,x_attr=lambda k: k.height-k.length/2,y_attr=lambda k: k.y+0.15,target=lambda k: 'delta_pic' in k.traits and abs(k.traits['delta_pic'])>=15.0,text=lambda k: '+%.1f%%'%(k.traits['delta_pic']) if k.traits['delta_pic']>0 else '%.1f%%'%(k.traits['delta_pic']),path_effects=effects,size=10,va='bottom',ha='center')
+########################## add delta PIC if it exceeds 20% - note change to 15%  abs(k.traits['delta_pic'])>=15.0. ######################## changing to py_PICthreshold
+threshold=r.py_PICthreshold
+ll2.addText(ax,x_attr=lambda k: k.height-k.length/2,y_attr=lambda k: k.y+0.15,target=lambda k: 'delta_pic' in k.traits and abs(k.traits['delta_pic'])>=threshold,text=lambda k: '+%.1f%%'%(k.traits['delta_pic']) if k.traits['delta_pic']>0 else '%.1f%%'%(k.traits['delta_pic']),path_effects=effects,size=10,va='bottom',ha='center')
 
 ax.plot() ## make sure things are plotted
 
