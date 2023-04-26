@@ -51,10 +51,10 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-dir.create("~/code")
+dir.create("~/pomelo")
 ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
-setwd("~/code")
-data_dir <- "~/code"
+setwd("~/pomelo")
+data_dir <- "~/pomelo"
 
 ###########################################################################################################################
 ###########################################################################################################################
@@ -118,8 +118,8 @@ data_dir <- "~/code"
 # rm(list=ls())
 
 ## also removing any pathway files from previous run...
-unlink("~/code/listA.*")
-unlink("~/code/listB.*")
+unlink("~/pomelo/listA.*")
+unlink("~/pomelo/listB.*")
 
 ### BEGIN CODE TO SELECT GROUPS A & B
 ## note need to import genome_id as character (pulling from genome summary import below...) & per https://github.com/tidyverse/readr/issues/148
@@ -389,6 +389,104 @@ paths_groupAandB$group <- gsub("1","group A",paths_groupAandB$group)
 paths_groupAandB$group <- gsub("2","group B",paths_groupAandB$group)
 paths_groupAandB$genome_id <- as.character(paths_groupAandB$genome_id)
 
+###################################################################################################################
+## one-off code to get 4 missing pathways added back - after line 390...
+## BTW THIS NEXT LINE WILL BE CRITICAL TO REMOVE PATHWAY INFO FROM INITIAL FILE, AND TO MAP BACK ALL PATHWAYS FROM THE MAPPING FILE!!
+paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
+  summarize_all(first)
+## need to pull every instance, so need a big filter for each of the four
+paths_groupAandB_topull220 <- paths_groupAandB_topull %>%
+  dplyr::filter((ec_number == "1.2.1.38")|
+                  (ec_number == "1.4.1.2")|
+                  (ec_number == "1.4.1.4")|
+                  (ec_number == "2.1.3.3")|
+                  (ec_number == "2.3.1.1")|
+                  (ec_number == "2.3.1.35")|
+                  (ec_number == "2.6.1.1")|
+                  (ec_number == "2.6.1.11")|
+                  (ec_number == "2.6.1.2")|
+                  (ec_number == "2.7.2.2")|
+                  (ec_number == "2.7.2.8")|
+                  (ec_number == "3.5.1.14")|
+                  (ec_number == "3.5.1.16")|
+                  (ec_number == "3.5.1.2")|
+                  (ec_number == "3.5.1.5")|
+                  (ec_number == "3.5.1.54")|
+                  (ec_number == "3.5.3.1")|
+                  (ec_number == "3.5.3.6")|
+                  (ec_number == "4.3.2.1")|
+                  (ec_number == "6.3.1.2")|
+                  (ec_number == "6.3.4.5")|
+                  (ec_number == "6.3.4.6"))
+paths_groupAandB_topull220$pathway_id <- 220
+paths_groupAandB_topull220$pathway_name <- "Arginine biosynthesis"
+
+paths_groupAandB_topull270 <- paths_groupAandB_topull %>%
+  dplyr::filter((ec_number == "1.1.1.37")|
+                  (ec_number == "1.1.1.95")|
+                  (ec_number == "2.6.1.42")|
+                  (ec_number == "2.6.1.52")|
+                  (ec_number == "3.5.99.7")|
+                  (ec_number == "6.3.2.2")|
+                  (ec_number == "6.3.2.3"))
+paths_groupAandB_topull270$pathway_id <- 270
+paths_groupAandB_topull270$pathway_name <- "Cysteine and methionine metabolism"
+
+paths_groupAandB_topull470 <- paths_groupAandB_topull %>%
+  dplyr::filter((ec_number == "1.2.1.26")|
+                  (ec_number == "1.4.1.12")|
+                  (ec_number == "1.4.3.3")|
+                  (ec_number == "2.6.1.21")|
+                  (ec_number == "3.5.1.2")|
+                  (ec_number == "3.5.4.22")|
+                  (ec_number == "4.1.1.20")|
+                  (ec_number == "4.3.1.18")|
+                  (ec_number == "4.4.1.15")|
+                  (ec_number == "5.1.1.13")|
+                  (ec_number == "5.1.1.7")|
+                  (ec_number == "5.1.1.8")|
+                  (ec_number == "6.3.2.4")|
+                  (ec_number == "6.3.2.8")|
+                  (ec_number == "6.3.2.9"))
+paths_groupAandB_topull470$pathway_id <- 470
+paths_groupAandB_topull470$pathway_name <- "D-Amino acid metabolism"
+
+paths_groupAandB_topull541 <- paths_groupAandB_topull %>%
+  dplyr::filter((ec_number == "1.1.1.133")|
+                  (ec_number == "1.1.1.136")|
+                  (ec_number == "1.1.1.22")|
+                  (ec_number == "1.1.1.271")|
+                  (ec_number == "1.1.1.336")|
+                  (ec_number == "2.3.1.201")|
+                  (ec_number == "2.5.1.56")|
+                  (ec_number == "2.5.1.97")|
+                  (ec_number == "2.7.7.13")|
+                  (ec_number == "2.7.7.23")|
+                  (ec_number == "2.7.7.24")|
+                  (ec_number == "2.7.7.33")|
+                  (ec_number == "2.7.7.43")|
+                  (ec_number == "2.7.7.9")|
+                  (ec_number == "4.2.1.115")|
+                  (ec_number == "4.2.1.45")|
+                  (ec_number == "4.2.1.46")|
+                  (ec_number == "4.2.1.47")|
+                  (ec_number == "5.1.3.13")|
+                  (ec_number == "5.1.3.14")|
+                  (ec_number == "5.1.3.2")|
+                  (ec_number == "5.1.3.23")|
+                  (ec_number == "5.3.1.8")|
+                  (ec_number == "5.4.2.8"))
+paths_groupAandB_topull541$pathway_id <- 541
+paths_groupAandB_topull541$pathway_name <- "O-Antigen nucleotide sugar biosynthesis"
+
+##  note we're simply replacing the pathway_id & pathway_name for each of these four
+## FINALLY APPEND THESE TO paths_groupAandB
+paths_groupAandBn <- bind_rows(paths_groupAandB, paths_groupAandB_topull220, paths_groupAandB_topull270, paths_groupAandB_topull470, paths_groupAandB_topull541)
+rm(paths_groupAandB)
+paths_groupAandB <- paths_groupAandBn
+Sys.sleep(2)
+## end one-off code to get 4 missing pathways added back - after line 390...
+###################################################################################################################
 
 ### this makes new column pathwayid not number but character p1-p1000
 paths_groupAandB$pathwayid0 <- "p"
@@ -410,8 +508,8 @@ paths_groupAandB <- paths_groupAandB[ grep("p4150", paths_groupAandB$pathwayid, 
 ###########################################################################################################################
 ### REFERENCE GENOMES - UPDATE, PULLING FROM MAPPING FILE BELOW
 ### now remove all of these files...
-# unlink("~/code/listA.*")
-# unlink("~/code/listB.*")
+# unlink("~/pomelo/listA.*")
+# unlink("~/pomelo/listB.*")
 
 ###########################################################################################################################
 ###########################################################################################################################
@@ -573,7 +671,7 @@ Sys.sleep(2)
 
 # rm(genome_summary)
 # rm(genome_summary0)
-#unlink("~/code/genome_summary.tab")
+#unlink("~/pomelo/genome_summary.tab")
 
 #########################################################
 ## TESTS TO MAKE ADDITIONAL COLUMNS FOR GENE COUNTS...
@@ -1635,10 +1733,10 @@ pathwaysbygroupPML <- grid.arrange(df_grob,pathwaysbygroup_grob, layout_matrix =
 
 ## start saving all .png to supplemental as well
 ## save allpathways into subfolder
-# data_dir <- "~/code"
+# data_dir <- "~/pomelo"
 ## use two separate plot folders _taxon_by_pathway & _ec_by_taxon_per_pathway
-dir.create("~/code/supplemental_plots_taxon_by_pathway")
-dir.create("~/code/supplemental_plots_ec_by_taxon_per_pathway")
+dir.create("~/pomelo/supplemental_plots_taxon_by_pathway")
+dir.create("~/pomelo/supplemental_plots_ec_by_taxon_per_pathway")
 
 ggsave(filename = paste("supplemental_plots_taxon_by_pathway/heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".png", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
 ggsave(filename = paste("heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".pdf", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
@@ -2628,7 +2726,15 @@ Sys.sleep(1)
 species.bonly <- paths_groupAandB_stats %>% dplyr::filter(group == "group B") %>% 
   select(genusspecies) %>% unique()
 species.bonly <- species.bonly[["genusspecies"]]
-mrca.b <- ape::getMRCA(phylo0, species.bonly)
+
+## only make mrca.b if 3 or more species (otherwise will error out)
+if (n_distinct(species.aonly) < 3)  {
+  Sys.sleep(2)
+} else {
+  mrca.b <- ape::getMRCA(phylo0, species.bonly)
+}
+
+#mrca.b <- ape::getMRCA(phylo0, species.bonly)
 # testrootb <- try(ape::root(phylo0, node = mrca.b, resolve.root = TRUE), silent = TRUE)
 # phylo0_mp <- ape::root(phylo0, node = mrca.b, resolve.root = TRUE)
 # plot.phylo(phylo0_mp)
@@ -2638,7 +2744,15 @@ mrca.b <- ape::getMRCA(phylo0, species.bonly)
 species.aonly <- paths_groupAandB_stats %>% dplyr::filter(group == "group A") %>% 
   select(genusspecies) %>% unique()
 species.aonly <- species.aonly[["genusspecies"]]
-mrca.a <- ape::getMRCA(phylo0, species.aonly)
+
+## only make mrca.a if 3 or more species (otherwise will error out)
+if (n_distinct(species.bonly) < 3)  {
+  Sys.sleep(2)
+} else {
+  mrca.a <- ape::getMRCA(phylo0, species.aonly)
+}
+
+#mrca.a <- ape::getMRCA(phylo0, species.aonly)
 ## try to root with MRCA of group A...
 # testroota <- try(ape::root(phylo0, node = mrca.a, resolve.root = TRUE), silent = TRUE)
 # phylo0_mp <- ape::root(phylo0, node = mrca.a, resolve.root = TRUE)
@@ -2988,7 +3102,23 @@ Sys.sleep(2)
 dev.off()
 Sys.sleep(2)
 print("Pipeline is complete!")
-print("Output plots will be in your ~/code directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
+print("Output plots will be in your ~/pomelo directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
+
+print("Note: BV-BRC may not have included annotation of the following pathways.")
+paths_groupAandB_statsmissing <- paths_groupAandB_stats3 %>%
+  dplyr::filter(genusspecies == "reference_set" & genecount_group_by_ecnumber != "NA") %>% 
+  add_count(pathwayid) %>% 
+  dplyr::filter(n > 6)
+#print(unique(paths_groupAandB_statsmissing$pathway_name))
+
+paths_groupAandB_statsmissingtopull <- paths_groupAandB_stats3 %>%
+  dplyr::filter(genusspecies == "reference_set" & genecount_group_by_ecnumber != "NA") %>% 
+  expand(nesting(ec_number,pathway_name)) %>%
+  add_count(pathway_name) %>% 
+  dplyr::filter(n > 4)
+print(unique(paths_groupAandB_statsmissingtopull$pathway_name))
+print("Thus they will have PML scores of 0 but may still be important.")
+
 
 #####################################################################################
 #####################################################################################
