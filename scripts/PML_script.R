@@ -2727,12 +2727,6 @@ species.bonly <- paths_groupAandB_stats %>% dplyr::filter(group == "group B") %>
   select(genusspecies) %>% unique()
 species.bonly <- species.bonly[["genusspecies"]]
 
-## only make mrca.b if 3 or more species (otherwise will error out)
-if (n_distinct(species.aonly) < 3)  {
-  Sys.sleep(2)
-} else {
-  mrca.b <- ape::getMRCA(phylo0, species.bonly)
-}
 
 #mrca.b <- ape::getMRCA(phylo0, species.bonly)
 # testrootb <- try(ape::root(phylo0, node = mrca.b, resolve.root = TRUE), silent = TRUE)
@@ -2744,6 +2738,13 @@ if (n_distinct(species.aonly) < 3)  {
 species.aonly <- paths_groupAandB_stats %>% dplyr::filter(group == "group A") %>% 
   select(genusspecies) %>% unique()
 species.aonly <- species.aonly[["genusspecies"]]
+
+## only make mrca.b if 3 or more species (otherwise will error out)
+if (n_distinct(species.aonly) < 3)  {
+  Sys.sleep(2)
+} else {
+  mrca.b <- ape::getMRCA(phylo0, species.bonly)
+}
 
 ## only make mrca.a if 3 or more species (otherwise will error out)
 if (n_distinct(species.bonly) < 3)  {
