@@ -1,4 +1,4 @@
-### commands for examining genome streamlining in 2 bacterial groups
+### PoMeLo pipeline for examining genome streamlining in two bacterial groups
 
 ### NOTE ####
 ### ONLY RUN NEXT 5 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
@@ -55,6 +55,9 @@ dir.create("~/pomelo")
 ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
 setwd("~/pomelo")
 data_dir <- "~/pomelo"
+
+## adding options line to remove all of the summarize messages per https://rstats-tips.net/2020/07/31/get-rid-of-info-of-dplyr-when-grouping-summarise-regrouping-output-by-species-override-with-groups-argument/
+options(dplyr.summarise.inform = FALSE)
 
 ###########################################################################################################################
 ###########################################################################################################################
@@ -3142,8 +3145,9 @@ print(unique(paths_groupAandB_statsmissingtopull$pathway_name))
 print("These pathways will have PML scores of 0 but may still be important.")
 
 
-#####################################################################################
-#####################################################################################
+####################################################################################################################
+####################################################################################################################
+
 # ## tests to align better...maybe resource here https://genviz.org/module-07-appendix/0007/01/01/advancedggplot2/
 # # convert to grobs??
 # gsizeforphylo_grob <- ggplotGrob(gsizeforphylo)
