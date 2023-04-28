@@ -392,8 +392,10 @@ paths_groupAandB$genome_id <- as.character(paths_groupAandB$genome_id)
 ###################################################################################################################
 ## one-off code to get 4 missing pathways added back - after line 390...
 ## BTW THIS NEXT LINE WILL BE CRITICAL TO REMOVE PATHWAY INFO FROM INITIAL FILE, AND TO MAP BACK ALL PATHWAYS FROM THE MAPPING FILE!!
+# paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
+#   summarize_all(first) ## update to use across instead of _all
 paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
-  summarize_all(first)
+  summarize(across(everything(), first))
 ## need to pull every instance, so need a big filter for each of the four
 paths_groupAandB_topull220 <- paths_groupAandB_topull %>%
   dplyr::filter((ec_number == "1.2.1.38")|
@@ -593,34 +595,34 @@ paths_groupAandB <- paths_groupAandB %>% unite("genuspathway", genus, pathwayid,
 
 
 ## some stats
-paths_groupAandB %>% group_by(group) %>% summarise_at(vars(genusspecies), n_distinct)
-
-# group   genusspecies
-# <chr>          <int>
-#   1 group A           25
-#   2 group B           55
-## were 23 & 50 for previous run...
+# paths_groupAandB %>% group_by(group) %>% summarise_at(vars(genusspecies), n_distinct) ## update to use across instead of _at
+paths_groupAandB %>% group_by(group) %>% summarise(across(genusspecies, n_distinct))
+#btw summarise(across(genusspecies), n_distinct) & summarise(across(everything), first) are wrong, need to move the parenthses
 
 #or for summary of all
-paths_groupAandB %>% group_by(group) %>% summarise_all(n_distinct)
-paths_groupAandB_counts <- paths_groupAandB %>% group_by(group) %>% summarise_all(n_distinct)
+#paths_groupAandB %>% group_by(group) %>% summarise_all(n_distinct)
+paths_groupAandB %>% group_by(group) %>% summarize(across(everything(), n_distinct))
+paths_groupAandB_counts <- paths_groupAandB %>% group_by(group) %>% summarize(across(everything(), n_distinct))
 
 paths_groupAandB <- paths_groupAandB %>% ungroup()
 paths_groupAandB_counts$genusspecies[1]
 paths_groupAandB_counts$genusspecies[2]
 unique(paths_groupAandB$genusspecies)
-n_distinct(paths_groupAandB$genusspecies) # here 116 after correction
+n_distinct(paths_groupAandB$genusspecies)
 
 
 ################################################################################################################
 ### this is summarizing above table into fewer rows (by group + genusspecies + ec_number) - update to only group_by species & ec number...
+## update to summarize_if: summarize_if(is.numeric, diff) becomes summarize(across(where(is.numeric), diff), .groups = "keep")
+
 paths_groupAandB_stats0 <- paths_groupAandB %>%
   group_by(genusspecies, full_ec_number) %>%
-  summarize_if(is.numeric, Mode)
+  summarize(across(where(is.numeric), Mode))
+# summarize_if(is.numeric, Mode)
 
 paths_groupAandB_stats1 <- paths_groupAandB %>%
   group_by(genusspecies, full_ec_number) %>%
-  summarize_if(is.character, Mode)
+  summarize(across(where(is.character), Mode))
 paths_groupAandB_stats <- inner_join(paths_groupAandB_stats1, paths_groupAandB_stats0)
 
 rm(paths_groupAandB_stats0)
@@ -679,8 +681,9 @@ Sys.sleep(2)
 paths_groupAandB_statsb1 <- paths_groupAandB %>%
   ungroup() %>%
   group_by(genusspecies, ec_number) %>%
-  summarize_if(is.character, Mode) %>% select(genusspecies, group, ec_number) # %>% add_tally() %>% rename(gene_countbygenusspecies = n)
+  summarize(across(where(is.character), Mode)) %>% select(genusspecies, group, ec_number) # %>% add_tally() %>% rename(gene_countbygenusspecies = n)
 paths_groupAandB_statsb1$seen <- 1
+# summarize_if(is.character, Mode) becomes summarize(across(where(is.character), Mode))
 
 ## first change genusspecies order of statsb1 (moved) by group A alphabetical, then B alphabetical
 paths_groupAandB_speciesorder <- paths_groupAandB_statsb1 %>% arrange(group,genusspecies)
@@ -761,7 +764,7 @@ paths_ref2b2_replacemissing <- bind_rows(paths_ref2b_a2, paths_ref2b_b2) %>%
   select(group,ec_number,genecount_group_by_ecnumber,genepercentage_group_by_ecnumber) %>%
   unite("ec_numberandgroup", ec_number, group, sep = "_", remove = TRUE) %>%
   group_by(ec_numberandgroup) %>%
-  summarize_all(first) %>% 
+  summarize(across(everything(), first)) %>%
   rename(genecount_group_by_ecnumber2 = genecount_group_by_ecnumber) %>%
   rename(genepercentage_group_by_ecnumber2 = genepercentage_group_by_ecnumber)
 
@@ -787,9 +790,10 @@ paths_groupAandB_stats3t <- left_join(paths_groupAandB_stats3, paths_ref2b2_repl
   mutate(genecount_group_by_ecnumber = coalesce(genecount_group_by_ecnumber,genecount_group_by_ecnumber2)) %>% 
   mutate(genepercentage_group_by_ecnumber = coalesce(genepercentage_group_by_ecnumber,genepercentage_group_by_ecnumber2))
   
-## note using stats3t just briefly
+## note using stats3t just briefly.  ## update to use across instead of _at
 paths_groupAandB_stats3 <- paths_groupAandB_stats3t %>%
-  mutate_at(vars(genusspecies), ~replace_na(., "reference_set"))
+  mutate(across(genusspecies, ~ replace_na(., "reference_set")))
+#  mutate_at(vars(genusspecies), ~replace_na(., "reference_set"))
 
 paths_groupAandB_stats2 <- paths_groupAandB_stats3 %>%
   dplyr::filter(genusspecies != "reference_set")
@@ -835,13 +839,11 @@ paths_groupAandB_stats3$genusspecies <- factor(paths_groupAandB_stats3$genusspec
 ## end reordering
 ##############################################################################
 
-
 ###################################################################################################################################################################################
 ################################################# CODE FOR HIGH PRIORITY PATHWAYS  ################################################################################################
 ###################################################################################################################################################################################
 
 ### Formatting ###
-
 # Change all NA's to 0 & also removing EC numbers with '-' - moving last part to very early now...
 paths_groupAandB_stats3nonas <- paths_groupAandB_stats3
 paths_groupAandB_stats3nonas <- paths_groupAandB_stats3nonas[ grep(".-", paths_groupAandB_stats3nonas$ec_number, invert = TRUE) , ]
@@ -992,7 +994,8 @@ table_with_perc_2 <- table_with_perc_na4 %>%
 test_A <- table_with_perc_2 %>% dplyr::filter(group == "group A")
 test_B <- table_with_perc_2 %>% dplyr::filter(group == "group B")
 
-total_genomes <- paths_groupAandB %>% ungroup() %>% group_by(group) %>% summarise_at(vars(genusspecies), n_distinct) 
+#total_genomes <- paths_groupAandB %>% ungroup() %>% group_by(group) %>% summarise_at(vars(genusspecies), n_distinct) 
+total_genomes <- paths_groupAandB %>% ungroup() %>% group_by(group) %>% summarise(across(genusspecies, n_distinct))
 total_genomes_A <- as.integer(total_genomes[1,2])
 total_genomes_B <- as.integer(total_genomes[2,2])
 
@@ -1078,7 +1081,8 @@ ranking_table_1 <- dplyr::right_join(table_with_e, paths_to_rank, by="pathwayid"
 diff_counts <- ranking_table_1 %>%
   # dplyr::filter(group == "group A") %>% 
   group_by(pathwayid,ec_number) %>%
-  summarize_all(first) %>%
+  summarize(across(everything(), first)) %>%
+  # summarize_all(first) %>%
   ungroup() %>%
   group_by(pathwayid) %>% 
   mutate(total_differences_A_bygene = sum(differential_bygene_A)) %>% 
@@ -1258,7 +1262,8 @@ rm(paths_groupAandB_stats3nonas_PML01)
 PML_bypathway <- paths_groupAandB_stats3nonas_PML %>%
   ungroup() %>%
   group_by(pathwayid) %>%
-  summarize_all(first) %>%
+  # summarize_all(first) %>%
+  summarize(across(everything(), first)) %>%
   arrange(desc(PML),desc(loss_innontarget_group_score), pathway_id) %>%
   ## adding simpler PML scores, keeping composite values here but add to very end, PML right after pathway...also removing the genes_absent_target_group_bypathway & genes_absent_nontarget_group_bypathway columns...
   select(pathwayid,pathway_id,pathway_name,PML,total_genes_inpathway,bvbrc_genes_inpathway,genes_found_target_group_bypathway,genes_found_nontarget_group_bypathway,perc_missing_in_target_group_bypathway,perc_missing_in_nontarget_group_bypathway,avg_p_index_bypathway,genes_absent_differential,loss_innontarget_group_score,PML_composite,loss_innontarget_group_composite)
@@ -1320,7 +1325,8 @@ paths_groupAandB_stats3nonasnofullymissing_PML$xtext2 <- NULL
 paths_groupAandB_stats3nonasnofullymissing_PML0 <- paths_groupAandB_stats3nonasnofullymissing_PML %>%
   ungroup() %>% 
   group_by(group,pathwayid) %>% 
-  summarize_all(first) %>%
+  # summarize_all(first) %>%
+  summarize(across(everything(), first)) %>%
   select(group,pathwayid,perc_missing_in_target_group_bypathway,perc_missing_in_nontarget_group_bypathway)
 
 paths_groupAandB_stats3nonasnofullymissing_PMLa <- paths_groupAandB_stats3nonasnofullymissing_PML0 %>% dplyr::filter(group == "target")
@@ -1428,7 +1434,8 @@ paths_enrichedinBnonas <- paths_enrichedinB %>%
 paths_ref2b_colstoadd <- paths_groupAandB_stats3nonasnofullymissing_PMLnoref %>%
   ungroup() %>% 
   group_by(ec_number) %>% 
-  summarize_all(first) %>%
+  # summarize_all(first) %>%
+  summarize(across(everything(), first)) %>%
   select(ec_number,ec_description)
 
 ## now join paths_ref2b to get ec_description - but first change group names
@@ -1465,7 +1472,8 @@ paths_groupAandB_stats2$group <- gsub('group B','non-target',paths_groupAandB_st
 paths_groupAandB_stats2_ecstatsonly0 <- paths_groupAandB_stats2 %>%
   ungroup() %>% 
   group_by(group,ec_number) %>% 
-  summarize_all(first) %>%
+  # summarize_all(first) %>%
+  summarize(across(everything(), first)) %>%
   select(group,ec_number,genecount_group_by_ecnumber,genepercentage_group_by_ecnumber)
 
 n_distinct(paths_groupAandB_stats2_ecstatsonly0$ec_number)
@@ -2287,11 +2295,13 @@ paths_groupAandB_stats3_gsize$ec_number <- "Mbp"
 ## also a thinning step to remove multiple genome sizes...
 paths_groupAandB_stats3_gsize0 <- paths_groupAandB_stats3_gsize %>%
   group_by(genusspecies, group) %>%
-  summarize_if(is.numeric, Mode)
+  summarize(across(where(is.numeric), Mode))
+# summarize_if(is.numeric, Mode)
 
 paths_groupAandB_stats3_gsize1 <- paths_groupAandB_stats3_gsize %>%
   group_by(genusspecies, group) %>%
-  summarize_if(is.character, Mode)
+  summarize(across(where(is.character), Mode))
+  # summarize_if(is.character, Mode)
 paths_groupAandB_stats3_gsize <- inner_join(paths_groupAandB_stats3_gsize1, paths_groupAandB_stats3_gsize0)
 
 ## adding a dplyr::filter to remove reference set & change ec_number to "Genome Size"
@@ -3105,20 +3115,31 @@ Sys.sleep(2)
 print("Pipeline is complete!")
 print("Output plots will be in your ~/pomelo directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
 
-print("Note: BV-BRC may not have included annotation of the following pathways.")
+print("P.S.: note that BV-BRC may not have included annotation of the following pathways.")
 paths_groupAandB_statsmissing <- paths_groupAandB_stats3 %>%
   dplyr::filter(genusspecies == "reference_set" & genecount_group_by_ecnumber != "NA") %>% 
   add_count(pathwayid) %>% 
   dplyr::filter(n > 6)
 #print(unique(paths_groupAandB_statsmissing$pathway_name))
 
-paths_groupAandB_statsmissingtopull <- paths_groupAandB_stats3 %>%
+# paths_groupAandB_statsmissingtopull <- paths_groupAandB_stats3 %>%
+#   dplyr::filter(genusspecies == "reference_set" & genecount_group_by_ecnumber != "NA") %>% 
+#   expand(nesting(ec_number,pathway_name)) %>% 
+#   add_count(pathway_name) %>% 
+#   dplyr::filter(n > 4)
+# print(unique(paths_groupAandB_statsmissingtopull$pathway_name))
+# print("Thus they will have PML scores of 0 but may still be important.")
+
+paths_groupAandB_statsmissingtopull <- paths_groupAandB_stats3 %>% 
   dplyr::filter(genusspecies == "reference_set" & genecount_group_by_ecnumber != "NA") %>% 
-  expand(nesting(ec_number,pathway_name)) %>%
+  group_by(ec_number,pathway_name) %>% 
+  # summarize_all(first) %>%  # replacing all summarize_all commands
+  summarize(across(everything(), first)) %>% 
+  select(ec_number, pathwayid, pathway_id, pathway_name) %>% 
   add_count(pathway_name) %>% 
   dplyr::filter(n > 4)
 print(unique(paths_groupAandB_statsmissingtopull$pathway_name))
-print("Thus they will have PML scores of 0 but may still be important.")
+print("These pathways will have PML scores of 0 but may still be important.")
 
 
 #####################################################################################
