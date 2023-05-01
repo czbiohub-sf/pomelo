@@ -51,10 +51,10 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-dir.create("~/pomelo")
+dir.create("~/pomelo_outputs")
 ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
-setwd("~/pomelo")
-data_dir <- "~/pomelo"
+setwd("~/pomelo_outputs")
+data_dir <- "~/pomelo_outputs"
 
 ## adding options line to remove all of the summarize messages per https://rstats-tips.net/2020/07/31/get-rid-of-info-of-dplyr-when-grouping-summarise-regrouping-output-by-species-override-with-groups-argument/
 options(dplyr.summarise.inform = FALSE)
@@ -121,8 +121,8 @@ options(dplyr.summarise.inform = FALSE)
 # rm(list=ls())
 
 ## also removing any pathway files from previous run...
-unlink("~/pomelo/listA.*")
-unlink("~/pomelo/listB.*")
+unlink("~/pomelo_outputs/listA.*")
+unlink("~/pomelo_outputs/listB.*")
 
 ### BEGIN CODE TO SELECT GROUPS A & B
 ## note need to import genome_id as character (pulling from genome summary import below...) & per https://github.com/tidyverse/readr/issues/148
@@ -513,8 +513,8 @@ paths_groupAandB <- paths_groupAandB[ grep("p4150", paths_groupAandB$pathwayid, 
 ###########################################################################################################################
 ### REFERENCE GENOMES - UPDATE, PULLING FROM MAPPING FILE BELOW
 ### now remove all of these files...
-# unlink("~/pomelo/listA.*")
-# unlink("~/pomelo/listB.*")
+# unlink("~/pomelo_outputs/listA.*")
+# unlink("~/pomelo_outputs/listB.*")
 
 ###########################################################################################################################
 ###########################################################################################################################
@@ -676,7 +676,7 @@ Sys.sleep(2)
 
 # rm(genome_summary)
 # rm(genome_summary0)
-#unlink("~/pomelo/genome_summary.tab")
+#unlink("~/pomelo_outputs/genome_summary.tab")
 
 #########################################################
 ## TESTS TO MAKE ADDITIONAL COLUMNS FOR GENE COUNTS...
@@ -1744,10 +1744,10 @@ pathwaysbygroupPML <- grid.arrange(df_grob,pathwaysbygroup_grob, layout_matrix =
 
 ## start saving all .png to supplemental as well
 ## save allpathways into subfolder
-# data_dir <- "~/pomelo"
+# data_dir <- "~/pomelo_outputs"
 ## use two separate plot folders _taxon_by_pathway & _ec_by_taxon_per_pathway
-dir.create("~/pomelo/supplemental_plots_taxon_by_pathway")
-dir.create("~/pomelo/supplemental_plots_ec_by_taxon_per_pathway")
+dir.create("~/pomelo_outputs/supplemental_plots_taxon_by_pathway")
+dir.create("~/pomelo_outputs/supplemental_plots_ec_by_taxon_per_pathway")
 
 ggsave(filename = paste("supplemental_plots_taxon_by_pathway/heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".png", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
 ggsave(filename = paste("heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".pdf", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
@@ -3116,7 +3116,7 @@ Sys.sleep(2)
 dev.off()
 Sys.sleep(2)
 print("Pipeline is complete!")
-print("Output plots will be in your ~/pomelo directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
+print("Output plots will be in your ~/pomelo_outputs directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
 
 print("P.S.: note that BV-BRC may not have included annotation of the following pathways.")
 paths_groupAandB_statsmissing <- paths_groupAandB_stats3 %>%
