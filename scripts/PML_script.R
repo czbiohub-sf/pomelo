@@ -395,10 +395,83 @@ paths_groupAandB$genome_id <- as.character(paths_groupAandB$genome_id)
 ###################################################################################################################
 ## one-off code to get 4 missing pathways added back - after line 390...
 ## BTW THIS NEXT LINE WILL BE CRITICAL TO REMOVE PATHWAY INFO FROM INITIAL FILE, AND TO MAP BACK ALL PATHWAYS FROM THE MAPPING FILE!!
+## will also need to load mapping file, remove group A & B - think the command to use is expand()
+
+## CODE TO ADD ALL PATHWAY DATA FROM MAPPING FILE
+paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+## immediately remove .- as well..
+paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
+
+## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
+# 1058, 471, 472, 473, 72, 231
+## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
+paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
+## now steps to pull back in any missing EC stats very early...check 1.1.1.133 & 5.4.3.5 !! also 1.6.99.5
+paths_ref2b_a <- paths_ref2b %>% dplyr::filter(group == "group A") %>% select(ec_number,pathway_id,pathway_name)
+
 # paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
 #   summarize_all(first) ## update to use across instead of _all
 paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
   summarize(across(everything(), first))
+## MAYBE INSTEAD USE distinct here?? think it is identical...
+paths_groupAandB_topull2 <- paths_groupAandB %>% distinct(ec_number, .keep_all = TRUE)
+n_distinct(paths_groupAandB_topull2$ec_number) #321
+n_distinct(paths_ref2b_a$ec_number) #321
+## DON'T USE genome_name + ec_number, JUST ec_number !!!
+
+## need to pull pathways we don't want (was doing this later for paths_groupAandB)
+paths_groupAandBcheck <- paths_groupAandB
+paths_groupAandBcheck$pathwayid0 <- "p"
+paths_groupAandBcheck <- paths_groupAandBcheck %>% unite("pathwayid", pathwayid0, pathway_id, sep = "", remove = FALSE)
+paths_groupAandBcheck$pathwayid0 <- NULL
+
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p1058", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p471", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p472", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p473", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("Synthesis and degradation of ketone bodies", paths_groupAandBcheck$pathway_name, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p231", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p4070", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+paths_groupAandBcheck <- paths_groupAandBcheck[ grep("p4150", paths_groupAandBcheck$pathwayid, invert = TRUE) , ]
+
+
+paths_groupAandB_topull0 <- paths_groupAandB_topull %>% select(!c(pathway_id, pathway_name))
+paths_groupAandB_topullo2 <- paths_groupAandB_topull2 %>% select(!c(pathway_id, pathway_name))
+
+## now an expand commmand? or maybe just a full join...
+paths_groupAandB_full <- left_join(paths_groupAandB_topull0, paths_ref2b_a, multiple = "all") %>% ungroup()
+## full_join results in 100173
+## left_join results in 95364, but original file has 129431, so in both something missing
+
+paths_groupAandB_missing <- anti_join(paths_groupAandB_full, paths_groupAandBcheck)
+#paths_groupAandB_missingfull <- anti_join(paths_groupAandB_full, paths_groupAandB)
+## missing is 10518
+## missingfull is 15327, both less than difference!!
+## the extra ~5000 are EC numbers missing in the genomes, so we don't want those...
+
+## even after removing some of those pathways above, the initial file is 127619, but the 'full' is 95364. The 'missing' is 10518, well short of the difference...
+n_distinct(paths_groupAandB_topull2$ec_number) #321
+n_distinct(paths_ref2b_a$ec_number) #321
+n_distinct(paths_groupAandB_full$ec_number) #321 ALSO 321???
+n_distinct(paths_groupAandB_missing$ec_number) #65
+
+
+paths_groupAandBcheck2 <- paths_groupAandBcheck %>% select(!c(pathway_id, pathway_name, pathwayid))
+paths_groupAandB_checkfull <- left_join(paths_groupAandBcheck2, paths_ref2b_a, multiple = "all")
+## this has 481k! it looks like the difference between 127k & 95k are in the genomes, going to try using the paths_groupAandB_full moving forward
+paths_groupAandBog <- paths_groupAandB
+rm(paths_groupAandB)
+paths_groupAandB <- paths_groupAandB_full
+Sys.sleep(2)
+
+
 ## need to pull every instance, so need a big filter for each of the four
 paths_groupAandB_topull220 <- paths_groupAandB_topull %>%
   dplyr::filter((ec_number == "1.2.1.38")|
@@ -726,22 +799,22 @@ paths_groupAandB_statswide2b <- paths_groupAandB_statswide2b %>% select(-group)
 ######################
 ### USING MAPPING FILE FOR SET OF REFERENCE PATHWAYS IN PATRIC
 
-## ALLOW USER TO FIND THE FILE
-paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
-## immediately remove .- as well..
-paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
-
-## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
-# 1058, 471, 472, 473, 72, 231
-## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
-paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
+## ALLOW USER TO FIND THE FILE - these first steps are now added earlier
+# paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+# ## immediately remove .- as well..
+# paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
+# 
+# ## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
+# # 1058, 471, 472, 473, 72, 231
+# ## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
+# paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
 
 
 ## now steps to pull back in any missing EC stats very early...check 1.1.1.133 & 5.4.3.5 !! also 1.6.99.5
