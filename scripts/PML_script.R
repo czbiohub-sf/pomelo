@@ -3201,6 +3201,9 @@ paths_groupAandB_statsmissingtopull <- paths_groupAandB_stats3 %>%
 print(unique(paths_groupAandB_statsmissingtopull$pathway_name))
 print("These pathways will have PML scores of 0 but may still be important.")
 
+## adding removing the pathway files at end of run
+unlink("~/pomelo_outputs/listA.*")
+unlink("~/pomelo_outputs/listB.*")
 
 ####################################################################################################################
 ####################################################################################################################
