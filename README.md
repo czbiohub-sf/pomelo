@@ -1,4 +1,4 @@
-![](pomelo2.png)
+![](pomelo_logo2.png)
 
 # PoMeLo
 
