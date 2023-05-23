@@ -70,11 +70,11 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-dir.create("~/code")
+dir.create("~/pomelo_outputs")
 ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
-setwd("~/code")
-data_dir <- "~/code"
-data_dir0 <- paste(path_home(),"/code", sep="")
+setwd("~/pomelo_outputs")
+data_dir <- "~/pomelo_outputs"
+data_dir0 <- paste(path_home(),"/pomelo_outputs", sep="")
 
 ```
 
@@ -124,6 +124,7 @@ phylo.data$genome_name <- gsub("sp. ","sp_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("strain ","strain_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("OMZ ","OMZ_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("ATCC ","ATCC_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("PCC ","PCC_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("NCTC ","NCTC_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("MAG ","MAG_",phylo.data$genome_name)
@@ -151,6 +152,7 @@ phylo.data$Species <- gsub("sp. ","sp_",phylo.data$Species)
 phylo.data$Species <- gsub("strain ","strain_",phylo.data$Species)
 phylo.data$Species <- gsub("OMZ ","OMZ_",phylo.data$Species)
 phylo.data$Species <- gsub("ATCC ","ATCC_",phylo.data$Species)
+phylo.data$Species <- gsub("PCC ","PCC_",phylo.data$Species)
 phylo.data$Species <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$Species)
 phylo.data$Species <- gsub("NCTC ","NCTC_",phylo.data$Species)
 phylo.data$Species <- gsub("MAG ","MAG_",phylo.data$Species)
