@@ -272,7 +272,8 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_name != "Serratia_sp_ATCC_39006")
-
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_id != "1458985.3")
 #and the tree!
 phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
 phylo <- ape::drop.tip(phylo, c("1795874.3", "1439853.3"))
@@ -285,6 +286,7 @@ phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4
 phylo <- ape::drop.tip(phylo, c("401614.12", "317025.14"))
 phylo <- ape::drop.tip(phylo, c("1232383.3"))
 phylo <- ape::drop.tip(phylo, c("104623.6"))
+phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
 ## check again for duplicates
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
