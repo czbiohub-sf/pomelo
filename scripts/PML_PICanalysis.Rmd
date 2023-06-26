@@ -70,11 +70,11 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-dir.create("~/code")
+dir.create("~/pomelo_outputs")
 ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
-setwd("~/code")
-data_dir <- "~/code"
-data_dir0 <- paste(path_home(),"/code", sep="")
+setwd("~/pomelo_outputs")
+data_dir <- "~/pomelo_outputs"
+data_dir0 <- paste(path_home(),"/pomelo_outputs", sep="")
 
 ```
 
@@ -124,6 +124,7 @@ phylo.data$genome_name <- gsub("sp. ","sp_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("strain ","strain_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("OMZ ","OMZ_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("ATCC ","ATCC_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("PCC ","PCC_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("NCTC ","NCTC_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("MAG ","MAG_",phylo.data$genome_name)
@@ -138,6 +139,8 @@ phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$ge
 phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
@@ -151,6 +154,7 @@ phylo.data$Species <- gsub("sp. ","sp_",phylo.data$Species)
 phylo.data$Species <- gsub("strain ","strain_",phylo.data$Species)
 phylo.data$Species <- gsub("OMZ ","OMZ_",phylo.data$Species)
 phylo.data$Species <- gsub("ATCC ","ATCC_",phylo.data$Species)
+phylo.data$Species <- gsub("PCC ","PCC_",phylo.data$Species)
 phylo.data$Species <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$Species)
 phylo.data$Species <- gsub("NCTC ","NCTC_",phylo.data$Species)
 phylo.data$Species <- gsub("MAG ","MAG_",phylo.data$Species)
@@ -167,6 +171,8 @@ phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Specie
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
@@ -266,7 +272,8 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_name != "Serratia_sp_ATCC_39006")
-
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_id != "1458985.3")
 #and the tree!
 phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
 phylo <- ape::drop.tip(phylo, c("1795874.3", "1439853.3"))
@@ -279,6 +286,7 @@ phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4
 phylo <- ape::drop.tip(phylo, c("401614.12", "317025.14"))
 phylo <- ape::drop.tip(phylo, c("1232383.3"))
 phylo <- ape::drop.tip(phylo, c("104623.6"))
+phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
 ## check again for duplicates
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {

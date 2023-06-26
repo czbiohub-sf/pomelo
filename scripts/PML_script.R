@@ -144,12 +144,15 @@ listAf$genomename <- gsub("endosymbiont strain TRS of ","endo_",listAf$genomenam
 listAf$genomename <- gsub("strain ","strain_",listAf$genomename)
 listAf$genomename <- gsub("OMZ ","OMZ_",listAf$genomename)
 listAf$genomename <- gsub("ATCC ","ATCC_",listAf$genomename)
+listAf$genomename <- gsub("PCC ","PCC_",listAf$genomename)
 listAf$genomename <- gsub("FDAARGOS ","FDAARGOS_",listAf$genomename)
 listAf$genomename <- gsub("NCTC ","NCTC_",listAf$genomename)
 listAf$genomename <- gsub("MAG ","MAG_",listAf$genomename)
 listAf$genomename <- gsub("USDA ","USDA_",listAf$genomename)
 
 listAf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listAf$genomename)
+listAf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$genomename)
+listAf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$genomename)
 listAf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$genomename)
 listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomename)
 listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
@@ -179,12 +182,15 @@ listAf$Species <- gsub("endosymbiont strain TRS of ","endo_",listAf$Species)
 listAf$Species <- gsub("strain ","strain_",listAf$Species)
 listAf$Species <- gsub("OMZ ","OMZ_",listAf$Species)
 listAf$Species <- gsub("ATCC ","ATCC_",listAf$Species)
+listAf$Species <- gsub("PCC ","PCC_",listAf$Species)
 listAf$Species <- gsub("FDAARGOS ","FDAARGOS_",listAf$Species)
 listAf$Species <- gsub("NCTC ","NCTC_",listAf$Species)
 listAf$Species <- gsub("MAG ","MAG_",listAf$Species)
 listAf$Species <- gsub("USDA ","USDA_",listAf$Species)
 
 listAf$Species <- gsub("endo_Brugia ","endo_Brugia_",listAf$Species)
+listAf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$Species)
+listAf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$Species)
 listAf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$Species)
 listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
 listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
@@ -261,12 +267,15 @@ listBf$genomename <- gsub("endosymbiont strain TRS of ","endo_",listBf$genomenam
 listBf$genomename <- gsub("strain ","strain_",listBf$genomename)
 listBf$genomename <- gsub("OMZ ","OMZ_",listBf$genomename)
 listBf$genomename <- gsub("ATCC ","ATCC_",listBf$genomename)
+listBf$genomename <- gsub("PCC ","PCC_",listBf$genomename)
 listBf$genomename <- gsub("FDAARGOS ","FDAARGOS_",listBf$genomename)
 listBf$genomename <- gsub("NCTC ","NCTC_",listBf$genomename)
 listBf$genomename <- gsub("MAG ","MAG_",listBf$genomename)
 listBf$genomename <- gsub("USDA ","USDA_",listBf$genomename)
 
 listBf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listBf$genomename)
+listBf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$genomename)
+listBf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$genomename)
 listBf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$genomename)
 listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomename)
 listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
@@ -296,6 +305,7 @@ listBf$Species <- gsub("endosymbiont strain TRS of ","endo_",listBf$Species)
 listBf$Species <- gsub("strain ","strain_",listBf$Species)
 listBf$Species <- gsub("OMZ ","OMZ_",listBf$Species)
 listBf$Species <- gsub("ATCC ","ATCC_",listBf$Species)
+listBf$Species <- gsub("PCC ","PCC_",listBf$Species)
 listBf$Species <- gsub("FDAARGOS ","FDAARGOS_",listBf$Species)
 listBf$Species <- gsub("NCTC ","NCTC_",listBf$Species)
 listBf$Species <- gsub("MAG ","MAG_",listBf$Species)
@@ -304,6 +314,8 @@ listBf$Species <- gsub("USDA ","USDA_",listBf$Species)
 listBf$Species <- gsub(".*sp.$","null",listBf$Species)
 
 listBf$Species <- gsub("endo_Brugia ","endo_Brugia_",listBf$Species)
+listBf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$Species)
+listBf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$Species)
 listBf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$Species)
 listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
 listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
@@ -395,101 +407,158 @@ paths_groupAandB$genome_id <- as.character(paths_groupAandB$genome_id)
 ###################################################################################################################
 ## one-off code to get 4 missing pathways added back - after line 390...
 ## BTW THIS NEXT LINE WILL BE CRITICAL TO REMOVE PATHWAY INFO FROM INITIAL FILE, AND TO MAP BACK ALL PATHWAYS FROM THE MAPPING FILE!!
+## will also need to load mapping file, remove group A & B - think the command to use is expand()
+
+## CODE TO ADD ALL PATHWAY DATA FROM MAPPING FILE
+paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+## immediately remove .- as well..
+paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
+
+## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
+# 1058, 471, 472, 473, 72, 231
+## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
+paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
+## now steps to pull back in any missing EC stats very early...check 1.1.1.133 & 5.4.3.5 !! also 1.6.99.5
+paths_ref2b_a <- paths_ref2b %>% dplyr::filter(group == "group A") %>% select(ec_number,pathway_id,pathway_name)
+
 # paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
 #   summarize_all(first) ## update to use across instead of _all
 paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
   summarize(across(everything(), first))
-## need to pull every instance, so need a big filter for each of the four
-paths_groupAandB_topull220 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.2.1.38")|
-                  (ec_number == "1.4.1.2")|
-                  (ec_number == "1.4.1.4")|
-                  (ec_number == "2.1.3.3")|
-                  (ec_number == "2.3.1.1")|
-                  (ec_number == "2.3.1.35")|
-                  (ec_number == "2.6.1.1")|
-                  (ec_number == "2.6.1.11")|
-                  (ec_number == "2.6.1.2")|
-                  (ec_number == "2.7.2.2")|
-                  (ec_number == "2.7.2.8")|
-                  (ec_number == "3.5.1.14")|
-                  (ec_number == "3.5.1.16")|
-                  (ec_number == "3.5.1.2")|
-                  (ec_number == "3.5.1.5")|
-                  (ec_number == "3.5.1.54")|
-                  (ec_number == "3.5.3.1")|
-                  (ec_number == "3.5.3.6")|
-                  (ec_number == "4.3.2.1")|
-                  (ec_number == "6.3.1.2")|
-                  (ec_number == "6.3.4.5")|
-                  (ec_number == "6.3.4.6"))
-paths_groupAandB_topull220$pathway_id <- 220
-paths_groupAandB_topull220$pathway_name <- "Arginine biosynthesis"
+## MAYBE INSTEAD USE distinct here?? think it is identical...
+paths_groupAandB_topull2 <- paths_groupAandB %>% distinct(genome_name, ec_number, .keep_all = TRUE)
+## note difference if using instead of genome_name + ec_number, JUST ec_number !!!
+#paths_groupAandB_topull2 <- paths_groupAandB %>% distinct(ec_number, .keep_all = TRUE)
+# n_distinct(paths_groupAandB_topull2$ec_number) #321
+# n_distinct(paths_ref2b_a$ec_number) #321
 
-paths_groupAandB_topull270 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.1.1.37")|
-                  (ec_number == "1.1.1.95")|
-                  (ec_number == "2.6.1.42")|
-                  (ec_number == "2.6.1.52")|
-                  (ec_number == "3.5.99.7")|
-                  (ec_number == "6.3.2.2")|
-                  (ec_number == "6.3.2.3"))
-paths_groupAandB_topull270$pathway_id <- 270
-paths_groupAandB_topull270$pathway_name <- "Cysteine and methionine metabolism"
+paths_groupAandB_topull0 <- paths_groupAandB_topull %>% select(!c(pathway_id, pathway_name))
+#paths_groupAandB_topullo2 <- paths_groupAandB_topull2 %>% select(!c(pathway_id, pathway_name))
 
-paths_groupAandB_topull470 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.2.1.26")|
-                  (ec_number == "1.4.1.12")|
-                  (ec_number == "1.4.3.3")|
-                  (ec_number == "2.6.1.21")|
-                  (ec_number == "3.5.1.2")|
-                  (ec_number == "3.5.4.22")|
-                  (ec_number == "4.1.1.20")|
-                  (ec_number == "4.3.1.18")|
-                  (ec_number == "4.4.1.15")|
-                  (ec_number == "5.1.1.13")|
-                  (ec_number == "5.1.1.7")|
-                  (ec_number == "5.1.1.8")|
-                  (ec_number == "6.3.2.4")|
-                  (ec_number == "6.3.2.8")|
-                  (ec_number == "6.3.2.9"))
-paths_groupAandB_topull470$pathway_id <- 470
-paths_groupAandB_topull470$pathway_name <- "D-Amino acid metabolism"
+## now an expand commmand? or maybe just a full join...
+paths_groupAandB_full <- left_join(paths_groupAandB_topull0, paths_ref2b_a, multiple = "all") %>% ungroup()
+## full_join results in 100173
+## left_join results in 95364, but original file has 129431, so in both something missing
 
-paths_groupAandB_topull541 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.1.1.133")|
-                  (ec_number == "1.1.1.136")|
-                  (ec_number == "1.1.1.22")|
-                  (ec_number == "1.1.1.271")|
-                  (ec_number == "1.1.1.336")|
-                  (ec_number == "2.3.1.201")|
-                  (ec_number == "2.5.1.56")|
-                  (ec_number == "2.5.1.97")|
-                  (ec_number == "2.7.7.13")|
-                  (ec_number == "2.7.7.23")|
-                  (ec_number == "2.7.7.24")|
-                  (ec_number == "2.7.7.33")|
-                  (ec_number == "2.7.7.43")|
-                  (ec_number == "2.7.7.9")|
-                  (ec_number == "4.2.1.115")|
-                  (ec_number == "4.2.1.45")|
-                  (ec_number == "4.2.1.46")|
-                  (ec_number == "4.2.1.47")|
-                  (ec_number == "5.1.3.13")|
-                  (ec_number == "5.1.3.14")|
-                  (ec_number == "5.1.3.2")|
-                  (ec_number == "5.1.3.23")|
-                  (ec_number == "5.3.1.8")|
-                  (ec_number == "5.4.2.8"))
-paths_groupAandB_topull541$pathway_id <- 541
-paths_groupAandB_topull541$pathway_name <- "O-Antigen nucleotide sugar biosynthesis"
+#paths_groupAandB_missing <- anti_join(paths_groupAandB_full, paths_groupAandBcheck)
+#paths_groupAandB_missingfull <- anti_join(paths_groupAandB_full, paths_groupAandB)
+## missing is 10518
+## missingfull is 15327, both less than difference!!
+## the extra ~5000 are EC numbers missing in the genomes, so we don't want those...
 
-##  note we're simply replacing the pathway_id & pathway_name for each of these four
-## FINALLY APPEND THESE TO paths_groupAandB
-paths_groupAandBn <- bind_rows(paths_groupAandB, paths_groupAandB_topull220, paths_groupAandB_topull270, paths_groupAandB_topull470, paths_groupAandB_topull541)
+## even after removing some of those pathways above, the initial file is 127619, but the 'full' is 95364. The 'missing' is 10518, well short of the difference...
+# n_distinct(paths_groupAandB_topull2$ec_number) #321
+# n_distinct(paths_ref2b_a$ec_number) #321
+# n_distinct(paths_groupAandB_full$ec_number) #321 ALSO 321???
+# n_distinct(paths_groupAandB_missing$ec_number) #65
+
+# paths_groupAandBcheck2 <- paths_groupAandBcheck %>% select(!c(pathway_id, pathway_name, pathwayid))
+# paths_groupAandB_checkfull <- left_join(paths_groupAandBcheck2, paths_ref2b_a, multiple = "all")
+## this has 481k! it looks like the difference between 127k & 95k are in the genomes, going to try using the paths_groupAandB_full moving forward
+paths_groupAandBog <- paths_groupAandB
 rm(paths_groupAandB)
-paths_groupAandB <- paths_groupAandBn
+paths_groupAandB <- paths_groupAandB_full
 Sys.sleep(2)
+
+
+## need to pull every instance, so need a big filter for each of the four
+# paths_groupAandB_topull220 <- paths_groupAandB_topull %>%
+#   dplyr::filter((ec_number == "1.2.1.38")|
+#                   (ec_number == "1.4.1.2")|
+#                   (ec_number == "1.4.1.4")|
+#                   (ec_number == "2.1.3.3")|
+#                   (ec_number == "2.3.1.1")|
+#                   (ec_number == "2.3.1.35")|
+#                   (ec_number == "2.6.1.1")|
+#                   (ec_number == "2.6.1.11")|
+#                   (ec_number == "2.6.1.2")|
+#                   (ec_number == "2.7.2.2")|
+#                   (ec_number == "2.7.2.8")|
+#                   (ec_number == "3.5.1.14")|
+#                   (ec_number == "3.5.1.16")|
+#                   (ec_number == "3.5.1.2")|
+#                   (ec_number == "3.5.1.5")|
+#                   (ec_number == "3.5.1.54")|
+#                   (ec_number == "3.5.3.1")|
+#                   (ec_number == "3.5.3.6")|
+#                   (ec_number == "4.3.2.1")|
+#                   (ec_number == "6.3.1.2")|
+#                   (ec_number == "6.3.4.5")|
+#                   (ec_number == "6.3.4.6"))
+# paths_groupAandB_topull220$pathway_id <- 220
+# paths_groupAandB_topull220$pathway_name <- "Arginine biosynthesis"
+# 
+# paths_groupAandB_topull270 <- paths_groupAandB_topull %>%
+#   dplyr::filter((ec_number == "1.1.1.37")|
+#                   (ec_number == "1.1.1.95")|
+#                   (ec_number == "2.6.1.42")|
+#                   (ec_number == "2.6.1.52")|
+#                   (ec_number == "3.5.99.7")|
+#                   (ec_number == "6.3.2.2")|
+#                   (ec_number == "6.3.2.3"))
+# paths_groupAandB_topull270$pathway_id <- 270
+# paths_groupAandB_topull270$pathway_name <- "Cysteine and methionine metabolism"
+# 
+# paths_groupAandB_topull470 <- paths_groupAandB_topull %>%
+#   dplyr::filter((ec_number == "1.2.1.26")|
+#                   (ec_number == "1.4.1.12")|
+#                   (ec_number == "1.4.3.3")|
+#                   (ec_number == "2.6.1.21")|
+#                   (ec_number == "3.5.1.2")|
+#                   (ec_number == "3.5.4.22")|
+#                   (ec_number == "4.1.1.20")|
+#                   (ec_number == "4.3.1.18")|
+#                   (ec_number == "4.4.1.15")|
+#                   (ec_number == "5.1.1.13")|
+#                   (ec_number == "5.1.1.7")|
+#                   (ec_number == "5.1.1.8")|
+#                   (ec_number == "6.3.2.4")|
+#                   (ec_number == "6.3.2.8")|
+#                   (ec_number == "6.3.2.9"))
+# paths_groupAandB_topull470$pathway_id <- 470
+# paths_groupAandB_topull470$pathway_name <- "D-Amino acid metabolism"
+# 
+# paths_groupAandB_topull541 <- paths_groupAandB_topull %>%
+#   dplyr::filter((ec_number == "1.1.1.133")|
+#                   (ec_number == "1.1.1.136")|
+#                   (ec_number == "1.1.1.22")|
+#                   (ec_number == "1.1.1.271")|
+#                   (ec_number == "1.1.1.336")|
+#                   (ec_number == "2.3.1.201")|
+#                   (ec_number == "2.5.1.56")|
+#                   (ec_number == "2.5.1.97")|
+#                   (ec_number == "2.7.7.13")|
+#                   (ec_number == "2.7.7.23")|
+#                   (ec_number == "2.7.7.24")|
+#                   (ec_number == "2.7.7.33")|
+#                   (ec_number == "2.7.7.43")|
+#                   (ec_number == "2.7.7.9")|
+#                   (ec_number == "4.2.1.115")|
+#                   (ec_number == "4.2.1.45")|
+#                   (ec_number == "4.2.1.46")|
+#                   (ec_number == "4.2.1.47")|
+#                   (ec_number == "5.1.3.13")|
+#                   (ec_number == "5.1.3.14")|
+#                   (ec_number == "5.1.3.2")|
+#                   (ec_number == "5.1.3.23")|
+#                   (ec_number == "5.3.1.8")|
+#                   (ec_number == "5.4.2.8"))
+# paths_groupAandB_topull541$pathway_id <- 541
+# paths_groupAandB_topull541$pathway_name <- "O-Antigen nucleotide sugar biosynthesis"
+# 
+# ##  note we're simply replacing the pathway_id & pathway_name for each of these four
+# ## FINALLY APPEND THESE TO paths_groupAandB
+# paths_groupAandBn <- bind_rows(paths_groupAandB, paths_groupAandB_topull220, paths_groupAandB_topull270, paths_groupAandB_topull470, paths_groupAandB_topull541)
+# rm(paths_groupAandB)
+# paths_groupAandB <- paths_groupAandBn
+# Sys.sleep(2)
 ## end one-off code to get 4 missing pathways added back - after line 390...
 ###################################################################################################################
 
@@ -536,6 +605,7 @@ paths_groupAandB$genome_name <- gsub("endosymbiont strain TRS of ","endo_",paths
 paths_groupAandB$genome_name <- gsub("strain ","strain_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("OMZ ","OMZ_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("ATCC ","ATCC_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("PCC ","PCC_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("FDAARGOS ","FDAARGOS_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("NCTC ","NCTC_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("MAG ","MAG_",paths_groupAandB$genome_name)
@@ -543,6 +613,8 @@ paths_groupAandB$genome_name <- gsub("USDA ","USDA_",paths_groupAandB$genome_nam
 
 unique(paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Brugia ","endo_Brugia_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
@@ -726,22 +798,22 @@ paths_groupAandB_statswide2b <- paths_groupAandB_statswide2b %>% select(-group)
 ######################
 ### USING MAPPING FILE FOR SET OF REFERENCE PATHWAYS IN PATRIC
 
-## ALLOW USER TO FIND THE FILE
-paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
-## immediately remove .- as well..
-paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
-
-## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
-# 1058, 471, 472, 473, 72, 231
-## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
-paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
+## ALLOW USER TO FIND THE FILE - these first steps are now added earlier
+# paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+# ## immediately remove .- as well..
+# paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
+# 
+# ## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
+# # 1058, 471, 472, 473, 72, 231
+# ## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
+# paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
 
 
 ## now steps to pull back in any missing EC stats very early...check 1.1.1.133 & 5.4.3.5 !! also 1.6.99.5
@@ -2410,6 +2482,7 @@ phylo.data$genome_name <- gsub("sp. ","sp_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("strain ","strain_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("OMZ ","OMZ_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("ATCC ","ATCC_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("PCC ","PCC_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("NCTC ","NCTC_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("MAG ","MAG_",phylo.data$genome_name)
@@ -2424,6 +2497,8 @@ phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$ge
 phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
@@ -2437,6 +2512,7 @@ phylo.data$Species <- gsub("sp. ","sp_",phylo.data$Species)
 phylo.data$Species <- gsub("strain ","strain_",phylo.data$Species)
 phylo.data$Species <- gsub("OMZ ","OMZ_",phylo.data$Species)
 phylo.data$Species <- gsub("ATCC ","ATCC_",phylo.data$Species)
+phylo.data$Species <- gsub("PCC ","PCC_",phylo.data$Species)
 phylo.data$Species <- gsub("FDAARGOS ","FDAARGOS_",phylo.data$Species)
 phylo.data$Species <- gsub("NCTC ","NCTC_",phylo.data$Species)
 phylo.data$Species <- gsub("MAG ","MAG_",phylo.data$Species)
@@ -2453,6 +2529,8 @@ phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Specie
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
@@ -2552,6 +2630,8 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_name != "Serratia_sp_ATCC_39006")
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
+  dplyr::filter(genome_id != "1458985.3")
 
 #and the tree!
 phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
@@ -2565,6 +2645,7 @@ phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4
 phylo <- ape::drop.tip(phylo, c("401614.12", "317025.14"))
 phylo <- ape::drop.tip(phylo, c("1232383.3"))
 phylo <- ape::drop.tip(phylo, c("104623.6"))
+phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
 ## check again for duplicates
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {

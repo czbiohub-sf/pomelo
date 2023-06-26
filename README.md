@@ -1,4 +1,4 @@
-![](pomelo2.png)
+![](pomelo_logo2.png)
 
 # PoMeLo
 
@@ -24,8 +24,8 @@ PoMeLo is closely linked to analyses using the BV-BRC website (https://www.bv-br
     + When examining BV-BRC genomes we also recommend to add the "Species" column as one of the viewed columns when viewing and selecting genomes. This column commonly has updated taxonomic information and is superior to the name used in the initial "Genome Name" column.
     + The genomes should be placed into separate BV-BRC Genome Groups. From the page listing the users' Genome Groups (https://www.bv-brc.org/workspace/yourusername@patricbrc.org/home/Genome%20Groups), next download both the target group & non-target group. Be sure to download each table as .csv and also be sure to not modify these .csv files after downloading, as Excel will drop zeros in genome IDs.
 
-* It is not required, but the last portion of the PoMeLo pipeline incorporates a BV-BRC phylogenetic tree. If the user would like to include a phylogeny of the two groups, first create a separate Genome Group in BV-BRC incorporating the species in your target and non-target groups - but for this Genome Group, be sure to only include one genome per "Species" column. The user will again need to save this Genome Group as a .csv file.
-    + Within BV-BRC, use the Bacterial Genome Tree tool (https://www.bv-brc.org/app/PhylogeneticTree) under the _Tools & Services_ menu to create the phylogny. Select your Genome Group with one genome per species, but otherwise use default settings (100 genes) & have the output saved to your Genome Groups folder. After ~2-20 hours depending on your group size, the completed phylogeny will be saved to a subfolder.
+* It is not required, but the last portion of the PoMeLo pipeline incorporates a BV-BRC phylogenetic tree. If the user would like to include a phylogeny of the two groups, first create a separate Genome Group in BV-BRC incorporating the species in your target and non-target groups - but for this Genome Group, be sure to only include **one genome per "Species" column**. The user will also need to save this Genome Group as a .csv file.
+    + Within BV-BRC, use the Bacterial Genome Tree tool (https://www.bv-brc.org/app/PhylogeneticTree) under the _Tools & Services_ menu to create the phylogeny. Select your Genome Group with **one genome per species**, but otherwise use default settings (e.g. 100 genes) and have the output saved to your Genome Groups folder. After ~2-20 hours depending on your group size, the completed phylogeny will be saved to a subfolder.
     + Find the folder with the completed phylogeny, and download the tree file ending in "_tree.nwk" - this file along with the .csv of the Genome Group will be used by PoMeLo.
 
 * With these BV-BRC files in hand, start the PoMeLo pipeline. Users will be prompted to select the required files. Note the file ```mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab``` can be found in the scripts subfolder.
@@ -38,11 +38,12 @@ To generate a phylogeny of bacterial species calculating genome size change via 
 
 ## Tips
 
+Users need only click on "Source", and pop-up windows will appear when required input files need to be selected. The script will also provide notes as it progreses, indicating progress or warnings if there are errors. For example based on the input species names, the pipeline will select a taxonomic name that is included in all output filenames - the script informs the user of this name and suggests chaning the filenames if it is incorrect. If the user does not wish to include a phylogeny in the final steps, they can simply select the 'cancel' button in the last two prompts for .nwk and .csv files, and the script will end there. Also note that if there are only 2 species in the analysis, the last steps incorporating a phylogeny will fail.
 
 ## Citation
 If you use PoMeLo, please cite our publication:
 
-**PoMeLo: A Novel Bioinformatic Approach for Identifying Metabolic Vulnerabilities of Pathogens to Inform Host-directed Therapeutics**
+**PoMeLo: A systematic computational approach to predicting metabolic loss in pathogen genomes**
 
 Abigail Leigh Glascock, Eric Waltari, Gytis Dudas, Josette Medicielo, Joan Wong, Vida Ahyong
 
