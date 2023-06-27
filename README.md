@@ -49,7 +49,7 @@ Abigail Leigh Glascock, Eric Waltari, Gytis Dudas, Joan Wong, Vida Ahyong
 
 tk 2023; doi: https://doi.org/tk
 
-The two folders called "supplemental_materials..." contain both the inputs and output plots for the Treponema example in Glascock et al & the Rickettsia example in the companion papper by Medicielo et al.
+The two folders called "supplemental_materials..." contain both the inputs and output plots for the Treponema example in Glascock et al & the Rickettsia example in the companion paper by Medicielo et al.:
 
 **Evolutionary genomics identifies host-directed therapeutics to treat intracellular bacterial infections**
 
