@@ -1,0 +1,627 @@
+ec_number	ec_description	ec_pindex	pathwayid	pathway_id	pathway_name	avg_p_index_bypathway
+1.2.1.12	Glyceraldehyde-3-phosphate dehydrogenase (phosphorylating)	2	p10	10	Glycolysis / Gluconeogenesis	3.84
+1.2.4.1	Pyruvate dehydrogenase (acetyl-transferring)	4	p10	10	Glycolysis / Gluconeogenesis	3.84
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p10	10	Glycolysis / Gluconeogenesis	3.84
+2.3.1.12	Dihydrolipoyllysine-residue acetyltransferase	3	p10	10	Glycolysis / Gluconeogenesis	3.84
+2.7.2.3	Phosphoglycerate kinase	2	p10	10	Glycolysis / Gluconeogenesis	3.84
+2.7.9.1	Pyruvate, phosphate dikinase	4	p10	10	Glycolysis / Gluconeogenesis	3.84
+3.1.3.11	Fructose-bisphosphatase	5	p10	10	Glycolysis / Gluconeogenesis	3.84
+4.1.2.13	Fructose-bisphosphate aldolase	5	p10	10	Glycolysis / Gluconeogenesis	3.84
+4.2.1.11	Phosphopyruvate hydratase	2	p10	10	Glycolysis / Gluconeogenesis	3.84
+5.3.1.1	Triose-phosphate isomerase	4	p10	10	Glycolysis / Gluconeogenesis	3.84
+5.3.1.9	Glucose-6-phosphate isomerase	4	p10	10	Glycolysis / Gluconeogenesis	3.84
+5.4.2.1	Transferred entry: 5.4.2.11 and 5.4.2.12	3	p10	10	Glycolysis / Gluconeogenesis	3.84
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p10	10	Glycolysis / Gluconeogenesis	3.84
+1.1.1.37	Malate dehydrogenase	7	p20	20	Citrate cycle (TCA cycle)	3.37
+1.1.1.41	Isocitrate dehydrogenase (NAD(+))	1	p20	20	Citrate cycle (TCA cycle)	3.37
+1.1.1.42	Isocitrate dehydrogenase (NADP(+))	3	p20	20	Citrate cycle (TCA cycle)	3.37
+1.2.4.1	Pyruvate dehydrogenase (acetyl-transferring)	4	p20	20	Citrate cycle (TCA cycle)	3.37
+1.2.4.2	Oxoglutarate dehydrogenase (succinyl-transferring)	3	p20	20	Citrate cycle (TCA cycle)	3.37
+1.3.5.1	Succinate dehydrogenase (quinone)	5	p20	20	Citrate cycle (TCA cycle)	3.37
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p20	20	Citrate cycle (TCA cycle)	3.37
+2.3.1.12	Dihydrolipoyllysine-residue acetyltransferase	3	p20	20	Citrate cycle (TCA cycle)	3.37
+2.3.1.61	Dihydrolipoyllysine-residue succinyltransferase	3	p20	20	Citrate cycle (TCA cycle)	3.37
+2.3.3.1	Citrate (Si)-synthase	2	p20	20	Citrate cycle (TCA cycle)	3.37
+4.2.1.2	Fumarate hydratase	3	p20	20	Citrate cycle (TCA cycle)	3.37
+4.2.1.3	Aconitate hydratase	3	p20	20	Citrate cycle (TCA cycle)	3.37
+6.2.1.5	Succinate--CoA ligase (ADP-forming)	4	p20	20	Citrate cycle (TCA cycle)	3.37
+2.2.1.1	Transketolase	3	p30	30	Pentose phosphate pathway	2.18
+2.2.1.2	Transaldolase	1	p30	30	Pentose phosphate pathway	2.18
+2.7.6.1	Ribose-phosphate diphosphokinase	2	p30	30	Pentose phosphate pathway	2.18
+3.1.3.11	Fructose-bisphosphatase	5	p30	30	Pentose phosphate pathway	2.18
+4.1.2.13	Fructose-bisphosphate aldolase	5	p30	30	Pentose phosphate pathway	2.18
+5.1.3.1	Ribulose-phosphate 3-epimerase	3	p30	30	Pentose phosphate pathway	2.18
+5.3.1.6	Ribose-5-phosphate isomerase	3	p30	30	Pentose phosphate pathway	2.18
+5.3.1.9	Glucose-6-phosphate isomerase	4	p30	30	Pentose phosphate pathway	2.18
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p30	30	Pentose phosphate pathway	2.18
+1.1.1.22	UDP-glucose 6-dehydrogenase	5	p40	40	Pentose and glucuronate interconversions	2.13
+5.1.3.1	Ribulose-phosphate 3-epimerase	3	p40	40	Pentose and glucuronate interconversions	2.13
+2.7.1.4	Fructokinase	3	p51	51	Fructose and mannose metabolism	1.94
+2.7.7.13	Mannose-1-phosphate guanylyltransferase	3	p51	51	Fructose and mannose metabolism	1.94
+2.7.7.22	Mannose-1-phosphate guanylyltransferase (GDP)	2	p51	51	Fructose and mannose metabolism	1.94
+3.1.3.11	Fructose-bisphosphatase	5	p51	51	Fructose and mannose metabolism	1.94
+4.1.2.13	Fructose-bisphosphate aldolase	5	p51	51	Fructose and mannose metabolism	1.94
+5.3.1.1	Triose-phosphate isomerase	4	p51	51	Fructose and mannose metabolism	1.94
+5.3.1.6	Ribose-5-phosphate isomerase	3	p51	51	Fructose and mannose metabolism	1.94
+5.3.1.8	Mannose-6-phosphate isomerase	3	p51	51	Fructose and mannose metabolism	1.94
+5.4.2.8	Phosphomannomutase	3	p51	51	Fructose and mannose metabolism	1.94
+3.2.1.22	Alpha-galactosidase	4	p52	52	Galactose metabolism	2.39
+4.1.2.21	2-dehydro-3-deoxy-6-phosphogalactonate aldolase	1	p52	52	Galactose metabolism	2.39
+5.1.3.2	UDP-glucose 4-epimerase	3	p52	52	Galactose metabolism	2.39
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p52	52	Galactose metabolism	2.39
+1.1.1.22	UDP-glucose 6-dehydrogenase	5	p53	53	Ascorbate and aldarate metabolism	2.24
+1.1.1.100	3-oxoacyl-[acyl-carrier-protein] reductase	2	p61	61	Fatty acid biosynthesis	1.72
+1.3.1.9	Enoyl-[acyl-carrier-protein] reductase (NADH)	1	p61	61	Fatty acid biosynthesis	1.72
+2.3.1.179	Beta-ketoacyl-[acyl-carrier-protein] synthase II	2	p61	61	Fatty acid biosynthesis	1.72
+2.3.1.180	Beta-ketoacyl-[acyl-carrier-protein] synthase III	1	p61	61	Fatty acid biosynthesis	1.72
+2.3.1.39	[Acyl-carrier-protein] S-malonyltransferase	1	p61	61	Fatty acid biosynthesis	1.72
+4.2.1.59	3-hydroxyacyl-[acyl-carrier-protein] dehydratase	2	p61	61	Fatty acid biosynthesis	1.72
+6.3.4.14	Biotin carboxylase	1	p61	61	Fatty acid biosynthesis	1.72
+6.4.1.2	Acetyl-CoA carboxylase	6	p61	61	Fatty acid biosynthesis	1.72
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p62	62	Fatty acid elongation in mitochondria	4.23
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p62	62	Fatty acid elongation in mitochondria	4.23
+4.2.1.17	Enoyl-CoA hydratase	17	p62	62	Fatty acid elongation in mitochondria	4.23
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p71	71	Fatty acid metabolism	4.44
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p71	71	Fatty acid metabolism	4.44
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p71	71	Fatty acid metabolism	4.44
+4.2.1.17	Enoyl-CoA hydratase	17	p71	71	Fatty acid metabolism	4.44
+5.3.3.8	Dodecenoyl-CoA isomerase	1	p71	71	Fatty acid metabolism	4.44
+6.2.1.20	Long-chain-fatty-acid--[acyl-carrier-protein] ligase	1	p71	71	Fatty acid metabolism	4.44
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p120	120	Primary bile acid biosynthesis	1.84
+3.5.1.24	Choloylglycine hydrolase	2	p120	120	Primary bile acid biosynthesis	1.84
+3.5.1.24	Choloylglycine hydrolase	2	p121	121	Secondary bile acid biosynthesis	1.11
+1.6.5.2	NAD(P)H dehydrogenase (quinone)	1	p130	130	Ubiquinone and other terpenoid-quinone biosynthesis	1.4
+2.1.1.201	2-methoxy-6-polyprenyl-1,4-benzoquinol methylase	1	p130	130	Ubiquinone and other terpenoid-quinone biosynthesis	1.4
+2.1.1.222	2-polyprenyl-6-hydroxyphenol methylase	1	p130	130	Ubiquinone and other terpenoid-quinone biosynthesis	1.4
+2.1.1.64	3-demethylubiquinol 3-O-methyltransferase	1	p130	130	Ubiquinone and other terpenoid-quinone biosynthesis	1.4
+2.5.1.39	4-hydroxybenzoate polyprenyltransferase	1	p130	130	Ubiquinone and other terpenoid-quinone biosynthesis	1.4
+1.10.2.2	Quinol--cytochrome-c reductase	2	p190	190	Oxidative phosphorylation	1.7
+1.3.5.1	Succinate dehydrogenase (quinone)	5	p190	190	Oxidative phosphorylation	1.7
+1.6.5.3	NADH:ubiquinone reductase (H(+)-translocating)	2	p190	190	Oxidative phosphorylation	1.7
+1.9.3.1	Cytochrome-c oxidase	2	p190	190	Oxidative phosphorylation	1.7
+3.6.1.1	Inorganic diphosphatase	1	p190	190	Oxidative phosphorylation	1.7
+3.6.3.14	H(+)-transporting two-sector ATPase	3	p190	190	Oxidative phosphorylation	1.7
+3.6.3.14	H(+)-transporting two-sector ATPase	3	p195	195	Photosynthesis	1.6
+1.2.1.38	N-acetyl-gamma-glutamyl-phosphate reductase	2	p220	220	Arginine biosynthesis	2.97
+1.4.1.2	Glutamate dehydrogenase	5	p220	220	Arginine biosynthesis	2.97
+2.1.3.3	Ornithine carbamoyltransferase	2	p220	220	Arginine biosynthesis	2.97
+2.3.1.1	Amino-acid N-acetyltransferase	2	p220	220	Arginine biosynthesis	2.97
+2.3.1.35	Glutamate N-acetyltransferase	2	p220	220	Arginine biosynthesis	2.97
+2.6.1.1	Aspartate transaminase	11	p220	220	Arginine biosynthesis	2.97
+2.6.1.11	Acetylornithine transaminase	2	p220	220	Arginine biosynthesis	2.97
+2.7.2.8	Acetylglutamate kinase	2	p220	220	Arginine biosynthesis	2.97
+4.3.2.1	Argininosuccinate lyase	3	p220	220	Arginine biosynthesis	2.97
+6.3.1.2	Glutamate--ammonia ligase	5	p220	220	Arginine biosynthesis	2.97
+6.3.4.5	Argininosuccinate synthase	3	p220	220	Arginine biosynthesis	2.97
+1.1.1.205	IMP dehydrogenase	2	p230	230	Purine metabolism	1.6
+1.17.4.1	Ribonucleoside-diphosphate reductase	4	p230	230	Purine metabolism	1.6
+2.1.2.2	Phosphoribosylglycinamide formyltransferase	2	p230	230	Purine metabolism	1.6
+2.1.2.3	Phosphoribosylaminoimidazolecarboxamide formyltransferase	2	p230	230	Purine metabolism	1.6
+2.4.2.14	Amidophosphoribosyltransferase	2	p230	230	Purine metabolism	1.6
+2.7.4.3	Adenylate kinase	2	p230	230	Purine metabolism	1.6
+2.7.4.6	Nucleoside-diphosphate kinase	3	p230	230	Purine metabolism	1.6
+2.7.4.8	Guanylate kinase	1	p230	230	Purine metabolism	1.6
+2.7.6.1	Ribose-phosphate diphosphokinase	2	p230	230	Purine metabolism	1.6
+2.7.6.5	GTP diphosphokinase	1	p230	230	Purine metabolism	1.6
+2.7.7.6	DNA-directed RNA polymerase	2	p230	230	Purine metabolism	1.6
+2.7.7.7	DNA-directed DNA polymerase	2	p230	230	Purine metabolism	1.6
+2.7.7.8	Polyribonucleotide nucleotidyltransferase	2	p230	230	Purine metabolism	1.6
+3.1.3.5	5'-nucleotidase	3	p230	230	Purine metabolism	1.6
+3.1.7.2	Guanosine-3',5'-bis(diphosphate) 3'-diphosphatase	1	p230	230	Purine metabolism	1.6
+3.5.4.10	IMP cyclohydrolase	1	p230	230	Purine metabolism	1.6
+3.5.4.4	Adenosine deaminase	1	p230	230	Purine metabolism	1.6
+3.6.1.11	Exopolyphosphatase	1	p230	230	Purine metabolism	1.6
+3.6.1.15	Nucleoside-triphosphate phosphatase	2	p230	230	Purine metabolism	1.6
+3.6.1.17	Bis(5'-nucleosyl)-tetraphosphatase (asymmetrical)	2	p230	230	Purine metabolism	1.6
+3.6.1.40	Guanosine-5'-triphosphate,3'-diphosphate diphosphatase	1	p230	230	Purine metabolism	1.6
+4.3.2.2	Adenylosuccinate lyase	2	p230	230	Purine metabolism	1.6
+4.6.1.1	Adenylate cyclase	1	p230	230	Purine metabolism	1.6
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p230	230	Purine metabolism	1.6
+5.4.99.18	5-(carboxyamino)imidazole ribonucleotide mutase	1	p230	230	Purine metabolism	1.6
+6.3.2.6	Phosphoribosylaminoimidazolesuccinocarboxamide synthase	1	p230	230	Purine metabolism	1.6
+6.3.3.1	Phosphoribosylformylglycinamidine cyclo-ligase	1	p230	230	Purine metabolism	1.6
+6.3.4.13	Phosphoribosylamine--glycine ligase	1	p230	230	Purine metabolism	1.6
+6.3.4.18	5-(carboxyamino)imidazole ribonucleotide synthase	1	p230	230	Purine metabolism	1.6
+6.3.4.4	Adenylosuccinate synthase	2	p230	230	Purine metabolism	1.6
+6.3.5.2	GMP synthase (glutamine-hydrolyzing)	2	p230	230	Purine metabolism	1.6
+6.3.5.3	Phosphoribosylformylglycinamidine synthase	1	p230	230	Purine metabolism	1.6
+1.17.4.1	Ribonucleoside-diphosphate reductase	4	p240	240	Pyrimidine metabolism	1.82
+1.3.5.2	Dihydroorotate dehydrogenase (quinone)	1	p240	240	Pyrimidine metabolism	1.82
+1.8.1.9	Thioredoxin-disulfide reductase	2	p240	240	Pyrimidine metabolism	1.82
+2.1.1.148	Thymidylate synthase (FAD)	2	p240	240	Pyrimidine metabolism	1.82
+2.1.3.2	Aspartate carbamoyltransferase	2	p240	240	Pyrimidine metabolism	1.82
+2.4.2.10	Orotate phosphoribosyltransferase	2	p240	240	Pyrimidine metabolism	1.82
+2.7.4.22	UMP kinase	1	p240	240	Pyrimidine metabolism	1.82
+2.7.4.6	Nucleoside-diphosphate kinase	3	p240	240	Pyrimidine metabolism	1.82
+2.7.4.9	dTMP kinase	1	p240	240	Pyrimidine metabolism	1.82
+2.7.7.6	DNA-directed RNA polymerase	2	p240	240	Pyrimidine metabolism	1.82
+2.7.7.7	DNA-directed DNA polymerase	2	p240	240	Pyrimidine metabolism	1.82
+2.7.7.8	Polyribonucleotide nucleotidyltransferase	2	p240	240	Pyrimidine metabolism	1.82
+3.1.3.5	5'-nucleotidase	3	p240	240	Pyrimidine metabolism	1.82
+3.5.2.3	Dihydroorotase	1	p240	240	Pyrimidine metabolism	1.82
+3.5.4.13	dCTP deaminase	1	p240	240	Pyrimidine metabolism	1.82
+3.6.1.17	Bis(5'-nucleosyl)-tetraphosphatase (asymmetrical)	2	p240	240	Pyrimidine metabolism	1.82
+3.6.1.23	dUTP diphosphatase	2	p240	240	Pyrimidine metabolism	1.82
+4.1.1.23	Orotidine-5'-phosphate decarboxylase	1	p240	240	Pyrimidine metabolism	1.82
+4.2.1.70	Pseudouridylate synthase	1	p240	240	Pyrimidine metabolism	1.82
+6.3.4.2	CTP synthase	1	p240	240	Pyrimidine metabolism	1.82
+6.3.5.5	Carbamoyl-phosphate synthase (glutamine-hydrolyzing)	2	p240	240	Pyrimidine metabolism	1.82
+1.2.1.16	Succinate-semialdehyde dehydrogenase (NAD(P)(+))	4	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+1.4.1.13	Glutamate synthase (NADPH)	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+1.4.1.2	Glutamate dehydrogenase	5	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+2.1.3.2	Aspartate carbamoyltransferase	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+2.4.2.14	Amidophosphoribosyltransferase	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+2.6.1.1	Aspartate transaminase	11	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+2.6.1.16	Glutamine--fructose-6-phosphate transaminase (isomerizing)	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+4.3.2.1	Argininosuccinate lyase	3	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+4.3.2.2	Adenylosuccinate lyase	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+6.3.1.2	Glutamate--ammonia ligase	5	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+6.3.4.4	Adenylosuccinate synthase	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+6.3.4.5	Argininosuccinate synthase	3	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+6.3.5.5	Carbamoyl-phosphate synthase (glutamine-hydrolyzing)	2	p250	250	Alanine, aspartate and glutamate metabolism	2.74
+6.4.1.2	Acetyl-CoA carboxylase	6	p253	253	Tetracycline biosynthesis	2.3
+6.4.1.2	Acetyl-CoA carboxylase	6	p254	254	Aflatoxin biosynthesis	1.38
+1.1.1.95	Phosphoglycerate dehydrogenase	3	p260	260	Glycine, serine and threonine metabolism	2.23
+1.2.1.11	Aspartate-semialdehyde dehydrogenase	4	p260	260	Glycine, serine and threonine metabolism	2.23
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p260	260	Glycine, serine and threonine metabolism	2.23
+2.1.2.1	Glycine hydroxymethyltransferase	5	p260	260	Glycine, serine and threonine metabolism	2.23
+2.3.1.37	5-aminolevulinate synthase	2	p260	260	Glycine, serine and threonine metabolism	2.23
+2.7.1.31	Glycerate 3-kinase	3	p260	260	Glycine, serine and threonine metabolism	2.23
+2.7.2.4	Aspartate kinase	4	p260	260	Glycine, serine and threonine metabolism	2.23
+2.7.8.8	CDP-diacylglycerol--serine O-phosphatidyltransferase	2	p260	260	Glycine, serine and threonine metabolism	2.23
+4.3.1.19	Threonine ammonia-lyase	2	p260	260	Glycine, serine and threonine metabolism	2.23
+5.4.2.1	Transferred entry: 5.4.2.11 and 5.4.2.12	3	p260	260	Glycine, serine and threonine metabolism	2.23
+1.2.1.11	Aspartate-semialdehyde dehydrogenase	4	p261	261	Monobactam biosynthesis	2.4
+2.7.2.4	Aspartate kinase	4	p261	261	Monobactam biosynthesis	2.4
+4.3.3.7	4-hydroxy-tetrahydrodipicolinate synthase	2	p261	261	Monobactam biosynthesis	2.4
+1.1.1.37	Malate dehydrogenase	7	p270	270	Cysteine and methionine metabolism	2.16
+1.1.1.95	Phosphoglycerate dehydrogenase	3	p270	270	Cysteine and methionine metabolism	2.16
+1.2.1.11	Aspartate-semialdehyde dehydrogenase	4	p270	270	Cysteine and methionine metabolism	2.16
+2.1.1.14	5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase	2	p270	270	Cysteine and methionine metabolism	2.16
+2.1.1.37	DNA (cytosine-5-)-methyltransferase	1	p270	270	Cysteine and methionine metabolism	2.16
+2.5.1.6	Methionine adenosyltransferase	2	p270	270	Cysteine and methionine metabolism	2.16
+2.6.1.1	Aspartate transaminase	11	p270	270	Cysteine and methionine metabolism	2.16
+2.6.1.42	Branched-chain-amino-acid transaminase	5	p270	270	Cysteine and methionine metabolism	2.16
+2.7.2.4	Aspartate kinase	4	p270	270	Cysteine and methionine metabolism	2.16
+3.3.1.1	Adenosylhomocysteinase	1	p270	270	Cysteine and methionine metabolism	2.16
+4.4.1.8	Cystathionine beta-lyase	3	p270	270	Cysteine and methionine metabolism	2.16
+6.3.2.2	Glutamate--cysteine ligase	2	p270	270	Cysteine and methionine metabolism	2.16
+6.3.2.3	Glutathione synthase	2	p270	270	Cysteine and methionine metabolism	2.16
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p280	280	Valine, leucine and isoleucine degradation	4.11
+1.4.1.23	Valine dehydrogenase (NAD(+))	1	p280	280	Valine, leucine and isoleucine degradation	4.11
+1.4.1.9	Leucine dehydrogenase	2	p280	280	Valine, leucine and isoleucine degradation	4.11
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p280	280	Valine, leucine and isoleucine degradation	4.11
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p280	280	Valine, leucine and isoleucine degradation	4.11
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p280	280	Valine, leucine and isoleucine degradation	4.11
+2.6.1.42	Branched-chain-amino-acid transaminase	5	p280	280	Valine, leucine and isoleucine degradation	4.11
+2.8.3.5	3-oxoacid CoA-transferase	2	p280	280	Valine, leucine and isoleucine degradation	4.11
+4.2.1.17	Enoyl-CoA hydratase	17	p280	280	Valine, leucine and isoleucine degradation	4.11
+6.4.1.3	Propionyl-CoA carboxylase	4	p280	280	Valine, leucine and isoleucine degradation	4.11
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p281	281	Geraniol degradation	4.6
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p281	281	Geraniol degradation	4.6
+4.2.1.17	Enoyl-CoA hydratase	17	p281	281	Geraniol degradation	4.6
+1.1.1.86	Ketol-acid reductoisomerase	2	p290	290	Valine, leucine and isoleucine biosynthesis	2.13
+1.4.1.9	Leucine dehydrogenase	2	p290	290	Valine, leucine and isoleucine biosynthesis	2.13
+2.6.1.42	Branched-chain-amino-acid transaminase	5	p290	290	Valine, leucine and isoleucine biosynthesis	2.13
+4.3.1.19	Threonine ammonia-lyase	2	p290	290	Valine, leucine and isoleucine biosynthesis	2.13
+1.2.1.11	Aspartate-semialdehyde dehydrogenase	4	p300	300	Lysine biosynthesis	1.82
+2.3.1.117	2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase	1	p300	300	Lysine biosynthesis	1.82
+2.7.2.4	Aspartate kinase	4	p300	300	Lysine biosynthesis	1.82
+3.5.1.18	Succinyl-diaminopimelate desuccinylase	1	p300	300	Lysine biosynthesis	1.82
+4.1.1.20	Diaminopimelate decarboxylase	2	p300	300	Lysine biosynthesis	1.82
+4.3.3.7	4-hydroxy-tetrahydrodipicolinate synthase	2	p300	300	Lysine biosynthesis	1.82
+5.1.1.7	Diaminopimelate epimerase	2	p300	300	Lysine biosynthesis	1.82
+6.3.2.10	UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase	2	p300	300	Lysine biosynthesis	1.82
+6.3.2.13	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase	2	p300	300	Lysine biosynthesis	1.82
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p310	310	Lysine degradation	2.26
+1.2.4.2	Oxoglutarate dehydrogenase (succinyl-transferring)	3	p310	310	Lysine degradation	2.26
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p310	310	Lysine degradation	2.26
+2.3.1.61	Dihydrolipoyllysine-residue succinyltransferase	3	p310	310	Lysine degradation	2.26
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p310	310	Lysine degradation	2.26
+2.6.1.21	D-amino-acid transaminase	4	p310	310	Lysine degradation	2.26
+4.2.1.17	Enoyl-CoA hydratase	17	p310	310	Lysine degradation	2.26
+3.5.2.6	Beta-lactamase	2	p311	311	Penicillin and cephalosporin biosynthesis	1.29
+3.5.2.6	Beta-lactamase	2	p312	312	beta-Lactam resistance	2
+1.2.1.38	N-acetyl-gamma-glutamyl-phosphate reductase	2	p330	330	Arginine and proline metabolism	2.23
+1.2.1.41	Glutamate-5-semialdehyde dehydrogenase	2	p330	330	Arginine and proline metabolism	2.23
+1.4.1.2	Glutamate dehydrogenase	5	p330	330	Arginine and proline metabolism	2.23
+1.5.1.2	Pyrroline-5-carboxylate reductase	1	p330	330	Arginine and proline metabolism	2.23
+1.5.99.8	Transferred entry: 1.5.5.2	1	p330	330	Arginine and proline metabolism	2.23
+2.1.3.3	Ornithine carbamoyltransferase	2	p330	330	Arginine and proline metabolism	2.23
+2.3.1.1	Amino-acid N-acetyltransferase	2	p330	330	Arginine and proline metabolism	2.23
+2.3.1.35	Glutamate N-acetyltransferase	2	p330	330	Arginine and proline metabolism	2.23
+2.6.1.1	Aspartate transaminase	11	p330	330	Arginine and proline metabolism	2.23
+2.6.1.11	Acetylornithine transaminase	2	p330	330	Arginine and proline metabolism	2.23
+2.6.1.21	D-amino-acid transaminase	4	p330	330	Arginine and proline metabolism	2.23
+2.7.2.8	Acetylglutamate kinase	2	p330	330	Arginine and proline metabolism	2.23
+4.3.2.1	Argininosuccinate lyase	3	p330	330	Arginine and proline metabolism	2.23
+6.3.1.2	Glutamate--ammonia ligase	5	p330	330	Arginine and proline metabolism	2.23
+6.3.4.5	Argininosuccinate synthase	3	p330	330	Arginine and proline metabolism	2.23
+1.2.1.41	Glutamate-5-semialdehyde dehydrogenase	2	p332	332	Carbapenem biosynthesis	1.4
+3.1.3.15	Histidinol-phosphatase	1	p340	340	Histidine metabolism	2.33
+1.2.1.16	Succinate-semialdehyde dehydrogenase (NAD(P)(+))	4	p350	350	Tyrosine metabolism	2.85
+2.6.1.1	Aspartate transaminase	11	p350	350	Tyrosine metabolism	2.85
+1.14.16.1	Phenylalanine 4-monooxygenase	3	p360	360	Phenylalanine metabolism	3.06
+2.6.1.1	Aspartate transaminase	11	p360	360	Phenylalanine metabolism	3.06
+2.6.1.21	D-amino-acid transaminase	4	p360	360	Phenylalanine metabolism	3.06
+4.2.1.17	Enoyl-CoA hydratase	17	p360	360	Phenylalanine metabolism	3.06
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p362	362	Benzoate degradation via hydroxylation	2.49
+1.13.11.3	Protocatechuate 3,4-dioxygenase	2	p362	362	Benzoate degradation via hydroxylation	2.49
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p362	362	Benzoate degradation via hydroxylation	2.49
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p362	362	Benzoate degradation via hydroxylation	2.49
+3.7.1.9	2-hydroxymuconate-6-semialdehyde hydrolase	3	p362	362	Benzoate degradation via hydroxylation	2.49
+4.2.1.17	Enoyl-CoA hydratase	17	p362	362	Benzoate degradation via hydroxylation	2.49
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p380	380	Tryptophan metabolism	3.09
+1.2.4.2	Oxoglutarate dehydrogenase (succinyl-transferring)	3	p380	380	Tryptophan metabolism	3.09
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p380	380	Tryptophan metabolism	3.09
+2.3.1.61	Dihydrolipoyllysine-residue succinyltransferase	3	p380	380	Tryptophan metabolism	3.09
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p380	380	Tryptophan metabolism	3.09
+4.2.1.17	Enoyl-CoA hydratase	17	p380	380	Tryptophan metabolism	3.09
+1.14.16.1	Phenylalanine 4-monooxygenase	3	p400	400	Phenylalanine, tyrosine and tryptophan biosynthesis	2.26
+2.5.1.19	3-phosphoshikimate 1-carboxyvinyltransferase	1	p400	400	Phenylalanine, tyrosine and tryptophan biosynthesis	2.26
+2.6.1.1	Aspartate transaminase	11	p400	400	Phenylalanine, tyrosine and tryptophan biosynthesis	2.26
+4.2.3.4	3-dehydroquinate synthase	1	p400	400	Phenylalanine, tyrosine and tryptophan biosynthesis	2.26
+2.6.1.1	Aspartate transaminase	11	p401	401	Novobiocin biosynthesis	3.06
+4.1.1.11	Aspartate 1-decarboxylase	2	p410	410	beta-Alanine metabolism	3.7
+4.1.1.9	Malonyl-CoA decarboxylase	2	p410	410	beta-Alanine metabolism	3.7
+4.2.1.17	Enoyl-CoA hydratase	17	p410	410	beta-Alanine metabolism	3.7
+6.3.2.1	Pantoate--beta-alanine ligase (AMP-forming)	2	p410	410	beta-Alanine metabolism	3.7
+1.4.1.2	Glutamate dehydrogenase	5	p430	430	Taurine and hypotaurine metabolism	2.09
+2.3.1.8	Phosphate acetyltransferase	5	p430	430	Taurine and hypotaurine metabolism	2.09
+2.7.2.1	Acetate kinase	5	p430	430	Taurine and hypotaurine metabolism	2.09
+1.8.1.9	Thioredoxin-disulfide reductase	2	p450	450	Selenoamino acid metabolism	2.06
+2.1.1.14	5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase	2	p450	450	Selenoamino acid metabolism	2.06
+4.4.1.8	Cystathionine beta-lyase	3	p450	450	Selenoamino acid metabolism	2.06
+6.1.1.10	Methionine--tRNA ligase	2	p450	450	Selenoamino acid metabolism	2.06
+2.1.2.1	Glycine hydroxymethyltransferase	5	p460	460	Cyanoamino acid metabolism	1.86
+2.6.1.21	D-amino-acid transaminase	4	p470	470	D-Amino acid metabolism	1.96
+4.1.1.20	Diaminopimelate decarboxylase	2	p470	470	D-Amino acid metabolism	1.96
+5.1.1.7	Diaminopimelate epimerase	2	p470	470	D-Amino acid metabolism	1.96
+6.3.2.4	D-alanine--D-alanine ligase	2	p470	470	D-Amino acid metabolism	1.96
+6.3.2.8	UDP-N-acetylmuramate--L-alanine ligase	2	p470	470	D-Amino acid metabolism	1.96
+6.3.2.9	UDP-N-acetylmuramoyl-L-alanine--D-glutamate ligase	2	p470	470	D-Amino acid metabolism	1.96
+1.1.1.42	Isocitrate dehydrogenase (NADP(+))	3	p480	480	Glutathione metabolism	1.73
+1.11.1.15	Peroxiredoxin	1	p480	480	Glutathione metabolism	1.73
+1.17.4.1	Ribonucleoside-diphosphate reductase	4	p480	480	Glutathione metabolism	1.73
+3.4.11.1	Leucyl aminopeptidase	1	p480	480	Glutathione metabolism	1.73
+6.3.2.2	Glutamate--cysteine ligase	2	p480	480	Glutathione metabolism	1.73
+6.3.2.3	Glutathione synthase	2	p480	480	Glutathione metabolism	1.73
+1.1.1.22	UDP-glucose 6-dehydrogenase	5	p500	500	Starch and sucrose metabolism	1.92
+2.4.1.25	4-alpha-glucanotransferase	1	p500	500	Starch and sucrose metabolism	1.92
+2.7.1.4	Fructokinase	3	p500	500	Starch and sucrose metabolism	1.92
+5.3.1.9	Glucose-6-phosphate isomerase	4	p500	500	Starch and sucrose metabolism	1.92
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p500	500	Starch and sucrose metabolism	1.92
+2.4.1.83	Dolichyl-phosphate beta-D-mannosyltransferase	1	p510	510	N-Glycan biosynthesis	1.55
+2.7.1.108	Dolichol kinase	1	p510	510	N-Glycan biosynthesis	1.55
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p511	511	Other glycan degradation	2.33
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p513	513	High-mannose type N-glycan biosynthesis	2.32
+1.1.1.22	UDP-glucose 6-dehydrogenase	5	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+1.1.1.336	UDP-N-acetyl-D-mannosamine dehydrogenase	2	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.3.1.157	Glucosamine-1-phosphate N-acetyltransferase	1	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.5.1.7	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	2	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.6.1.16	Glutamine--fructose-6-phosphate transaminase (isomerizing)	2	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.7.1.4	Fructokinase	3	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.7.7.13	Mannose-1-phosphate guanylyltransferase	3	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.7.7.22	Mannose-1-phosphate guanylyltransferase (GDP)	2	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+2.7.7.23	UDP-N-acetylglucosamine diphosphorylase	2	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+3.2.1.14	Chitinase	1	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.1.3.14	UDP-N-acetylglucosamine 2-epimerase (non-hydrolyzing)	2	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.1.3.2	UDP-glucose 4-epimerase	3	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.3.1.8	Mannose-6-phosphate isomerase	3	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.3.1.9	Glucose-6-phosphate isomerase	4	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.4.2.10	Phosphoglucosamine mutase	1	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+5.4.2.8	Phosphomannomutase	3	p520	520	Amino sugar and nucleotide sugar metabolism	1.96
+1.1.1.133	dTDP-4-dehydrorhamnose reductase	3	p521	521	Streptomycin biosynthesis	2.72
+2.7.7.24	Glucose-1-phosphate thymidylyltransferase	4	p521	521	Streptomycin biosynthesis	2.72
+3.1.3.25	Inositol-phosphate phosphatase	2	p521	521	Streptomycin biosynthesis	2.72
+4.2.1.46	dTDP-glucose 4,6-dehydratase	5	p521	521	Streptomycin biosynthesis	2.72
+5.4.2.2	Phosphoglucomutase (alpha-D-glucose-1,6-bisphosphate-dependent)	7	p521	521	Streptomycin biosynthesis	2.72
+1.1.1.133	dTDP-4-dehydrorhamnose reductase	3	p523	523	Polyketide sugar unit biosynthesis	1.85
+2.7.7.24	Glucose-1-phosphate thymidylyltransferase	4	p523	523	Polyketide sugar unit biosynthesis	1.85
+4.2.1.46	dTDP-glucose 4,6-dehydratase	5	p523	523	Polyketide sugar unit biosynthesis	1.85
+2.7.7.24	Glucose-1-phosphate thymidylyltransferase	4	p525	525	Acarbose and validamycin biosynthesis	1.64
+4.2.1.46	dTDP-glucose 4,6-dehydratase	5	p525	525	Acarbose and validamycin biosynthesis	1.64
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p531	531	Glycosaminoglycan degradation	2.07
+2.3.1.129	Acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine O-acyltransferase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.3.1.191	UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.4.1.182	Lipid-A-disaccharide synthase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.4.99.12	Lipid IV(A) 3-deoxy-D-manno-octulosonic acid transferase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.4.99.13	(KDO)-lipid IV(A) 3-deoxy-D-manno-octulosonic acid transferase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.5.1.55	3-deoxy-8-phosphooctulonate synthase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.7.1.130	Tetraacyldisaccharide 4'-kinase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.7.1.167	D-glycero-beta-D-manno-heptose-7-phosphate kinase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.7.7.38	3-deoxy-manno-octulosonate cytidylyltransferase	1	p540	540	Lipopolysaccharide biosynthesis	1
+2.7.7.70	D-glycero-beta-D-manno-heptose 1-phosphate adenylyltransferase	1	p540	540	Lipopolysaccharide biosynthesis	1
+3.5.1.108	UDP-3-O-acyl-N-acetylglucosamine deacetylase	1	p540	540	Lipopolysaccharide biosynthesis	1
+1.1.1.133	dTDP-4-dehydrorhamnose reductase	3	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+1.1.1.22	UDP-glucose 6-dehydrogenase	5	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+1.1.1.336	UDP-N-acetyl-D-mannosamine dehydrogenase	2	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+2.7.7.13	Mannose-1-phosphate guanylyltransferase	3	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+2.7.7.23	UDP-N-acetylglucosamine diphosphorylase	2	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+2.7.7.24	Glucose-1-phosphate thymidylyltransferase	4	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+4.2.1.46	dTDP-glucose 4,6-dehydratase	5	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+5.1.3.14	UDP-N-acetylglucosamine 2-epimerase (non-hydrolyzing)	2	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+5.1.3.2	UDP-glucose 4-epimerase	3	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+5.3.1.8	Mannose-6-phosphate isomerase	3	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+5.4.2.8	Phosphomannomutase	3	p541	541	O-Antigen nucleotide sugar biosynthesis	2.3
+2.4.1.129	Peptidoglycan glycosyltransferase	1	p550	550	Peptidoglycan biosynthesis	1.39
+2.4.1.227	Undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase	1	p550	550	Peptidoglycan biosynthesis	1.39
+2.5.1.31	Ditrans,polycis-undecaprenyl-diphosphate synthase ((2E,6E)-farnesyl-diphosphate specific)	2	p550	550	Peptidoglycan biosynthesis	1.39
+2.5.1.7	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	2	p550	550	Peptidoglycan biosynthesis	1.39
+2.7.8.13	Phospho-N-acetylmuramoyl-pentapeptide-transferase	1	p550	550	Peptidoglycan biosynthesis	1.39
+3.4.16.4	Serine-type D-Ala-D-Ala carboxypeptidase	1	p550	550	Peptidoglycan biosynthesis	1.39
+6.3.2.10	UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase	2	p550	550	Peptidoglycan biosynthesis	1.39
+6.3.2.13	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase	2	p550	550	Peptidoglycan biosynthesis	1.39
+6.3.2.4	D-alanine--D-alanine ligase	2	p550	550	Peptidoglycan biosynthesis	1.39
+6.3.2.8	UDP-N-acetylmuramate--L-alanine ligase	2	p550	550	Peptidoglycan biosynthesis	1.39
+6.3.2.9	UDP-N-acetylmuramoyl-L-alanine--D-glutamate ligase	2	p550	550	Peptidoglycan biosynthesis	1.39
+1.1.1.6	Glycerol dehydrogenase	2	p561	561	Glycerolipid metabolism	2.21
+2.3.1.51	1-acylglycerol-3-phosphate O-acyltransferase	2	p561	561	Glycerolipid metabolism	2.21
+2.7.1.107	Diacylglycerol kinase (ATP)	2	p561	561	Glycerolipid metabolism	2.21
+2.7.1.31	Glycerate 3-kinase	3	p561	561	Glycerolipid metabolism	2.21
+3.2.1.22	Alpha-galactosidase	4	p561	561	Glycerolipid metabolism	2.21
+3.1.3.25	Inositol-phosphate phosphatase	2	p562	562	Inositol phosphate metabolism	1.25
+5.3.1.1	Triose-phosphate isomerase	4	p562	562	Inositol phosphate metabolism	1.25
+1.1.1.94	Glycerol-3-phosphate dehydrogenase (NAD(P)(+))	1	p564	564	Glycerophospholipid metabolism	1.41
+2.3.1.40	Acyl-[acyl-carrier-protein]--phospholipid O-acyltransferase	1	p564	564	Glycerophospholipid metabolism	1.41
+2.3.1.51	1-acylglycerol-3-phosphate O-acyltransferase	2	p564	564	Glycerophospholipid metabolism	1.41
+2.7.1.107	Diacylglycerol kinase (ATP)	2	p564	564	Glycerophospholipid metabolism	1.41
+2.7.7.41	Phosphatidate cytidylyltransferase	1	p564	564	Glycerophospholipid metabolism	1.41
+2.7.8.5	CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase	1	p564	564	Glycerophospholipid metabolism	1.41
+2.7.8.8	CDP-diacylglycerol--serine O-phosphatidyltransferase	2	p564	564	Glycerophospholipid metabolism	1.41
+3.1.1.4	Phospholipase A(2)	5	p564	564	Glycerophospholipid metabolism	1.41
+3.1.3.27	Phosphatidylglycerophosphatase	1	p564	564	Glycerophospholipid metabolism	1.41
+4.1.1.65	Phosphatidylserine decarboxylase	1	p564	564	Glycerophospholipid metabolism	1.41
+3.1.1.4	Phospholipase A(2)	5	p565	565	Ether lipid metabolism	1.68
+3.1.1.4	Phospholipase A(2)	5	p590	590	Arachidonic acid metabolism	1.93
+3.1.1.4	Phospholipase A(2)	5	p591	591	Linoleic acid metabolism	2.21
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p592	592	alpha-Linolenic acid metabolism	4.31
+3.1.1.4	Phospholipase A(2)	5	p592	592	alpha-Linolenic acid metabolism	4.31
+4.2.1.17	Enoyl-CoA hydratase	17	p592	592	alpha-Linolenic acid metabolism	4.31
+3.2.1.22	Alpha-galactosidase	4	p600	600	Sphingolipid metabolism	1.65
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p600	600	Sphingolipid metabolism	1.65
+3.2.1.22	Alpha-galactosidase	4	p603	603	Glycosphingolipid biosynthesis - globo series	2.67
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p603	603	Glycosphingolipid biosynthesis - globo series	2.67
+3.2.1.52	Beta-N-acetylhexosaminidase	7	p604	604	Glycosphingolipid biosynthesis - ganglio series	2.83
+1.1.1.37	Malate dehydrogenase	7	p620	620	Pyruvate metabolism	2.95
+1.1.1.40	Malate dehydrogenase (oxaloacetate-decarboxylating) (NADP(+))	2	p620	620	Pyruvate metabolism	2.95
+1.2.4.1	Pyruvate dehydrogenase (acetyl-transferring)	4	p620	620	Pyruvate metabolism	2.95
+1.3.5.1	Succinate dehydrogenase (quinone)	5	p620	620	Pyruvate metabolism	2.95
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p620	620	Pyruvate metabolism	2.95
+2.3.1.12	Dihydrolipoyllysine-residue acetyltransferase	3	p620	620	Pyruvate metabolism	2.95
+2.3.1.8	Phosphate acetyltransferase	5	p620	620	Pyruvate metabolism	2.95
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p620	620	Pyruvate metabolism	2.95
+2.7.2.1	Acetate kinase	5	p620	620	Pyruvate metabolism	2.95
+2.7.9.1	Pyruvate, phosphate dikinase	4	p620	620	Pyruvate metabolism	2.95
+3.1.2.6	Hydroxyacylglutathione hydrolase	1	p620	620	Pyruvate metabolism	2.95
+4.2.1.2	Fumarate hydratase	3	p620	620	Pyruvate metabolism	2.95
+6.4.1.2	Acetyl-CoA carboxylase	6	p620	620	Pyruvate metabolism	2.95
+3.7.1.9	2-hydroxymuconate-6-semialdehyde hydrolase	3	p622	622	Toluene and xylene degradation	2.5
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p623	623	2,4-Dichlorobenzoate degradation	2.48
+1.13.11.3	Protocatechuate 3,4-dioxygenase	2	p624	624	1- and 2-Methylnaphthalene degradation	1.67
+4.2.1.17	Enoyl-CoA hydratase	17	p627	627	1,4-Dichlorobenzene degradation	2.17
+1.1.1.36	Acetoacetyl-CoA reductase	2	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+1.1.1.37	Malate dehydrogenase	7	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+2.1.2.1	Glycine hydroxymethyltransferase	5	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+2.3.3.1	Citrate (Si)-synthase	2	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+2.7.1.31	Glycerate 3-kinase	3	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+4.2.1.3	Aconitate hydratase	3	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+6.3.1.2	Glutamate--ammonia ligase	5	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+6.4.1.3	Propionyl-CoA carboxylase	4	p630	630	Glyoxylate and dicarboxylate metabolism	2.06
+1.1.1.6	Glycerol dehydrogenase	2	p640	640	Propanoate metabolism	3.39
+1.8.1.4	Dihydrolipoyl dehydrogenase	8	p640	640	Propanoate metabolism	3.39
+2.3.1.8	Phosphate acetyltransferase	5	p640	640	Propanoate metabolism	3.39
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p640	640	Propanoate metabolism	3.39
+2.7.2.1	Acetate kinase	5	p640	640	Propanoate metabolism	3.39
+4.1.1.9	Malonyl-CoA decarboxylase	2	p640	640	Propanoate metabolism	3.39
+4.2.1.17	Enoyl-CoA hydratase	17	p640	640	Propanoate metabolism	3.39
+6.2.1.5	Succinate--CoA ligase (ADP-forming)	4	p640	640	Propanoate metabolism	3.39
+6.4.1.2	Acetyl-CoA carboxylase	6	p640	640	Propanoate metabolism	3.39
+6.4.1.3	Propionyl-CoA carboxylase	4	p640	640	Propanoate metabolism	3.39
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p642	642	Ethylbenzene degradation	2.5
+3.7.1.9	2-hydroxymuconate-6-semialdehyde hydrolase	3	p643	643	Styrene degradation	2.6
+1.1.1.30	3-hydroxybutyrate dehydrogenase	1	p650	650	Butanoate metabolism	2.81
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p650	650	Butanoate metabolism	2.81
+1.1.1.36	Acetoacetyl-CoA reductase	2	p650	650	Butanoate metabolism	2.81
+1.2.1.16	Succinate-semialdehyde dehydrogenase (NAD(P)(+))	4	p650	650	Butanoate metabolism	2.81
+1.2.4.1	Pyruvate dehydrogenase (acetyl-transferring)	4	p650	650	Butanoate metabolism	2.81
+1.3.5.1	Succinate dehydrogenase (quinone)	5	p650	650	Butanoate metabolism	2.81
+2.3.1.19	Phosphate butyryltransferase	1	p650	650	Butanoate metabolism	2.81
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p650	650	Butanoate metabolism	2.81
+2.8.3.5	3-oxoacid CoA-transferase	2	p650	650	Butanoate metabolism	2.81
+4.2.1.17	Enoyl-CoA hydratase	17	p650	650	Butanoate metabolism	2.81
+6.2.1.5	Succinate--CoA ligase (ADP-forming)	4	p660	660	C5-Branched dibasic acid metabolism	1.87
+1.5.1.3	Dihydrofolate reductase	2	p670	670	One carbon pool by folate	1.82
+1.5.1.5	Methylenetetrahydrofolate dehydrogenase (NADP(+))	2	p670	670	One carbon pool by folate	1.82
+2.1.1.148	Thymidylate synthase (FAD)	2	p670	670	One carbon pool by folate	1.82
+2.1.2.1	Glycine hydroxymethyltransferase	5	p670	670	One carbon pool by folate	1.82
+2.1.2.2	Phosphoribosylglycinamide formyltransferase	2	p670	670	One carbon pool by folate	1.82
+2.1.2.3	Phosphoribosylaminoimidazolecarboxamide formyltransferase	2	p670	670	One carbon pool by folate	1.82
+2.1.2.9	Methionyl-tRNA formyltransferase	2	p670	670	One carbon pool by folate	1.82
+3.5.4.9	Methenyltetrahydrofolate cyclohydrolase	2	p670	670	One carbon pool by folate	1.82
+6.3.3.2	5-formyltetrahydrofolate cyclo-ligase	1	p670	670	One carbon pool by folate	1.82
+1.1.1.37	Malate dehydrogenase	7	p680	680	Methane metabolism	2.05
+1.1.1.95	Phosphoglycerate dehydrogenase	3	p680	680	Methane metabolism	2.05
+2.1.2.1	Glycine hydroxymethyltransferase	5	p680	680	Methane metabolism	2.05
+2.3.1.8	Phosphate acetyltransferase	5	p680	680	Methane metabolism	2.05
+2.7.2.1	Acetate kinase	5	p680	680	Methane metabolism	2.05
+3.1.3.11	Fructose-bisphosphatase	5	p680	680	Methane metabolism	2.05
+3.6.3.14	H(+)-transporting two-sector ATPase	3	p680	680	Methane metabolism	2.05
+4.1.2.13	Fructose-bisphosphate aldolase	5	p680	680	Methane metabolism	2.05
+4.2.1.11	Phosphopyruvate hydratase	2	p680	680	Methane metabolism	2.05
+5.4.2.1	Transferred entry: 5.4.2.11 and 5.4.2.12	3	p680	680	Methane metabolism	2.05
+1.1.1.37	Malate dehydrogenase	7	p710	710	Carbon fixation in photosynthetic organisms	3.15
+1.1.1.40	Malate dehydrogenase (oxaloacetate-decarboxylating) (NADP(+))	2	p710	710	Carbon fixation in photosynthetic organisms	3.15
+1.2.1.12	Glyceraldehyde-3-phosphate dehydrogenase (phosphorylating)	2	p710	710	Carbon fixation in photosynthetic organisms	3.15
+2.2.1.1	Transketolase	3	p710	710	Carbon fixation in photosynthetic organisms	3.15
+2.6.1.1	Aspartate transaminase	11	p710	710	Carbon fixation in photosynthetic organisms	3.15
+2.7.2.3	Phosphoglycerate kinase	2	p710	710	Carbon fixation in photosynthetic organisms	3.15
+2.7.9.1	Pyruvate, phosphate dikinase	4	p710	710	Carbon fixation in photosynthetic organisms	3.15
+3.1.3.11	Fructose-bisphosphatase	5	p710	710	Carbon fixation in photosynthetic organisms	3.15
+4.1.2.13	Fructose-bisphosphate aldolase	5	p710	710	Carbon fixation in photosynthetic organisms	3.15
+5.1.3.1	Ribulose-phosphate 3-epimerase	3	p710	710	Carbon fixation in photosynthetic organisms	3.15
+5.3.1.1	Triose-phosphate isomerase	4	p710	710	Carbon fixation in photosynthetic organisms	3.15
+5.3.1.6	Ribose-5-phosphate isomerase	3	p710	710	Carbon fixation in photosynthetic organisms	3.15
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+1.1.1.37	Malate dehydrogenase	7	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+1.1.1.42	Isocitrate dehydrogenase (NADP(+))	3	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+1.3.5.1	Succinate dehydrogenase (quinone)	5	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+1.5.1.5	Methylenetetrahydrofolate dehydrogenase (NADP(+))	2	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+2.3.1.8	Phosphate acetyltransferase	5	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+2.7.2.1	Acetate kinase	5	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+2.7.9.1	Pyruvate, phosphate dikinase	4	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+3.5.4.9	Methenyltetrahydrofolate cyclohydrolase	2	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+4.2.1.17	Enoyl-CoA hydratase	17	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+4.2.1.2	Fumarate hydratase	3	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+4.2.1.3	Aconitate hydratase	3	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+6.2.1.5	Succinate--CoA ligase (ADP-forming)	4	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+6.4.1.2	Acetyl-CoA carboxylase	6	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+6.4.1.3	Propionyl-CoA carboxylase	4	p720	720	Reductive carboxylate cycle (CO2 fixation)	3.34
+1.4.3.19	Glycine oxidase	1	p730	730	Thiamine metabolism	1.25
+2.2.1.7	1-deoxy-D-xylulose-5-phosphate synthase	2	p730	730	Thiamine metabolism	1.25
+2.5.1.3	Thiamine-phosphate diphosphorylase	1	p730	730	Thiamine metabolism	1.25
+2.7.1.50	Hydroxyethylthiazole kinase	1	p730	730	Thiamine metabolism	1.25
+2.7.4.16	Thiamine-phosphate kinase	1	p730	730	Thiamine metabolism	1.25
+2.7.4.3	Adenylate kinase	2	p730	730	Thiamine metabolism	1.25
+2.7.4.7	Phosphomethylpyrimidine kinase	1	p730	730	Thiamine metabolism	1.25
+2.7.6.2	Thiamine diphosphokinase	1	p730	730	Thiamine metabolism	1.25
+2.7.7.73	Sulfur carrier protein ThiS adenylyltransferase	1	p730	730	Thiamine metabolism	1.25
+2.8.1.7	Cysteine desulfurase	1	p730	730	Thiamine metabolism	1.25
+3.5.99.2	Aminopyrimidine aminohydrolase	1	p730	730	Thiamine metabolism	1.25
+3.6.1.15	Nucleoside-triphosphate phosphatase	2	p730	730	Thiamine metabolism	1.25
+1.1.1.193	5-amino-6-(5-phosphoribosylamino)uracil reductase	1	p740	740	Riboflavin metabolism	1.39
+2.5.1.78	6,7-dimethyl-8-ribityllumazine synthase	1	p740	740	Riboflavin metabolism	1.39
+2.5.1.9	Riboflavin synthase	1	p740	740	Riboflavin metabolism	1.39
+2.7.1.26	Riboflavin kinase	1	p740	740	Riboflavin metabolism	1.39
+2.7.7.2	FAD synthetase	1	p740	740	Riboflavin metabolism	1.39
+3.5.4.25	GTP cyclohydrolase II	2	p740	740	Riboflavin metabolism	1.39
+3.5.4.26	Diaminohydroxyphosphoribosylaminopyrimidine deaminase	1	p740	740	Riboflavin metabolism	1.39
+4.1.99.12	3,4-dihydroxy-2-butanone-4-phosphate synthase	1	p740	740	Riboflavin metabolism	1.39
+1.4.3.5	Pyridoxal 5'-phosphate synthase	1	p750	750	Vitamin B6 metabolism	1.32
+2.6.99.2	Pyridoxine 5'-phosphate synthase	1	p750	750	Vitamin B6 metabolism	1.32
+1.2.1.16	Succinate-semialdehyde dehydrogenase (NAD(P)(+))	4	p760	760	Nicotinate and nicotinamide metabolism	1.44
+1.6.1.2	NAD(P)(+) transhydrogenase (Re/Si-specific)	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+2.4.2.19	Nicotinate-nucleotide diphosphorylase (carboxylating)	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+2.7.1.23	NAD(+) kinase	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+2.7.7.18	Nicotinate-nucleotide adenylyltransferase	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+3.1.3.5	5'-nucleotidase	3	p760	760	Nicotinate and nicotinamide metabolism	1.44
+3.5.1.42	Nicotinamide-nucleotide amidase	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+3.6.1.22	NAD(+) diphosphatase	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+6.3.1.5	NAD(+) synthase	1	p760	760	Nicotinate and nicotinamide metabolism	1.44
+1.1.1.86	Ketol-acid reductoisomerase	2	p770	770	Pantothenate and CoA biosynthesis	2.41
+2.1.2.11	3-methyl-2-oxobutanoate hydroxymethyltransferase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+2.6.1.42	Branched-chain-amino-acid transaminase	5	p770	770	Pantothenate and CoA biosynthesis	2.41
+2.7.1.24	Dephospho-CoA kinase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+2.7.1.33	Pantothenate kinase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+2.7.7.3	Pantetheine-phosphate adenylyltransferase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+2.7.8.7	Holo-[acyl-carrier-protein] synthase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+4.1.1.11	Aspartate 1-decarboxylase	2	p770	770	Pantothenate and CoA biosynthesis	2.41
+4.1.1.36	Phosphopantothenoylcysteine decarboxylase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+6.3.2.1	Pantoate--beta-alanine ligase (AMP-forming)	2	p770	770	Pantothenate and CoA biosynthesis	2.41
+6.3.2.5	Phosphopantothenate--cysteine ligase	1	p770	770	Pantothenate and CoA biosynthesis	2.41
+1.1.1.100	3-oxoacyl-[acyl-carrier-protein] reductase	2	p780	780	Biotin metabolism	1.23
+2.1.1.197	Malonyl-[acyl-carrier protein] O-methyltransferase	1	p780	780	Biotin metabolism	1.23
+2.3.1.179	Beta-ketoacyl-[acyl-carrier-protein] synthase II	2	p780	780	Biotin metabolism	1.23
+2.3.1.47	8-amino-7-oxononanoate synthase	1	p780	780	Biotin metabolism	1.23
+2.6.1.62	Adenosylmethionine--8-amino-7-oxononanoate transaminase	1	p780	780	Biotin metabolism	1.23
+2.8.1.6	Biotin synthase	1	p780	780	Biotin metabolism	1.23
+3.1.1.85	Pimeloyl-[acyl-carrier protein] methyl ester esterase	1	p780	780	Biotin metabolism	1.23
+4.2.1.59	3-hydroxyacyl-[acyl-carrier-protein] dehydratase	2	p780	780	Biotin metabolism	1.23
+6.3.3.3	Dethiobiotin synthase	1	p780	780	Biotin metabolism	1.23
+6.3.4.10	Biotin--[propionyl-CoA-carboxylase (ATP-hydrolyzing)] ligase	1	p780	780	Biotin metabolism	1.23
+6.3.4.11	Biotin--[methylcrotonoyl-CoA-carboxylase] ligase	1	p780	780	Biotin metabolism	1.23
+6.3.4.15	Biotin--[acetyl-CoA-carboxylase] ligase	1	p780	780	Biotin metabolism	1.23
+6.3.4.9	Biotin--[methylmalonyl-CoA-carboxytransferase] ligase	1	p780	780	Biotin metabolism	1.23
+2.3.1.181	Lipoyl(octanoyl) transferase	1	p785	785	Lipoic acid metabolism	1
+2.8.1.8	Lipoyl synthase	1	p785	785	Lipoic acid metabolism	1
+1.14.16.1	Phenylalanine 4-monooxygenase	3	p790	790	Folate biosynthesis	1.33
+1.5.1.3	Dihydrofolate reductase	2	p790	790	Folate biosynthesis	1.33
+1.5.1.34	6,7-dihydropteridine reductase	1	p790	790	Folate biosynthesis	1.33
+1.7.1.13	PreQ(1) synthase	1	p790	790	Folate biosynthesis	1.33
+2.5.1.15	Dihydropteroate synthase	1	p790	790	Folate biosynthesis	1.33
+2.7.6.3	2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase	1	p790	790	Folate biosynthesis	1.33
+3.5.4.16	GTP cyclohydrolase I	1	p790	790	Folate biosynthesis	1.33
+3.5.4.25	GTP cyclohydrolase II	2	p790	790	Folate biosynthesis	1.33
+4.1.2.25	Dihydroneopterin aldolase	1	p790	790	Folate biosynthesis	1.33
+4.1.2.50	6-carboxytetrahydropterin synthase	1	p790	790	Folate biosynthesis	1.33
+4.3.99.3	7-carboxy-7-deazaguanine synthase	1	p790	790	Folate biosynthesis	1.33
+6.3.2.12	Dihydrofolate synthase	1	p790	790	Folate biosynthesis	1.33
+6.3.2.17	Tetrahydrofolate synthase	1	p790	790	Folate biosynthesis	1.33
+6.3.4.20	7-cyano-7-deazaguanine synthase	1	p790	790	Folate biosynthesis	1.33
+1.16.3.1	Ferroxidase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+1.3.3.3	Coproporphyrinogen oxidase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+2.3.1.37	5-aminolevulinate synthase	2	p860	860	Porphyrin and chlorophyll metabolism	1.14
+2.5.1.61	Hydroxymethylbilane synthase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+4.1.1.37	Uroporphyrinogen decarboxylase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+4.2.1.24	Porphobilinogen synthase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+4.2.1.75	Uroporphyrinogen-III synthase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+4.99.1.1	Ferrochelatase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+5.4.3.8	Glutamate-1-semialdehyde 2,1-aminomutase	1	p860	860	Porphyrin and chlorophyll metabolism	1.14
+6.1.1.17	Glutamate--tRNA ligase	2	p860	860	Porphyrin and chlorophyll metabolism	1.14
+1.1.1.267	1-deoxy-D-xylulose-5-phosphate reductoisomerase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.2.1.7	1-deoxy-D-xylulose-5-phosphate synthase	2	p900	900	Terpenoid backbone biosynthesis	1.35
+2.3.1.9	Acetyl-CoA C-acetyltransferase	11	p900	900	Terpenoid backbone biosynthesis	1.35
+2.5.1.1	Dimethylallyltranstransferase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.5.1.10	(2E,6E)-farnesyl diphosphate synthase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.5.1.29	Geranylgeranyl diphosphate synthase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.5.1.31	Ditrans,polycis-undecaprenyl-diphosphate synthase ((2E,6E)-farnesyl-diphosphate specific)	2	p900	900	Terpenoid backbone biosynthesis	1.35
+2.5.1.90	All-trans-octaprenyl-diphosphate synthase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.5.1.91	All-trans-decaprenyl-diphosphate synthase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.7.1.148	4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+2.7.7.60	2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+4.6.1.12	2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+5.3.3.2	Isopentenyl-diphosphate Delta-isomerase	1	p900	900	Terpenoid backbone biosynthesis	1.35
+4.2.1.17	Enoyl-CoA hydratase	17	p903	903	Limonene and pinene degradation	3.21
+2.5.1.75	tRNA dimethylallyltransferase	1	p908	908	Zeatin biosynthesis	1
+1.10.2.2	Quinol--cytochrome-c reductase	2	p910	910	Nitrogen metabolism	2.06
+1.4.1.13	Glutamate synthase (NADPH)	2	p910	910	Nitrogen metabolism	2.06
+1.4.1.2	Glutamate dehydrogenase	5	p910	910	Nitrogen metabolism	2.06
+1.6.5.3	NADH:ubiquinone reductase (H(+)-translocating)	2	p910	910	Nitrogen metabolism	2.06
+1.9.3.1	Cytochrome-c oxidase	2	p910	910	Nitrogen metabolism	2.06
+4.2.1.1	Carbonate dehydratase	1	p910	910	Nitrogen metabolism	2.06
+6.3.1.2	Glutamate--ammonia ligase	5	p910	910	Nitrogen metabolism	2.06
+3.1.3.7	3'(2'),5'-bisphosphate nucleotidase	1	p920	920	Sulfur metabolism	1.3
+4.4.1.8	Cystathionine beta-lyase	3	p920	920	Sulfur metabolism	1.3
+1.1.1.35	3-hydroxyacyl-CoA dehydrogenase	12	p930	930	Caprolactam degradation	2.83
+4.2.1.17	Enoyl-CoA hydratase	17	p930	930	Caprolactam degradation	2.83
+2.6.1.1	Aspartate transaminase	11	p950	950	Isoquinoline alkaloid biosynthesis	1.81
+2.6.1.1	Aspartate transaminase	11	p960	960	Tropane, piperidine and pyridine alkaloid biosynthesis	2.68
+2.6.1.42	Branched-chain-amino-acid transaminase	5	p966	966	Glucosinolate biosynthesis	1.85
+2.1.2.9	Methionyl-tRNA formyltransferase	2	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.1	Tyrosine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.10	Methionine--tRNA ligase	2	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.11	Serine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.12	Aspartate--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.14	Glycine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.15	Proline--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.16	Cysteine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.17	Glutamate--tRNA ligase	2	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.19	Arginine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.2	Tryptophan--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.20	Phenylalanine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.21	Histidine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.23	Aspartate--tRNA(Asn) ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.24	Glutamate--tRNA(Gln) ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.3	Threonine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.4	Leucine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.5	Isoleucine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.6	Lysine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.7	Alanine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.1.1.9	Valine--tRNA ligase	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.3.5.6	Asparaginyl-tRNA synthase (glutamine-hydrolyzing)	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+6.3.5.7	Glutaminyl-tRNA synthase (glutamine-hydrolyzing)	1	p970	970	Aminoacyl-tRNA biosynthesis	1.19
+1.1.1.205	IMP dehydrogenase	2	p983	983	Drug metabolism - other enzymes	3.25
+1.17.4.1	Ribonucleoside-diphosphate reductase	4	p983	983	Drug metabolism - other enzymes	3.25
+2.4.2.10	Orotate phosphoribosyltransferase	2	p983	983	Drug metabolism - other enzymes	3.25
+2.7.4.6	Nucleoside-diphosphate kinase	3	p983	983	Drug metabolism - other enzymes	3.25
+3.6.1.23	dUTP diphosphatase	2	p983	983	Drug metabolism - other enzymes	3.25
+6.3.5.2	GMP synthase (glutamine-hydrolyzing)	2	p983	983	Drug metabolism - other enzymes	3.25
+2.5.1.6	Methionine adenosyltransferase	2	p999	999	Biosynthesis of various plant secondary metabolites	1.34
+2.3.1.16	Acetyl-CoA C-acyltransferase	8	p1040	1040	Biosynthesis of unsaturated fatty acids	3.31
+4.2.1.17	Enoyl-CoA hydratase	17	p1040	1040	Biosynthesis of unsaturated fatty acids	3.31
+2.2.1.1	Transketolase	3	p1051	1051	Biosynthesis of ansamycins	1.4
+4.2.1.46	dTDP-glucose 4,6-dehydratase	5	p1055	1055	Biosynthesis of vancomycin group antibiotics	1.8

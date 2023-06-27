@@ -1,0 +1,166 @@
+pathwayid	pathway_id	pathway_name	PML	total_genes_inpathway	bvbrc_genes_inpathway	genes_found_target_group_bypathway	genes_found_nontarget_group_bypathway	perc_missing_in_target_group_bypathway	perc_missing_in_nontarget_group_bypathway	avg_p_index_bypathway	genes_absent_differential	loss_innontarget_group_score	PML_composite	loss_innontarget_group_composite
+p230	230	Purine metabolism	1493	120	32	15	26	53.1	18.8	1.6	11	300	15640	3160
+p240	240	Pyrimidine metabolism	800	72	21	13	21	38.1	0	1.82	8	0	8505	105
+p740	740	Riboflavin metabolism	782	31	8	0	8	100	0	1.39	8	0	8260	40
+p250	250	Alanine, aspartate and glutamate metabolism	596	50	13	5	12	61.5	7.7	2.74	7	81	6375	875
+p10	10	Glycolysis / Gluconeogenesis	580	55	13	9	11	30.8	15.4	3.84	2	12	5965	185
+p710	710	Carbon fixation in photosynthetic organisms	568	26	12	10	12	16.7	0	3.15	2	0	5840	60
+p30	30	Pentose phosphate pathway	488	56	9	7	7	22.2	22.2	2.18	0	12	4925	165
+p900	900	Terpenoid backbone biosynthesis	478	52	13	8	8	38.5	38.5	1.35	0	218	4845	2245
+p51	51	Fructose and mannose metabolism	404	77	9	5	8	44.4	11.1	1.94	3	102	4235	1065
+p520	520	Amino sugar and nucleotide sugar metabolism	327	130	18	14	11	22.2	38.9	1.96	-3	327	3210	3360
+p680	680	Methane metabolism	304	109	10	5	8	50	20	2.05	3	154	3240	1590
+p270	270	Cysteine and methionine metabolism	301	89	13	8	10	38.5	23.1	2.16	2	168	3175	1745
+p983	983	Drug metabolism - other enzymes	298	28	6	3	6	50	0	3.25	3	0	3160	30
+p330	330	Arginine and proline metabolism	280	115	15	4	15	73.3	0	2.23	11	0	3425	75
+p730	730	Thiamine metabolism	257	28	12	2	12	83.3	0	1.25	10	0	3130	60
+p220	220	Arginine biosynthesis	241	33	11	4	11	63.6	0	2.97	7	0	2815	55
+p480	480	Glutathione metabolism	212	41	6	4	6	33.3	0	1.73	2	0	2250	30
+p670	670	One carbon pool by folate	208	28	9	7	9	22.2	0	1.82	2	12	2225	165
+p760	760	Nicotinate and nicotinamide metabolism	201	62	9	4	7	55.6	22.2	1.44	3	88	2205	925
+p750	750	Vitamin B6 metabolism	198	31	2	0	2	100	0	1.32	2	0	2090	10
+p780	780	Biotin metabolism	181	22	13	8	13	38.5	0	1.23	5	0	2125	65
+p770	770	Pantothenate and CoA biosynthesis	177	34	11	3	10	72.7	9.1	2.41	7	100	2175	1055
+p790	790	Folate biosynthesis	173	55	14	11	9	21.4	35.7	1.33	-2	500	1700	5070
+p564	564	Glycerophospholipid metabolism	146	64	10	8	9	20	10	1.41	1	102	1560	1070
+p561	561	Glycerolipid metabolism	139	48	5	1	5	80	0	2.21	4	0	1615	25
+p541	541	O-Antigen nucleotide sugar biosynthesis	116	63	11	9	5	18.2	54.5	2.3	-4	270	1015	2755
+p40	40	Pentose and glucuronate interconversions	92	79	2	2	2	0	0	2.13	0	55	930	560
+p1051	1051	Biosynthesis of ansamycins	92	5	1	1	1	0	0	1.4	0	0	925	5
+p410	410	beta-Alanine metabolism	89	40	4	1	4	75	0	3.7	3	66	1060	680
+p640	640	Propanoate metabolism	88	62	10	8	7	20	30	3.39	-1	301	880	3060
+p562	562	Inositol phosphate metabolism	88	48	2	2	2	0	0	1.25	0	9	890	100
+p450	450	Selenoamino acid metabolism	80	18	4	2	4	50	0	2.06	2	0	920	20
+p920	920	Sulfur metabolism	78	60	2	1	1	50	50	1.3	0	96	790	970
+p910	910	Nitrogen metabolism	35	54	7	7	7	0	0	2.06	0	0	385	35
+p400	400	Phenylalanine, tyrosine and tryptophan biosynthesis	26	39	4	3	2	25	50	2.26	-1	12	230	140
+p20	20	Citrate cycle (TCA cycle)	26	27	13	12	13	7.7	0	3.37	1	2	375	85
+p61	61	Fatty acid biosynthesis	16	18	8	8	8	0	0	1.72	0	0	200	40
+p470	470	D-Amino acid metabolism	11	53	6	4	6	33.3	0	1.96	2	67	240	700
+p620	620	Pyruvate metabolism	10	81	13	12	10	7.7	23.1	2.95	-2	235	65	2415
+p300	300	Lysine biosynthesis	9	34	9	8	9	11.1	0	1.82	1	79	185	835
+p340	340	Histidine metabolism	9	40	1	0	1	100	0	2.33	1	0	145	5
+p720	720	Reductive carboxylate cycle (CO2 fixation)	8	56	16	16	13	0	18.8	3.34	-3	303	10	3110
+p290	290	Valine, leucine and isoleucine biosynthesis	8	15	4	2	2	50	50	2.13	0	104	100	1060
+p860	860	Porphyrin and chlorophyll metabolism	8	118	10	10	9	0	10	1.14	-1	6	80	110
+p253	253	Tetracycline biosynthesis	8	10	1	1	1	0	0	2.3	0	0	85	5
+p592	592	alpha-Linolenic acid metabolism	7	13	3	2	2	33.3	33.3	4.31	0	108	85	1095
+p565	565	Ether lipid metabolism	7	25	1	0	1	100	0	1.68	1	0	125	5
+p590	590	Arachidonic acid metabolism	7	29	1	0	1	100	0	1.93	1	0	125	5
+p591	591	Linoleic acid metabolism	7	14	1	0	1	100	0	2.21	1	0	125	5
+p510	510	N-Glycan biosynthesis	6	38	2	1	1	50	50	1.55	0	88	70	890
+p260	260	Glycine, serine and threonine metabolism	6	74	10	7	9	30	10	2.23	2	15	210	200
+p280	280	Valine, leucine and isoleucine degradation	4	38	10	8	6	20	40	4.11	-2	428	0	4330
+p630	630	Glyoxylate and dicarboxylate metabolism	4	78	9	8	7	11.1	22.2	2.06	-1	156	35	1605
+p52	52	Galactose metabolism	4	49	4	2	2	50	50	2.39	0	12	60	140
+p310	310	Lysine degradation	2	78	7	6	6	14.3	14.3	2.26	0	213	55	2165
+p603	603	Glycosphingolipid biosynthesis - globo series	2	15	2	1	1	50	50	2.67	0	92	30	930
+p360	360	Phenylalanine metabolism	2	72	4	3	3	25	25	3.06	0	74	40	760
+p600	600	Sphingolipid metabolism	2	34	2	1	1	50	50	1.65	0	0	30	10
+p540	540	Lipopolysaccharide biosynthesis	0	33	11	11	0	0	100	1	-11	902	0	9075
+p650	650	Butanoate metabolism	0	63	10	10	4	0	60	2.81	-6	521	0	5260
+p71	71	Fatty acid metabolism	0	32	6	6	3	0	50	4.44	-3	409	0	4120
+p362	362	Benzoate degradation via hydroxylation	0	74	6	6	4	0	33.3	2.49	-2	268	0	2710
+p380	380	Tryptophan metabolism	0	65	6	6	5	0	16.7	3.09	-1	213	0	2160
+p550	550	Peptidoglycan biosynthesis	0	23	11	11	11	0	0	1.39	0	206	55	2115
+p62	62	Fatty acid elongation in mitochondria	0	13	3	3	2	0	33.3	4.23	-1	174	0	1755
+p281	281	Geraniol degradation	0	10	3	3	2	0	33.3	4.6	-1	174	0	1755
+p430	430	Taurine and hypotaurine metabolism	0	22	3	3	1	0	66.7	2.09	-2	154	0	1555
+p930	930	Caprolactam degradation	0	23	2	2	2	0	0	2.83	0	132	10	1330
+p521	521	Streptomycin biosynthesis	0	18	5	5	1	0	80	2.72	-4	113	0	1155
+p523	523	Polyketide sugar unit biosynthesis	0	27	3	3	0	0	100	1.85	-3	100	0	1015
+p513	513	High-mannose type N-glycan biosynthesis	0	25	1	1	0	0	100	2.32	-1	92	0	925
+p531	531	Glycosaminoglycan degradation	0	15	1	1	0	0	100	2.07	-1	92	0	925
+p604	604	Glycosphingolipid biosynthesis - ganglio series	0	12	1	1	0	0	100	2.83	-1	92	0	925
+p500	500	Starch and sucrose metabolism	0	90	5	5	1	0	80	1.92	-4	83	0	855
+p350	350	Tyrosine metabolism	0	67	2	2	1	0	50	2.85	-1	81	0	820
+p311	311	Penicillin and cephalosporin biosynthesis	0	14	1	1	0	0	100	1.29	-1	77	0	775
+p312	312	beta-Lactam resistance	0	1	1	1	0	0	100	2	-1	77	0	775
+p624	624	1- and 2-Methylnaphthalene degradation	0	21	1	1	1	0	0	1.67	0	77	5	775
+p120	120	Primary bile acid biosynthesis	0	25	2	2	1	0	50	1.84	-1	70	0	710
+p623	623	2,4-Dichlorobenzoate degradation	0	31	1	1	1	0	0	2.48	0	66	5	665
+p627	627	1,4-Dichlorobenzene degradation	0	58	1	1	1	0	0	2.17	0	66	5	665
+p903	903	Limonene and pinene degradation	0	19	1	1	1	0	0	3.21	0	66	5	665
+p53	53	Ascorbate and aldarate metabolism	0	59	1	1	1	0	0	2.24	0	55	5	555
+p642	642	Ethylbenzene degradation	0	6	1	1	0	0	100	2.5	-1	42	0	425
+p121	121	Secondary bile acid biosynthesis	0	18	1	1	0	0	100	1.11	-1	4	0	45
+p130	130	Ubiquinone and other terpenoid-quinone biosynthesis	0	48	5	5	4	0	20	1.4	-1	4	0	65
+p1055	1055	Biosynthesis of vancomycin group antibiotics	0	10	1	1	0	0	100	1.8	-1	4	0	45
+p622	622	Toluene and xylene degradation	0	24	1	1	1	0	0	2.5	0	2	5	25
+p643	643	Styrene degradation	0	20	1	1	1	0	0	2.6	0	2	5	25
+p73	73	Cutin, suberine and wax biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p100	100	Steroid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p140	140	C21-Steroid hormone metabolism	0	0	0	0	0	0	0	0	0	0	0	0
+p190	190	Oxidative phosphorylation	0	20	6	6	6	0	0	1.7	0	0	30	30
+p195	195	Photosynthesis	0	5	1	1	1	0	0	1.6	0	0	5	5
+p232	232	Caffeine metabolism	0	0	0	0	0	0	0	0	0	0	0	0
+p254	254	Aflatoxin biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p261	261	Monobactam biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p331	331	Clavulanic acid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p332	332	Carbapenem biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p333	333	Carbapenem biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p361	361	gamma-Hexachlorocyclohexane degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p363	363	Bisphenol A degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p364	364	Fluorobenzoate degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p365	365	Furfural degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p401	401	Novobiocin biosynthesis	0	16	1	1	1	0	0	3.06	0	0	5	5
+p402	402	Benzoxazinoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p404	404	Staurosporine biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p405	405	Phenazine biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p440	440	Phosphonate and phosphinate metabolism	0	0	0	0	0	0	0	0	0	0	0	0
+p460	460	Cyanoamino acid metabolism	0	35	1	1	1	0	0	1.86	0	0	5	5
+p511	511	Other glycan degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p512	512	O-Glycan biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p514	514	Other types of O-glycan biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p515	515	Mannose type O-glycan biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p522	522	Biosynthesis of 12-, 14- and 16-membered macrolides	0	0	0	0	0	0	0	0	0	0	0	0
+p524	524	Neomycin, kanamycin and gentamicin biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p525	525	Acarbose and validamycin biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p532	532	Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate	0	0	0	0	0	0	0	0	0	0	0	0
+p533	533	Glycosaminoglycan biosynthesis - heparan sulfate / heparin	0	0	0	0	0	0	0	0	0	0	0	0
+p534	534	Glycosaminoglycan biosynthesis - keratan sulfate	0	0	0	0	0	0	0	0	0	0	0	0
+p552	552	Teichoic acid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p563	563	Glycosylphosphatidylinositol(GPI)-anchor biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p571	571	Lipoarabinomannan (LAM) biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p572	572	Lipoarabinomannan (LAM) biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p601	601	Glycosphingolipid biosynthesis - lacto and neolacto series	0	0	0	0	0	0	0	0	0	0	0	0
+p621	621	Dioxin degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p625	625	Tetrachloroethene degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p626	626	Naphthalene and anthracene degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p633	633	Trinitrotoluene degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p660	660	C5-Branched dibasic acid metabolism	0	23	1	1	1	0	0	1.87	0	0	5	5
+p785	785	Lipoic acid metabolism	0	6	2	2	2	0	0	1	0	0	10	10
+p791	791	Atrazine degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p830	830	Retinol metabolism	0	0	0	0	0	0	0	0	0	0	0	0
+p901	901	Indole alkaloid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p902	902	Monoterpenoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p904	904	Diterpenoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p905	905	Brassinosteroid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p906	906	Carotenoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p908	908	Zeatin biosynthesis	0	10	1	1	1	0	0	1	0	0	5	5
+p909	909	Sesquiterpenoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p940	940	Phenylpropanoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p941	941	Flavonoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p942	942	Anthocyanin biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p943	943	Isoflavonoid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p944	944	Flavone and flavonol biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p945	945	Stilbenoid, diarylheptanoid and gingerol biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p950	950	Isoquinoline alkaloid biosynthesis	0	75	1	1	1	0	0	1.81	0	0	5	5
+p960	960	Tropane, piperidine and pyridine alkaloid biosynthesis	0	31	1	1	1	0	0	2.68	0	0	5	5
+p965	965	Betalain biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p966	966	Glucosinolate biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p970	970	Aminoacyl-tRNA biosynthesis	0	31	23	23	23	0	0	1.19	0	0	115	115
+p980	980	Metabolism of xenobiotics by cytochrome P450	0	0	0	0	0	0	0	0	0	0	0	0
+p981	981	Insect hormone biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p982	982	Drug metabolism - cytochrome P450	0	0	0	0	0	0	0	0	0	0	0	0
+p984	984	Steroid degradation	0	0	0	0	0	0	0	0	0	0	0	0
+p996	996	Biosynthesis of various alkaloids	0	0	0	0	0	0	0	0	0	0	0	0
+p997	997	Biosynthesis of various other secondary metabolites	0	0	0	0	0	0	0	0	0	0	0	0
+p998	998	Biosynthesis of various antibiotics	0	0	0	0	0	0	0	0	0	0	0	0
+p999	999	Biosynthesis of various plant secondary metabolites	0	0	0	0	0	0	0	0	0	0	0	0
+p1040	1040	Biosynthesis of unsaturated fatty acids	0	0	0	0	0	0	0	0	0	0	0	0
+p1053	1053	Biosynthesis of siderophore group nonribosomal peptides	0	0	0	0	0	0	0	0	0	0	0	0
+p1056	1056	Biosynthesis of type II polyketide backbone	0	0	0	0	0	0	0	0	0	0	0	0
+p1057	1057	Biosynthesis of type II polyketide products	0	0	0	0	0	0	0	0	0	0	0	0
+p1058	1058	Acridone alkaloid biosynthesis	0	0	0	0	0	0	0	0	0	0	0	0
+p1059	1059	Biosynthesis of enediyne antibiotics	0	0	0	0	0	0	0	0	0	0	0	0
