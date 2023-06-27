@@ -50,6 +50,9 @@ library(reticulate)
 #    means in R
 # uvw <- import('abc.xyz')
 
+## run these 2 lines ONLY THE VERY FIRST TIME for installation of Python packages
+# py_install(packages = "matplotlib")
+# py_install(packages = "baltic", pip = TRUE)
 
 ```
 
