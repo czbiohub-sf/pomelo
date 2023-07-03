@@ -26,19 +26,19 @@ PoMeLo is closely linked to analyses using the BV-BRC website (https://www.bv-br
 
 * It is not required, but the last portion of the PoMeLo pipeline incorporates a BV-BRC phylogenetic tree. If the user would like to include a phylogeny of the two groups, first create a separate Genome Group in BV-BRC incorporating the species in your target and non-target groups - but for this Genome Group, be sure to only include **one genome per "Species" column**. The user will also need to save this Genome Group as a .csv file.
     + Within BV-BRC, use the Bacterial Genome Tree tool (https://www.bv-brc.org/app/PhylogeneticTree) under the _Tools & Services_ menu to create the phylogeny. Select your Genome Group with **one genome per species**, but otherwise use default settings (e.g. 100 genes) and have the output saved to your Genome Groups folder. After ~2-20 hours depending on your group size, the completed phylogeny will be saved to a subfolder.
-    + Find the folder with the completed phylogeny, and download the tree file ending in "_tree.nwk" - this file along with the .csv of the Genome Group will be used by PoMeLo.
+    + Find the folder with the completed phylogeny, and download the tree file ending in "_tree.nwk" - this file as well as the .csv of the Genome Group will be used in the phylogenetic portion of the pipeline.
 
-* With these BV-BRC files in hand, start the PoMeLo pipeline. Users will be prompted to select the required files. Note the file ```mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab``` can be found in the scripts subfolder.
+* With these BV-BRC files in hand, start the PoMeLo pipeline. Users will be prompted to select the required files. Note the file ```mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab``` can be found in the ```/scripts``` subfolder.
 
-* All of the output files will be saved in your ```~/code``` directory, with additional plots in the subfolders ```/supplemental_plots_ec_by_taxon_per_pathway``` & ```/supplemental_plots_taxon_by_pathway```. There are prompts throughout the PoMeLo pipeline that will indicate progress, and if there are any intermediate problems.
+* All of the output files will be saved in your ```~/code``` directory, with additional plots in the subfolders ```/supplemental_plots_ec_by_taxon_per_pathway``` & ```/supplemental_plots_taxon_by_pathway```. The output files will have the taxon name and date appended.
 
 ## PIC analysis
 
-To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as desribed earlier.
+To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as described earlier.
 
 ## Tips
 
-Users need only click on "Source", and pop-up windows will appear when required input files need to be selected. The script will also provide notes as it progreses, indicating progress or warnings if there are errors. For example based on the input species names, the pipeline will select a taxonomic name that is included in all output filenames - the script informs the user of this name and suggests chaning the filenames if it is incorrect. If the user does not wish to include a phylogeny in the final steps, they can simply select the 'cancel' button in the last two prompts for .nwk and .csv files, and the script will end there. Also note that if there are only 2 species in the analysis, the last steps incorporating a phylogeny will fail.
+Users need only click on "Source", and pop-up windows will appear when required input files need to be selected. The script will also provide notes as it progreses, indicating progress or warnings if there are errors. For example based on the input species names, the pipeline will select a taxonomic name that is included in all output filenames - the script informs the user of this name and suggests changing the filenames if it is incorrect. If the user does not wish to include a phylogeny in the final steps, they can simply select the 'cancel' button in the last two prompts for .nwk and .csv files, and the script will end there. Also note that if there are only two species in the analysis, the last steps incorporating a phylogeny will fail.
 
 ## Citation
 If you use PoMeLo, please cite our publication:
@@ -49,7 +49,7 @@ Abigail Leigh Glascock, Eric Waltari, Gytis Dudas, Joan Wong, Vida Ahyong
 
 tk 2023; doi: https://doi.org/tk
 
-The two folders called "supplemental_materials..." contain both the inputs and output plots for the Treponema example in _Glascock et al_ & the Rickettsia example in the companion paper by _Medicielo et al._:
+The folders ```supplemental_materials_Treponema_run``` & ```supplemental_materials_Rickettsia_run``` contain the inputs and outputs for the Treponema example in _Glascock et al_ & the Rickettsia example in the companion paper by _Medicielo et al._:
 
 **Evolutionary genomics identifies host-directed therapeutics to treat intracellular bacterial infections**
 
