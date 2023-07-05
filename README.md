@@ -34,7 +34,7 @@ PoMeLo is closely linked to analyses using the BV-BRC website (https://www.bv-br
 
 ## PIC analysis
 
-To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as described earlier.
+To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as described earlier. To run this .Rmd pipeline, open the file in RStudio, and then select "Run" but click on "Run All".
 
 ## Tips
 
