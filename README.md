@@ -4,9 +4,23 @@
 
 PoMeLo is a novel R-based bioinformatics approach to identifying metabolic vulnerabilities of bacterial pathogens to host-directed therapeutics.
 
-## Dependencies & R Session Info
+## Running PoMeLo the first time, Dependencies & R Session Info
 
 To run PoMeLo, R & RStudio must be installed. PoMeLo was developed using R v4.2.2 with RStudio 2022.12.0.
+
+X-windows installation note: if you have a Mac, you will first need to install XQuartz.
+If you have a PC you will need to first install either MobaXterm or Xming. https://uit.stanford.edu/service/sharedcomputing/moreX
+
+When running PoMeLo the very first time, install all needed R packages by running the 6 lines at the start of the script (which are commented out). _Note that if you install the required packages as suggested by RStudio, you will still need to manually run the last 4 lines of these 6:_
+
+```
+pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse")
+install.packages(pkgs)
+install.packages("BiocManager", repos = "https://cloud.r-project.org")
+library(BiocManager, warn.conflicts = FALSE)
+BiocManager::install("remotes")
+BiocManager::install("YuLab-SMU/treedataverse")
+```
 
 Attached base R packages:	_stats, graphics, grDevices, utils, datasets, methods, base_
 
@@ -34,11 +48,11 @@ PoMeLo is closely linked to analyses using the BV-BRC website (https://www.bv-br
 
 ## PIC analysis
 
-To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as described earlier. To run this .Rmd pipeline, open the file in RStudio, and then select "Run" but click on "Run All".
+To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as described earlier. To run this .Rmd pipeline, open the file in RStudio and select "Run" but click on "Run All".
 
 ## Tips
 
-Users need only click on "Source", and pop-up windows will appear when required input files need to be selected. The script will also provide notes as it progreses, indicating progress or warnings if there are errors. For example based on the input species names, the pipeline will select a taxonomic name that is included in all output filenames - the script informs the user of this name and suggests changing the filenames if it is incorrect. If the user does not wish to include a phylogeny in the final steps, they can simply select the 'cancel' button in the last two prompts for .nwk and .csv files, and the script will end there. Also note that if there are only two species in the analysis, the last steps incorporating a phylogeny will fail.
+For running the main PoMeLo pipeline, users can simply click "Source" and pop-up windows will appear when required input files need to be selected. The script will also provide notes as it progreses, indicating progress or warnings if there are errors. For example based on the input species names, the pipeline will select a taxonomic name that is included in all output filenames - the script informs the user of this name and suggests changing the filenames if it is incorrect. If the user does not wish to include a phylogeny in the final steps, they can simply select the 'cancel' button in the last two prompts for .nwk and .csv files, and the script will end there. Also note that if there are only two species in the analysis, the last steps incorporating a phylogeny will fail.
 
 ## Citation
 If you use PoMeLo, please cite our publication:

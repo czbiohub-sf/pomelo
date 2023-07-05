@@ -4,15 +4,16 @@
 ### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
 # pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse") # package names
 # install.packages(pkgs)
-# install.packages(BiocManager)
+# install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
 # BiocManager::install("remotes")
 # BiocManager::install("YuLab-SMU/treedataverse")
 
-## INSTALLATION NOTE - YOU NEED TO INSTALL XQUARTZ IF YOU HAVE A MAC because the current code DOES USE tcltk:
-## from https://cran.r-project.org/bin/macosx/
+## INSTALLATION NOTE - You need to install XQuartz if you have a Mac, if you have a PC either MobaXterm or Xming
+   # because the current code DOES USE tcltk: https://uit.stanford.edu/service/sharedcomputing/moreX
+## XQuartz notes from https://cran.r-project.org/bin/macosx/
 # Contains R 4.1.1 framework, R.app GUI 1.77 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7. 
-# The latter two components are optional and can be ommitted when choosing "custom install", they are only needed 
+# The latter two components are optional and can be omitted when choosing "custom install", they are only needed 
 # if you want to use the tcltk R package or build package documentation from sources.
 # Note: the use of X11 (including tcltk) requires XQuartz to be installed since it is no longer part of OS X. 
 # Always re-install XQuartz when upgrading your macOS to a new major version.

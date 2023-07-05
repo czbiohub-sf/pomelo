@@ -11,7 +11,7 @@ output:
 ### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
 # pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "reticulate") # package names
 # install.packages(pkgs)
-# install.packages(BiocManager)
+# install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
 # BiocManager::install("remotes")
 # BiocManager::install("YuLab-SMU/treedataverse")
@@ -60,8 +60,9 @@ library(reticulate, warn.conflicts = FALSE)
 
 ## Commands for examining genome streamlining in 2 bacterial groups
 
-INSTALLATION NOTE - YOU NEED TO INSTALL XQUARTZ IF YOU HAVE A MAC because the current code DOES USE tcltk:
-from https://cran.r-project.org/bin/macosx/
+INSTALLATION NOTE - You need to install XQuartz if you have a Mac, if you have a PC either MobaXterm or Xming
+  because the current code DOES USE tcltk: https://uit.stanford.edu/service/sharedcomputing/moreX
+XQuartz notes from https://cran.r-project.org/bin/macosx/
 Contains R 4.1.1 framework, R.app GUI 1.77 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7. 
 The latter two components are optional and can be ommitted when choosing "custom install", they are only needed 
 if you want to use the tcltk R package or build package documentation from sources.
