@@ -6,7 +6,7 @@ output:
   toc_float: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo=FALSE}
 ### NOTE ####
 ### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
 # pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi","reticulate") # package names
@@ -15,6 +15,10 @@ output:
 # library(BiocManager, warn.conflicts = FALSE)
 # BiocManager::install("remotes")
 # BiocManager::install("YuLab-SMU/treedataverse")
+
+## for this long Rmd script, trying to suppress messages - note instead add results = FALSE in setup line
+## doesn't work: r setup, include = FALSE, echo = FALSE, results = FALSE, message = FALSE, warning = FALSE
+#options(warn=-1)
 
 library(igraph, warn.conflicts = FALSE)
 library(RColorBrewer, warn.conflicts = FALSE)
@@ -61,15 +65,6 @@ library(reticulate, warn.conflicts = FALSE)
 
 ## Commands for examining genome streamlining in 2 bacterial groups
 
-INSTALLATION NOTE - You need to install XQuartz if you have a Mac, if you have a PC either MobaXterm or Xming
-  because the current code DOES USE tcltk: https://uit.stanford.edu/service/sharedcomputing/moreX
-XQuartz notes from https://cran.r-project.org/bin/macosx/
-Contains R 4.1.1 framework, R.app GUI 1.77 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7. 
-The latter two components are optional and can be ommitted when choosing "custom install", they are only needed 
-if you want to use the tcltk R package or build package documentation from sources.
-Note: the use of X11 (including tcltk) requires XQuartz to be installed since it is no longer part of OS X. 
-Always re-install XQuartz when upgrading your macOS to a new major version.
-
 
 ```{r}
 Mode <- function(x) {
@@ -83,6 +78,8 @@ Mode <- function(x) {
 # data_dir0 <- "~/pomelo_outputs"
 
 ## allow user to select working directory for outputs (similar code before to avoid tcltk for PCs)
+print("Select the directory you wish to use for PoMeLo outputs")
+Sys.sleep(1)
 data_dir <- rstudioapi::selectDirectory(caption = "Select the directory you wish to use for PoMeLo outputs", label = "Select output directory")
 setwd(data_dir)
 #data_dir0 <- paste(path_home(),"/pomelo_outputs", sep="")
@@ -102,9 +99,6 @@ Second set of code will prune the phylogeny to the target and non-target species
 
 Next run the following R code, at the prompt select the correct nwk file
 
-## FOR PIC ANALYSES - START HERE RUNNING MANUALLY
-## IF YOU ARE IMPORTING A CUSTOM-BUILD TREE USING THE PATRIC TREE TOOL...
-## NOTE FILES ARE BEING SAVED IN SAVE DIRECTORY AS .RMD FILE, NOT THE data_dir
 
 ```{r}
 # phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
@@ -467,7 +461,7 @@ import numpy as np
 ```
 
 Now the main Python code. First import the .tab file of genome data that accompanies the tree file
-CHECK TO SEE IF WE CAN USE PREVIOUSLY LOADED FILE FROM THE R CODE!!! - try using tk.choosefile alone before reading in tree or csv
+
 
 ```{python}
 genome_data={}
@@ -548,7 +542,7 @@ for k in ll.getExternal(): ## repeat for tips
   k.traits['delta_pic']=(np.mean(k.traits['genome_length'])-k.parent.traits['pic'])/k.parent.traits['pic']*100 ## turn to percent change
 ```
 
-Final large chunk that creates the figure. Note there is a place to change the PIC threshold that is shown in the figure. We recommend either 5.0 or 10.0 for 5% or 10% PIC change.
+Final large chunk that creates the figure. Note there is a place to change the PIC threshold that is shown in the figure. We recommend either 5 or 10 for 5% or 10% PIC change.
 
 ```{python}
 fig,ax = plt.subplots(figsize=(15,30),facecolor='w')
