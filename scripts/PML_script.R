@@ -1,22 +1,16 @@
 ### PoMeLo pipeline for examining genome streamlining in two bacterial groups
 
-### NOTE ####
-### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
-# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi") # package names
+################################################################################################
+########################### ONLY RUN THESE LINES THE FIRST TIME ################################
+# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra",
+#          "ape","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro",
+#          "phytools","openxlsx","coop","tidyverse", "rstudioapi") # package names
 # install.packages(pkgs)
 # install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
 # BiocManager::install("remotes")
 # BiocManager::install("YuLab-SMU/treedataverse")
-
-## INSTALLATION NOTE - You need to install XQuartz if you have a Mac, if you have a PC either MobaXterm or Xming
-   # because the current code DOES USE tcltk: https://uit.stanford.edu/service/sharedcomputing/moreX
-## XQuartz notes from https://cran.r-project.org/bin/macosx/
-# Contains R 4.1.1 framework, R.app GUI 1.77 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7. 
-# The latter two components are optional and can be omitted when choosing "custom install", they are only needed 
-# if you want to use the tcltk R package or build package documentation from sources.
-# Note: the use of X11 (including tcltk) requires XQuartz to be installed since it is no longer part of OS X. 
-# Always re-install XQuartz when upgrading your macOS to a new major version.
+################################################################################################
 
 library(igraph, warn.conflicts = FALSE)
 library(RColorBrewer, warn.conflicts = FALSE)
@@ -28,7 +22,6 @@ suppressPackageStartupMessages(library(gdata, warn.conflicts = FALSE))
 library(gridExtra, warn.conflicts = FALSE)
 library(ape, warn.conflicts = FALSE)
 library(reshape2, warn.conflicts = FALSE)
-library(tcltk, warn.conflicts = FALSE)
 suppressPackageStartupMessages(library(hash, warn.conflicts = FALSE))
 library(ggplot2, warn.conflicts = FALSE)
 library(seqinr, warn.conflicts = FALSE)
@@ -172,14 +165,18 @@ listAf$genomename <- gsub("NCTC ","NCTC_",listAf$genomename)
 listAf$genomename <- gsub("MAG ","MAG_",listAf$genomename)
 listAf$genomename <- gsub("USDA ","USDA_",listAf$genomename)
 
-listAf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listAf$genomename)
-listAf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$genomename)
-listAf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$genomename)
-listAf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$genomename)
-listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomename)
-listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
-listAf$genomename <- gsub("endo_Culex ","endo_Culex_",listAf$genomename)
-listAf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listAf$genomename)
+## universal version
+listAf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$genomename))
+listAf$genomename <- gsub("__","_",listAf$genomename)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# listAf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Culex ","endo_Culex_",listAf$genomename)
+# listAf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listAf$genomename)
 
 listAf$genomename <- gsub("[","",listAf$genomename, fixed = TRUE)
 listAf$genomename <- gsub("]","",listAf$genomename, fixed = TRUE)
@@ -210,14 +207,19 @@ listAf$Species <- gsub("NCTC ","NCTC_",listAf$Species)
 listAf$Species <- gsub("MAG ","MAG_",listAf$Species)
 listAf$Species <- gsub("USDA ","USDA_",listAf$Species)
 
-listAf$Species <- gsub("endo_Brugia ","endo_Brugia_",listAf$Species)
-listAf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$Species)
-listAf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$Species)
-listAf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$Species)
-listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
-listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
-listAf$Species <- gsub("endo_Aedes ","endo_Aedes_",listAf$Species)
-listAf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$Species)
+## universal version
+listAf$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$Species))
+listAf$Species <- gsub("__","_",listAf$Species)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
+# listAf$Species <- gsub("endo_Brugia ","endo_Brugia_",listAf$Species)
+# listAf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$Species)
+# listAf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$Species)
+# listAf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$Species)
+# listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
+# listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
+# listAf$Species <- gsub("endo_Aedes ","endo_Aedes_",listAf$Species)
+# listAf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$Species)
 ## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
 listAf$Species <- gsub(".*sp.$","null",listAf$Species)
 
@@ -301,14 +303,19 @@ listBf$genomename <- gsub("NCTC ","NCTC_",listBf$genomename)
 listBf$genomename <- gsub("MAG ","MAG_",listBf$genomename)
 listBf$genomename <- gsub("USDA ","USDA_",listBf$genomename)
 
-listBf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listBf$genomename)
-listBf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$genomename)
-listBf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$genomename)
-listBf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$genomename)
-listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomename)
-listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
-listBf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listBf$genomename)
-listBf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$genomename)
+## universal version
+listBf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listBf$genomename))
+listBf$genomename <- gsub("__","_",listBf$genomename)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
+# listBf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listBf$genomename)
+# listBf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$genomename)
 
 listBf$genomename <- gsub("[","",listBf$genomename, fixed = TRUE)
 listBf$genomename <- gsub("]","",listBf$genomename, fixed = TRUE)
@@ -341,14 +348,19 @@ listBf$Species <- gsub("USDA ","USDA_",listBf$Species)
 ## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
 listBf$Species <- gsub(".*sp.$","null",listBf$Species)
 
-listBf$Species <- gsub("endo_Brugia ","endo_Brugia_",listBf$Species)
-listBf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$Species)
-listBf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$Species)
-listBf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$Species)
-listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
-listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
-listBf$Species <- gsub("endo_Aedes ","endo_Aedes_",listBf$Species)
-listBf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$Species)
+## universal version
+listBf$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listBf$Species))
+listBf$Species <- gsub("__","_",listBf$Species)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
+# listBf$Species <- gsub("endo_Brugia ","endo_Brugia_",listBf$Species)
+# listBf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$Species)
+# listBf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$Species)
+# listBf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$Species)
+# listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
+# listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
+# listBf$Species <- gsub("endo_Aedes ","endo_Aedes_",listBf$Species)
+# listBf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$Species)
 
 listBf$Species <- gsub("[","",listBf$Species, fixed = TRUE)
 listBf$Species <- gsub("]","",listBf$Species, fixed = TRUE)
@@ -583,14 +595,19 @@ paths_groupAandB$genome_name <- gsub("MAG ","MAG_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("USDA ","USDA_",paths_groupAandB$genome_name)
 
 unique(paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Brugia ","endo_Brugia_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Aedes ","endo_Aedes_",paths_groupAandB$genome_name)
-paths_groupAandB$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",paths_groupAandB$genome_name)
+## universal version
+paths_groupAandB$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", paths_groupAandB$genome_name))
+paths_groupAandB$genome_name <- gsub("__","_",paths_groupAandB$genome_name)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
+# paths_groupAandB$genome_name <- gsub("endo_Brugia ","endo_Brugia_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Aedes ","endo_Aedes_",paths_groupAandB$genome_name)
+# paths_groupAandB$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",paths_groupAandB$genome_name)
 
 paths_groupAandB$genome_name <- gsub("[","",paths_groupAandB$genome_name, fixed = TRUE)
 paths_groupAandB$genome_name <- gsub("]","",paths_groupAandB$genome_name, fixed = TRUE)
@@ -773,7 +790,7 @@ paths_groupAandB_statswide2b <- paths_groupAandB_statswide2b %>% select(-group)
 # paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
 
 # using rstudioapi - request the path to an existing .csv file on disk
-print("Find the 'mapping_BVBRC_allECs.tab' file")
+print("Select the 'mapping_BVBRC_allECs.tab' file, found in the pomelo-main/scripts folder")
 Sys.sleep(1)
 paths_ref2b <- read_tsv(rstudioapi::selectFile(caption = "Find the 'mapping_BVBRC_allECs.tab' file", label = "Select mapping_BVBRC_allECs.tab", path = data_dir, existing = TRUE, filter = "Tab Files (*.tab)"), show_col_types = FALSE)
 
@@ -2454,7 +2471,7 @@ Sys.sleep(2)
 
 print("Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
 Sys.sleep(1)
-phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select phylotree matching table .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
+phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select matching .csv table", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
                        , col_types = list(
                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
 
@@ -2492,14 +2509,20 @@ phylo.data$genome_name <- gsub("'","",phylo.data$genome_name, fixed = TRUE)
 phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
+
+## universal version
+phylo.data$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$genome_name))
+phylo.data$genome_name <- gsub("__","_",phylo.data$genome_name)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
+# phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -2521,17 +2544,28 @@ phylo.data$Species <- gsub("]","",phylo.data$Species, fixed = TRUE)
 phylo.data$Species <- gsub('"',"",phylo.data$Species, fixed = TRUE)
 phylo.data$Species <- gsub("'","",phylo.data$Species, fixed = TRUE)
 
+## universal version
+listAf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$genomename))
+listAf$genomename <- gsub("__","_",listAf$genomename)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
 phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
+
+## universal version
+phylo.data$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$Species))
+phylo.data$Species <- gsub("__","_",phylo.data$Species)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+
+# phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)
@@ -2600,19 +2634,8 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genusspecies1 != "Rickettsia_raoultii") %>%
   dplyr::filter(genusspecies1 != "Rickettsia_amblyommii")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genusspecies1 != "Burkholderia_sp_TSV202") %>%
-  dplyr::filter(genome_id != "1795874.3")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genusspecies1 != "Borreliella_bavariensis")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genusspecies1 != "Strawberry_lethal") %>%
   dplyr::filter(genusspecies1 != "Mycoplasma_ovipneumoniae")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Brucella melitensis biovar Abortus 2308")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Klebsiella oxytoca strain_4928STDY7071328")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_id != "1660071.3") %>%
   dplyr::filter(genome_id != "1660070.3") %>%
@@ -2620,27 +2643,12 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_id != "1244531.3") %>%
   dplyr::filter(genome_id != "1660063.4")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genusspecies1 != "Francisella_novicida") %>%
-  dplyr::filter(genusspecies1 != "Thiomicrospira_crunogena")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Serratia_sp_ATCC_39006")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_id != "1458985.3")
 
 #and the tree!
 phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
 phylo <- ape::drop.tip(phylo, c("1795874.3", "1439853.3"))
-phylo <- ape::drop.tip(phylo, c("664662.50"))
-phylo <- ape::drop.tip(phylo, c("1232383.3"))
-phylo <- ape::drop.tip(phylo, c("980422.3", "29562.18"))
-phylo <- ape::drop.tip(phylo, c("359391.4"))
-phylo <- ape::drop.tip(phylo, c("571.706"))
 phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4","1244531.3"))
-phylo <- ape::drop.tip(phylo, c("401614.12", "317025.14"))
-phylo <- ape::drop.tip(phylo, c("1232383.3"))
-phylo <- ape::drop.tip(phylo, c("104623.6"))
 phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
 ## check again for duplicates
@@ -2649,7 +2657,7 @@ if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% uniqu
 } else {
   print("Your BV-BRC phylogeny has some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
-  print("You will have to manually add two commands (one with dplyr::filter & one with ape::drop.tip) to filter out these names")
+  print("You will have to manually add two commands (one with dplyr::filter & one with ape::drop.tip) to filter out the genome_id numbers of all duplicates!")
   print("Look for the code snippets after 'IF YOU HAVE DUPLICATES, REMOVE HERE' and replicate")
   print("Then re-run the pipeline")
   stop()
@@ -3196,7 +3204,7 @@ Sys.sleep(2)
 print("Pipeline is complete!")
 print("Output plots will be in your specified directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
 
-print("P.S.: note that BV-BRC may not have included annotation of the following pathways.")
+print("Pathways not annotated by BV-BRC (if any) will be listed below.")
 paths_groupAandB_statsmissing <- paths_groupAandB_stats3 %>%
   dplyr::filter(genusspecies == "reference_set" & genecount_group_by_ecnumber != "NA") %>% 
   add_count(pathwayid) %>% 
@@ -3232,251 +3240,3 @@ unlink(listofBs)
 
 ####################################################################################################################
 ####################################################################################################################
-
-# ## tests to align better...maybe resource here https://genviz.org/module-07-appendix/0007/01/01/advancedggplot2/
-# # convert to grobs??
-# gsizeforphylo_grob <- ggplotGrob(gsizeforphylo)
-# dendro_plotref_forphyloheatmap_grob <- ggplotGrob(dendro_plotref_forphyloheatmap)
-# p4_grob <- ggplotGrob(p4)
-# p5_grob <- ggplotGrob(p5)
-# 
-# # assign this max width to all elements
-# gsizeforphylo_grob$widths <- 5.5
-# dendro_plotref_forphyloheatmap_grob$widths <- 5
-# # twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# # twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, ncol=1, nrow=2)
-# # twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob)
-# # grid.draw(twoplots_onlyphylo)
-# 
-# # p2_grob$widths <- maxWidth
-# # p3_grob$widths <- maxWidth
-# # maxWidth <- unit.pmax(gsizeforphylo_grob$widths)
-# 
-# grid.arrange(p1,p2,heights=c(2,1))
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo,dendro_plotref_forphyloheatmap, ncol=1, nrow=2)
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo,dendro_plotref_forphyloheatmap, ncol=1, heights=c(4,4))
-# 
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo,dendro_plotref_forphyloheatmap, ncol=1, nrow=2, widths = unit(4.5, "in"))
-# 
-# # grid.arrange(p1 , p2 , widths = unit(0.5, "npc") , heights=unit(0.5, "npc") , main="Title", ncol=2)
-# grid.arrange(arrangeGrob(p1,p2, ncol=1, nrow=2),
-#              arrangeGrob(p3, ncol=1, nrow=1), heights=c(4,1)) 
-
-
-### more elaborate tests of maxWidths...
-# AFTER MUCH TESTING - FUNDAMENTAL PROBLEM IS THAT RESIZING WINDOW MOVES PLOTS RELATIVE TO EACH OTHER (UNLIKE IN EARLIER GRID.ARRANGE PATTERNS)
-## AS A RESULT - JUST ADJUST THE DIMENSIONS OF THE OUTPUT PDF & PNG, AND KEEP THOSE
-# ## adding maxWidths 
-# #ggtestallb2withphylo_grob <- ggplotGrob(ggtestallb2withphylo)
-# gsizeforphylo_grob <- ggplotGrob(gsizeforphylo)
-# Sys.sleep(1)
-# gsizeforphylonolegend_grob <- ggplotGrob(gsizeforphylonolegend)
-# Sys.sleep(1)
-# dendro_plotref_forphyloheatmap_grob <- ggplotGrob(dendro_plotref_forphyloheatmap)
-# Sys.sleep(1)
-# dendro_plotref_forphyloheatmapwithmargin_grob <- ggplotGrob(dendro_plotref_forphyloheatmapwithmargin)
-# Sys.sleep(1)
-# dendro_plotref_forphyloheatmapwithbigmargin_grob <- ggplotGrob(dendro_plotref_forphyloheatmapwithbigmargin)
-# 
-# rm(maxWidth)
-# rm(rightWidth)
-# rm(rightWidth2)
-# rm(rightWidth9)
-# rm(rightWidth29)
-# 
-# ## issue is each of these widths has different dimensions...the faceted heatmap has 31 width values, the gsize plot 11, the phylo plot 9 !!! also if you make gsize without legend only 0
-# ## testing at bottom
-# #maxWidth = grid::unit.pmax(ggtestallb2withphylo_grob$widths, gsizeforphylo_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# rightWidth = grid::unit.pmax(gsizeforphylo_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# rightWidth9 = grid::unit.pmax(gsizeforphylonolegend_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# rightWidth2 = grid::unit.pmax(gsizeforphylo_grob$widths, dendro_plotref_forphyloheatmapwithmargin_grob$widths)
-# rightWidth29 = grid::unit.pmax(gsizeforphylonolegend_grob$widths, dendro_plotref_forphyloheatmapwithmargin_grob$widths)
-# rightWidth229 = grid::unit.pmax(gsizeforphylonolegend_grob$widths, dendro_plotref_forphyloheatmapwithbigmargin_grob$widths)
-# ## - note we want to use 1/4 maxWidth for the right two plots...doesn't work
-# ## try just making a maxWidth for the right two plots...
-# #ggtestallb2withphylo_grob$widths <- maxWidth
-# 
-# ## tests of different width combinations
-# gsizeforphylo_grob$widths <- rightWidth
-# gsizeforphylonolegend_grob$widths <- rightWidth
-# dendro_plotref_forphyloheatmap_grob$widths <- rightWidth
-# dendro_plotref_forphyloheatmapwithmargin_grob$widths <- rightWidth
-# 
-# ## just gsize & dendro now, can add grob-less facet last (or if grob then not changing its width)
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo9 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo29 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## all bad
-# 
-# gsizeforphylo_grob$widths <- rightWidth9
-# gsizeforphylonolegend_grob$widths <- rightWidth9*1.2
-# dendro_plotref_forphyloheatmap_grob$widths <- rightWidth9
-# dendro_plotref_forphyloheatmapwithmargin_grob$widths <- rightWidth9
-# dendro_plotref_forphyloheatmapwithbigmargin_grob$widths <- rightWidth9
-# 
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## these 2 don't work
-# twoplots_onlyphylo9 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# ## okay not great - phylo a little wide
-# twoplots_onlyphylo29 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## not great - phylo now too narrow (but wasn't using grob!!) with grob also too wide
-# ## try rightWidth9 but with a dendro with more margins...  dendro_plotref_forphyloheatmapwithbigmargin
-# twoplots_onlyphylo229 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithbigmargin_grob, layout_matrix = layouthkl2b)
-# 
-# gsizeforphylonolegend_grob$widths <- rightWidth229
-# dendro_plotref_forphyloheatmapwithbigmargin_grob$widths <- rightWidth229
-# twoplots_onlyphylo229 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithbigmargin_grob, layout_matrix = layouthkl2b)
-# ## this works but only if the pdf & png are exactly square??
-# ggsave(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo_",plot_title,Sys.Date(),".pdf", sep=""), twoplots_onlyphylo229, width = 17.5, height = 12, units = "in", limitsize = FALSE)
-# 
-# 
-# gsizeforphylo_grob$widths <- rightWidth2
-# gsizeforphylonolegend_grob$widths <- rightWidth2
-# dendro_plotref_forphyloheatmap_grob$widths <- rightWidth2
-# dendro_plotref_forphyloheatmapwithmargin_grob$widths <- rightWidth2
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo9 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo29 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## all bad
-# gsizeforphylo_grob$widths <- rightWidth29
-# gsizeforphylonolegend_grob$widths <- rightWidth29
-# dendro_plotref_forphyloheatmap_grob$widths <- rightWidth29
-# dendro_plotref_forphyloheatmapwithmargin_grob$widths <- rightWidth29
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo9 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo29 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## all bad
-
-######### tested code - again note best to change dimensions of png & pdf ###################
-
-# layouthkl22 <- rbind(c(1,2),
-#                      c(1,3))
-# 
-# ## adding maxWidths 
-# #ggtestallb2withphylo_grob <- ggplotGrob(ggtestallb2withphylo)
-# gsizeforphylo_grob <- ggplotGrob(gsizeforphylo)
-# Sys.sleep(1)
-# gsizeforphylonolegend_grob <- ggplotGrob(gsizeforphylonolegend)
-# Sys.sleep(1)
-# dendro_plotref_forphyloheatmap_grob <- ggplotGrob(dendro_plotref_forphyloheatmap)
-# Sys.sleep(1)
-# # dendro_plotref_forphyloheatmapwithmargin_grob <- ggplotGrob(dendro_plotref_forphyloheatmapwithmargin)
-# # Sys.sleep(1)
-# # dendro_plotref_forphyloheatmapwithbigmargin_grob <- ggplotGrob(dendro_plotref_forphyloheatmapwithbigmargin)
-# 
-# rm(maxWidth)
-# rm(rightWidth)
-# rm(rightWidth2)
-# rm(rightWidth9)
-# rm(rightWidth29)
-# 
-# ## issue is each of these widths has different dimensions...the faceted heatmap has 31 width values, the gsize plot 11, the phylo plot 9 !!! also if you make gsize without legend only 0
-# ## testing at bottom
-# #maxWidth = grid::unit.pmax(ggtestallb2withphylo_grob$widths, gsizeforphylo_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# rightWidth = grid::unit.pmax(gsizeforphylo_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# rightWidth9 = grid::unit.pmax(gsizeforphylonolegend_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# ## - note we want to use 1/4 maxWidth for the right two plots...doesn't work
-# ## try just making a maxWidth for the right two plots...
-# #ggtestallb2withphylo_grob$widths <- maxWidth
-# 
-# ## tests of different width combinations
-# gsizeforphylo_grob$widths <- rightWidth9
-# gsizeforphylonolegend_grob$widths <- rightWidth9*1.2
-# dendro_plotref_forphyloheatmap_grob$widths <- rightWidth9
-# dendro_plotref_forphyloheatmapwithmargin_grob$widths <- rightWidth9
-# dendro_plotref_forphyloheatmapwithbigmargin_grob$widths <- rightWidth9
-# 
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## these 2 don't work
-# twoplots_onlyphylo9 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# ## okay not great - phylo a little wide
-# twoplots_onlyphylo29 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## not great - phylo now too narrow (but wasn't using grob!!) with grob also too wide
-# ## try rightWidth9 but with a dendro with more margins...  dendro_plotref_forphyloheatmapwithbigmargin
-# twoplots_onlyphylo229 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithbigmargin_grob, layout_matrix = layouthkl2b)
-# 
-# gsizeforphylonolegend_grob$widths <- rightWidth229
-# dendro_plotref_forphyloheatmapwithbigmargin_grob$widths <- rightWidth229
-# twoplots_onlyphylo229 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmapwithbigmargin_grob, layout_matrix = layouthkl2b)
-# ## this works but only if the pdf & png are exactly square??
-# ggsave(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo_",plot_title,Sys.Date(),".pdf", sep=""), twoplots_onlyphylo229, width = 17.5, height = 12, units = "in", limitsize = FALSE)
-# ggsave(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo2_",plot_title,Sys.Date(),".pdf", sep=""), twoplots_onlyphylo229, width = 40, height = 24, units = "in", limitsize = FALSE)
-# 
-# 
-# ## new grid arrange - try left heatmap as non-grob - problem seems to be turning the tree plot into a grob????
-# twoplots_enrichedinB_withphylo <- grid.arrange(ggtestallb2withphylo_grob,gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl22)
-# 
-# ## grid arrange was
-# ##twoplots_enrichedinB_withphylo <- grid.arrange(ggtestallb2withphylo,gsizeforphylo,dendro_plotref_forphyloheatmap, layout_matrix = layouthkl4)
-# 
-# 
-# #twoplots_enrichedinB_withphylo <- grid.arrange(ggtestallb2withphylo,gsizeforphylo,dendro_plotref_forphyloheatmap,dendro_plotref_forphyloheatmap,dendro_plotref_forphyloheatmap,dendro_plotref_forphyloheatmap,dendro_plotref_forphyloheatmap,dendro_plotref_forphyloheatmap,dendro_plotref_forphyloheatmap, layout_matrix = layouthkl8)
-# twoplots_enrichedinB_withphylo <- grid.arrange(ggtestallb2withphylo,gsizeforphylonolegend,dendro_plotref_forphyloheatmap, layout_matrix = layouthkl4)
-# 
-# ## trying alternate way to save as png - doesn't work!
-# # png(filename = paste("heatmaps_focuspathways_byspecies_withphylogeny_",plot_title,Sys.Date(),".png", sep=""), width = 32, height = 28, units = "in", res = 300)
-# # twoplots_enrichedinB_withphylo
-# # Sys.sleep(2)
-# # dev.off()
-# # Sys.sleep(2)
-# 
-# #ggsave(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/heatmaps_focuspathways_byspecies_withphylogeny_",plot_title,Sys.Date(),".", sep=""), twoplots_enrichedinB_withphylo, width = 32, height = 28, units = "in", limitsize = FALSE)
-# ggsave(filename = paste("heatmaps_focuspathways_byspecies_withphylogeny_",plot_title,Sys.Date(),".pdf", sep=""), twoplots_enrichedinB_withphylo, width = 48, height = 42, units = "in", limitsize = FALSE)
-# 
-# png(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/heatmaps_focuspathways_byspecies_withphylogeny_",plot_title,Sys.Date(),".png", sep=""), width = 48, height = 42, units = "in", res = 300)
-# twoplots_enrichedinB_withphylo <- grid.arrange(ggtestallb2withphylo,gsizeforphylo,dendro_plotref_forphyloheatmap, layout_matrix = layouthkl4)
-# Sys.sleep(2)
-# dev.off()
-# Sys.sleep(2)
-# 
-# ## ALSO OUTPUT just gsizeforphylo,dendro_plotref_forphyloheatmap
-# # layouthkl2 <- rbind(c(1),
-# #                     c(2))
-# layouthkl2b <- rbind(c(1,1,1),
-#                      c(NA,2,NA))
-# 
-# gsizeforphylo_grob <- ggplotGrob(gsizeforphylo)
-# gsizeforphylonolegend_grob <- ggplotGrob(gsizeforphylonolegend)
-# Sys.sleep(1)
-# dendro_plotref_forphyloheatmap_grob <- ggplotGrob(dendro_plotref_forphyloheatmap)
-# Sys.sleep(1)
-# rm(rightWidth)
-# ### removing the tree from the pmax?? - trying nolegend with tree grob
-# rightWidth9 = grid::unit.pmax(gsizeforphylonolegend_grob$widths, dendro_plotref_forphyloheatmap_grob$widths)
-# #gsizeforphylo_grob$widths <- rightWidth9
-# gsizeforphylonolegend_grob$widths <- rightWidth9
-# dendro_plotref_forphyloheatmap_grob$widths <- rightWidth9
-# 
-# dendro_plotref_forphyloheatmapwithmargin_grob <- ggplotGrob(dendro_plotref_forphyloheatmapwithmargin)
-# dendro_plotref_forphyloheatmapwithmargin_grob$widths <- rightWidth9
-# 
-# # problem seems to be turning the tree plot into a grob????
-# twoplots_onlyphylo <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap, layout_matrix = layouthkl2b)
-# twoplots_onlyphylog <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# ## this doesn't work without legend, makes widths worse (but trying rightWidth9)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylonolegend_grob,dendro_plotref_forphyloheatmap_grob, layout_matrix = layouthkl2b)
-# twoplots_onlyphylo22 <- grid.arrange(gsizeforphylo_grob,dendro_plotref_forphyloheatmapwithmargin_grob, layout_matrix = layouthkl2b)
-# ## this is manual, not ideal...
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo,dendro_plotref_forphyloheatmapwithmargin, layout_matrix = layouthkl2b)
-# # twoplots_onlyphylo <- grid.arrange(gsizeforphylo,dendro_plotref_forphyloheatmap, ncol=1, nrow=2, widths = unit(4.5, "in"))
-# 
-# ## alternate way with aplot...see above why this is a bad idea
-# ## trying alternate way to save as png - doesn't work!
-# # png(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo_",plot_title,Sys.Date(),".png", sep=""), width = 16, height = 8, units = "in", res = 300)
-# # twoplots_onlyphylo
-# # Sys.sleep(2)
-# # dev.off()
-# # Sys.sleep(2)
-# 
-# #ggsave(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo_",plot_title,Sys.Date(),".png", sep=""), twoplots_onlyphylo, width = 24, height = 21, units = "in", limitsize = FALSE)
-# ggsave(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo_",plot_title,Sys.Date(),".pdf", sep=""), twoplots_onlyphylo, width = 48, height = 42, units = "in", limitsize = FALSE)
-# 
-# png(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/suppfig_plot_onlywithgenomesizeandphylo_",plot_title,Sys.Date(),".png", sep=""), width = 32, height = 16, units = "in", res = 300)
-# twoplots_onlyphylo2 <- grid.arrange(gsizeforphylo,dendro_plotref_forphyloheatmapwithmargin, layout_matrix = layouthkl2b)
-# Sys.sleep(2)
-# dev.off()

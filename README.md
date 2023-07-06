@@ -4,17 +4,14 @@
 
 PoMeLo is a novel R-based bioinformatics approach to identifying metabolic vulnerabilities of bacterial pathogens to host-directed therapeutics.
 
-## Running PoMeLo the first time, Dependencies & R Session Info
+## Running PoMeLo the first time, dependencies & R session info
 
 To run PoMeLo, R & RStudio must be installed. PoMeLo was developed using R v4.2.2 with RStudio 2022.12.0.
-
-X-windows installation note: if you have a Mac, you will first need to install XQuartz.
-If you have a PC you will need to first install either MobaXterm or Xming. https://uit.stanford.edu/service/sharedcomputing/moreX
 
 When running PoMeLo the very first time, install all needed R packages by running the 6 lines at the start of the script (which are commented out). _Note that if you install the required packages as suggested by RStudio, you will still need to manually run the last 4 lines of these 6:_
 
 ```
-pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse")
+pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi")
 install.packages(pkgs)
 install.packages("BiocManager", repos = "https://cloud.r-project.org")
 library(BiocManager, warn.conflicts = FALSE)
@@ -22,10 +19,10 @@ BiocManager::install("remotes")
 BiocManager::install("YuLab-SMU/treedataverse")
 ```
 
-Attached base R packages:	_stats, graphics, grDevices, utils, datasets, methods, base_
+Attached base R packages:	_grid, stats, graphics, grDevices, utils, datasets, methods, base_
 
 Other attached packages:
-	_fs_1.6.1, lubridate_1.9.2, forcats_1.0.0, stringr_1.5.0, purrr_1.0.1, readr_2.1.4, tidyr_1.3.0, tibble_3.1.8, tidyverse_2.0.0, aplot_0.1.10, ggtreeExtra_1.8.1, ggtree_3.6.2, treeio_1.22.0, tidytree_0.4.2, dplyr_1.1.0, treedataverse_0.0.1, coop_0.6-3, openxlsx_4.2.5.2, phytools_1.5-1, maps_3.4.1, ggdendro_0.1.23, phangorn_2.11.1, seqinr_4.2-23, ggplot2_3.4.1, hash_2.2.6.2, reshape2_1.4.4, ape_5.7, gridExtra_2.3, gdata_2.18.0.1, lattice_0.20-45, scales_1.2.1, hexbin_1.28.2, RColorBrewer_1.1-3, igraph_1.4.0_
+	_knitr_1.42, reticulate_1.28, rstudioapi_0.14, fs_1.6.1, lubridate_1.9.2, forcats_1.0.0, stringr_1.5.0, purrr_1.0.1, readr_2.1.4, tidyr_1.3.0, tibble_3.1.8, tidyverse_2.0.0, aplot_0.1.10, ggtreeExtra_1.8.1, ggtree_3.6.2, treeio_1.22.0, tidytree_0.4.2, dplyr_1.1.0, treedataverse_0.0.1, coop_0.6-3, openxlsx_4.2.5.2, phytools_1.5-1, maps_3.4.1, ggdendro_0.1.23, phangorn_2.11.1, seqinr_4.2-23, ggplot2_3.4.1, hash_2.2.6.2, reshape2_1.4.4, ape_5.7, gridExtra_2.3, gdata_2.18.0.1, lattice_0.20-45, scales_1.2.1, hexbin_1.28.2, RColorBrewer_1.1-3, igraph_1.4.0_
 
 ## Running PoMeLo
 
@@ -42,11 +39,11 @@ PoMeLo is closely linked to analyses using the BV-BRC website (https://www.bv-br
     + Within BV-BRC, use the Bacterial Genome Tree tool (https://www.bv-brc.org/app/PhylogeneticTree) under the _Tools & Services_ menu to create the phylogeny. Select your Genome Group with **one genome per species**, but otherwise use default settings (e.g. 100 genes) and have the output saved to your Genome Groups folder. After ~2-20 hours depending on your group size, the completed phylogeny will be saved to a subfolder.
     + Find the folder with the completed phylogeny, and download the tree file ending in "_tree.nwk" - this file as well as the .csv of the Genome Group will be used in the phylogenetic portion of the pipeline.
 
-* With these BV-BRC files in hand, start the PoMeLo pipeline. Users will be prompted to select the required files. Note the file ```mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab``` can be found in the ```/scripts``` subfolder.
+* With these BV-BRC files in hand, start the PoMeLo pipeline. Users will be prompted to select the required files. Note the file ```mapping_BVBRC_allECs.tab``` can be found in the ```/scripts``` subfolder.
 
 * All of the output files will be saved in your ```~/code``` directory, with additional plots in the subfolders ```/supplemental_plots_ec_by_taxon_per_pathway``` & ```/supplemental_plots_taxon_by_pathway```. The output files will have the taxon name and date appended.
 
-## PIC analysis
+## Optional phylogenetic genome size analysis
 
 To generate a phylogeny of bacterial species calculating genome size change via a PIC approach, we include a subpipeline: the ```PML_PICanalysis.Rmd``` file. This script incorporates both Python and R code, and will output a phylogeny as a .pdf file.  This script requires the same BV-BRC phylogeny (.nwk) and associated table of genomes (.csv) as described earlier. To run this .Rmd pipeline, open the file in RStudio and select "Run" but click on "Run All".
 
