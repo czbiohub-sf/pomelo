@@ -109,6 +109,8 @@ Next run the following R code, at the prompt select the correct nwk file
 ```{r}
 # phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
 ## using rstudioapi
+print("Select your phylotree (.nwk) made using BV-BRC")
+Sys.sleep(1)
 phylo <- read.tree(rstudioapi::selectFile(caption = "Select your phylotree (.nwk) made using BV-BRC", label = "Select phylotree .nwk", path = data_dir, existing = TRUE, filter = "Newick Files (*.nwk)"))
 
 phylo$tip.label
@@ -121,6 +123,8 @@ Sys.sleep(2)
 #                        , col_types = list(
 #                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
 
+print("Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+Sys.sleep(1)
 phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select phylotree matching table .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
                        , col_types = list(
                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))

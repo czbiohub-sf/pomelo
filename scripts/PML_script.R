@@ -60,6 +60,8 @@ Mode <- function(x) {
 # data_dir0 <- "~/pomelo_outputs"
 
 ## allow user to select working directory for outputs (similar code before to avoid tcltk for PCs)
+print("Select the directory you wish to use for PoMeLo outputs")
+Sys.sleep(1)
 data_dir <- rstudioapi::selectDirectory(caption = "Select the directory you wish to use for PoMeLo outputs", label = "Select output directory")
 setwd(data_dir)
 # request the path to an existing .csv file on disk
@@ -144,6 +146,8 @@ unlink(listofBs)
 #listAf <- read_csv(tk_choose.files(caption = "Select your List A (target group) .csv file from BV-BRC"), col_types = cols(.default = "c"))
 
 # using rstudioapi - request the path to an existing .csv file on disk
+print("Select your List A (target group) .csv file from BV-BRC")
+Sys.sleep(1)
 listAf <- read_csv(rstudioapi::selectFile(caption = "Select your List A (target group) .csv file from BV-BRC", label = "Select target group .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)"), col_types = cols(.default = "c"))
 
 ## moving select to before the gsub commands...
@@ -271,6 +275,8 @@ for(i in seq(listAurl)){
 # listBf <- read_csv(tk_choose.files(caption = "Select your List B (non-target group) .csv file from BV-BRC"), col_types = cols(.default = "c"))
 
 # using rstudioapi - request the path to an existing .csv file on disk
+print("Select your List B (non-target group) .csv file from BV-BRC")
+Sys.sleep(1)
 listBf <- read_csv(rstudioapi::selectFile(caption = "Select your List B (non-target group) .csv file from BV-BRC", label = "Select non-target group .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)"), col_types = cols(.default = "c"))
 
 ## moving select to before the gsub commands...
@@ -767,6 +773,8 @@ paths_groupAandB_statswide2b <- paths_groupAandB_statswide2b %>% select(-group)
 # paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
 
 # using rstudioapi - request the path to an existing .csv file on disk
+print("Find the 'mapping_BVBRC_allECs.tab' file")
+Sys.sleep(1)
 paths_ref2b <- read_tsv(rstudioapi::selectFile(caption = "Find the 'mapping_BVBRC_allECs.tab' file", label = "Select mapping_BVBRC_allECs.tab", path = data_dir, existing = TRUE, filter = "Tab Files (*.tab)"), show_col_types = FALSE)
 
 
@@ -2430,6 +2438,8 @@ Sys.sleep(2)
 ## IF YOU ARE IMPORTING A CUSTOM-BUILD TREE USING THE PATRIC TREE TOOL...
 # phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
 ## using rstudioapi
+print("Select your phylotree (.nwk) made using BV-BRC")
+Sys.sleep(1)
 phylo <- read.tree(rstudioapi::selectFile(caption = "Select your phylotree (.nwk) made using BV-BRC", label = "Select phylotree .nwk", path = data_dir, existing = TRUE, filter = "Newick Files (*.nwk)"))
 
 phylo$tip.label
@@ -2442,6 +2452,8 @@ Sys.sleep(2)
 #                        , col_types = list(
 #                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
 
+print("Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+Sys.sleep(1)
 phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select phylotree matching table .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
                        , col_types = list(
                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
