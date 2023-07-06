@@ -9,7 +9,7 @@ output:
 ```{r setup, include=FALSE}
 ### NOTE ####
 ### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
-# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "reticulate") # package names
+# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi","reticulate") # package names
 # install.packages(pkgs)
 # install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
@@ -41,6 +41,7 @@ library(aplot, warn.conflicts = FALSE)
 Sys.sleep(1)
 suppressPackageStartupMessages(library(tidyverse, warn.conflicts = FALSE))
 library(fs, warn.conflicts = FALSE)
+library(rstudioapi, warn.conflicts = FALSE)
 
 ## also reticulate setup here...
 library(reticulate, warn.conflicts = FALSE)
@@ -76,11 +77,17 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-dir.create("~/pomelo_outputs")
-## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
-setwd("~/pomelo_outputs")
-data_dir <- "~/pomelo_outputs"
-data_dir0 <- paste(path_home(),"/pomelo_outputs", sep="")
+# dir.create("~/pomelo_outputs")
+# ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
+# setwd("~/pomelo_outputs")
+# data_dir0 <- "~/pomelo_outputs"
+
+## allow user to select working directory for outputs (similar code before to avoid tcltk for PCs)
+data_dir <- rstudioapi::selectDirectory(caption = "Select the directory you wish to use for PoMeLo outputs", label = "Select output directory")
+setwd(data_dir)
+#data_dir0 <- paste(path_home(),"/pomelo_outputs", sep="")
+data_dir0 <- data_dir
+
 
 ```
 
@@ -100,14 +107,21 @@ Next run the following R code, at the prompt select the correct nwk file
 ## NOTE FILES ARE BEING SAVED IN SAVE DIRECTORY AS .RMD FILE, NOT THE data_dir
 
 ```{r}
-phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
+# phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
+## using rstudioapi
+phylo <- read.tree(rstudioapi::selectFile(caption = "Select your phylotree (.nwk) made using BV-BRC", label = "Select phylotree .nwk", path = data_dir, existing = TRUE, filter = "Newick Files (*.nwk)"))
+
 phylo$tip.label
 plot.phylo(phylo)
 
 Sys.sleep(2)
 ##  also import the same custom datasets's accompanying CSV file...
 
-phylo.data <- read_csv(tk_choose.files(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+# phylo.data <- read_csv(tk_choose.files(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+#                        , col_types = list(
+#                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
+
+phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select phylotree matching table .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
                        , col_types = list(
                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
 

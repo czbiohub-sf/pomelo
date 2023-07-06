@@ -2,7 +2,7 @@
 
 ### NOTE ####
 ### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
-# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse") # package names
+# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi") # package names
 # install.packages(pkgs)
 # install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
@@ -43,6 +43,7 @@ library(aplot, warn.conflicts = FALSE)
 Sys.sleep(1)
 suppressPackageStartupMessages(library(tidyverse, warn.conflicts = FALSE))
 library(fs, warn.conflicts = FALSE)
+library(rstudioapi, warn.conflicts = FALSE)
 
 ## better to remove all files from previous runs first
 rm(list=ls())
@@ -53,10 +54,18 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-dir.create("~/pomelo_outputs")
-## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
-setwd("~/pomelo_outputs")
-data_dir <- "~/pomelo_outputs"
+# dir.create("~/pomelo_outputs")
+# ## this works ONLY IF YOU HAVE CREATED THE DIRECTORY FIRST...
+# setwd("~/pomelo_outputs")
+# data_dir0 <- "~/pomelo_outputs"
+
+## allow user to select working directory for outputs (similar code before to avoid tcltk for PCs)
+data_dir <- rstudioapi::selectDirectory(caption = "Select the directory you wish to use for PoMeLo outputs", label = "Select output directory")
+setwd(data_dir)
+# request the path to an existing .csv file on disk
+# path <- rstudioapi::selectFile(caption = "Select CSV File",
+#                                filter = "CSV Files (*.csv)",
+#                                existing = TRUE)
 
 ## adding options line to remove all of the summarize messages per https://rstats-tips.net/2020/07/31/get-rid-of-info-of-dplyr-when-grouping-summarise-regrouping-output-by-species-override-with-groups-argument/
 options(dplyr.summarise.inform = FALSE)
@@ -122,13 +131,20 @@ options(dplyr.summarise.inform = FALSE)
 # ## better to remove all files from previous runs first! see above
 # rm(list=ls())
 
-## also removing any pathway files from previous run...
-unlink("~/pomelo_outputs/listA.*")
-unlink("~/pomelo_outputs/listB.*")
+## also removing any pathway files from previous run...change to data_dir via paste0
+# unlink("~/pomelo_outputs/listA.*")
+# unlink("~/pomelo_outputs/listB.*")
+listofAs <- paste0(data_dir,"/listA.*" )
+unlink(listofAs)
+listofBs <- paste0(data_dir,"/listB.*" )
+unlink(listofBs)
 
 ### BEGIN CODE TO SELECT GROUPS A & B
 ## note need to import genome_id as character (pulling from genome summary import below...) & per https://github.com/tidyverse/readr/issues/148
-listAf <- read_csv(tk_choose.files(caption = "Select your List A (target group) .csv file from BV-BRC"), col_types = cols(.default = "c"))
+#listAf <- read_csv(tk_choose.files(caption = "Select your List A (target group) .csv file from BV-BRC"), col_types = cols(.default = "c"))
+
+# using rstudioapi - request the path to an existing .csv file on disk
+listAf <- read_csv(rstudioapi::selectFile(caption = "Select your List A (target group) .csv file from BV-BRC", label = "Select target group .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)"), col_types = cols(.default = "c"))
 
 ## moving select to before the gsub commands...
 listA <- listAf %>% select("Genome ID")
@@ -251,7 +267,11 @@ for(i in seq(listAurl)){
 }
 
 #### list B
-listBf <- read_csv(tk_choose.files(caption = "Select your List B (non-target group) .csv file from BV-BRC"), col_types = cols(.default = "c"))
+
+# listBf <- read_csv(tk_choose.files(caption = "Select your List B (non-target group) .csv file from BV-BRC"), col_types = cols(.default = "c"))
+
+# using rstudioapi - request the path to an existing .csv file on disk
+listBf <- read_csv(rstudioapi::selectFile(caption = "Select your List B (non-target group) .csv file from BV-BRC", label = "Select non-target group .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)"), col_types = cols(.default = "c"))
 
 ## moving select to before the gsub commands...
 listB <- listBf %>% select("Genome ID")
@@ -744,7 +764,12 @@ paths_groupAandB_statswide2b <- paths_groupAandB_statswide2b %>% select(-group)
 ### USING MAPPING FILE FOR SET OF REFERENCE PATHWAYS IN PATRIC
 
 ## ALLOW USER TO FIND THE FILE - these first steps are now added earlier
-paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+# paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+
+# using rstudioapi - request the path to an existing .csv file on disk
+paths_ref2b <- read_tsv(rstudioapi::selectFile(caption = "Find the 'mapping_BVBRC_allECs.tab' file", label = "Select mapping_BVBRC_allECs.tab", path = data_dir, existing = TRUE, filter = "Tab Files (*.tab)"), show_col_types = FALSE)
+
+
 ## immediately remove .- as well..
 paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
 
@@ -1763,8 +1788,14 @@ pathwaysbygroupPML <- grid.arrange(df_grob,pathwaysbygroup_grob, layout_matrix =
 ## save allpathways into subfolder
 # data_dir <- "~/pomelo_outputs"
 ## use two separate plot folders _taxon_by_pathway & _ec_by_taxon_per_pathway
-dir.create("~/pomelo_outputs/supplemental_plots_taxon_by_pathway")
-dir.create("~/pomelo_outputs/supplemental_plots_ec_by_taxon_per_pathway")
+# dir.create("~/pomelo_outputs/supplemental_plots_taxon_by_pathway")
+# dir.create("~/pomelo_outputs/supplemental_plots_ec_by_taxon_per_pathway")
+
+## note new way to do it more generically 
+suppdir1tocreate <- paste0(data_dir,"/supplemental_plots_taxon_by_pathway" )
+suppdir2tocreate <- paste0(data_dir,"/supplemental_plots_ec_by_taxon_per_pathway" )
+dir.create(suppdir1tocreate)
+dir.create(suppdir2tocreate)
 
 ggsave(filename = paste("supplemental_plots_taxon_by_pathway/heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".png", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
 ggsave(filename = paste("heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".pdf", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
@@ -2397,16 +2428,24 @@ Sys.sleep(2)
 #### FOR PIC ANALYSES - START HERE RUNNING MANUALLY
 
 ## IF YOU ARE IMPORTING A CUSTOM-BUILD TREE USING THE PATRIC TREE TOOL...
-phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
+# phylo <- read.tree(tk_choose.files(caption = "Select your phylotree (.nwk) made using PATRIC/BV-BRC"))
+## using rstudioapi
+phylo <- read.tree(rstudioapi::selectFile(caption = "Select your phylotree (.nwk) made using BV-BRC", label = "Select phylotree .nwk", path = data_dir, existing = TRUE, filter = "Newick Files (*.nwk)"))
+
 phylo$tip.label
 plot.phylo(phylo)
 
 Sys.sleep(2)
 ##  also import the same custom datasets's accompanying CSV file...
 
-phylo.data <- read_csv(tk_choose.files(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+# phylo.data <- read_csv(tk_choose.files(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
+#                        , col_types = list(
+#                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
+
+phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select phylotree matching table .csv", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
                        , col_types = list(
                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
+
 
 phylo.data <- phylo.data %>%
   rename(genome_id = "Genome ID") %>%
@@ -2910,7 +2949,8 @@ if ((phylo.pruned$tip.label[1] == ordering[1]) == TRUE) {
   write.tree(phylo.pruned, file = paste("PATRICphylotree_pruned_withoutlabels_",plot_title,Sys.Date(),".nwk", sep=""))
   print("After re-aligning that phylogeny, you will be prompted to re-input it.")
   readline(prompt="Press [enter] to continue")
-  phylo.pruned <- read.tree(tk_choose.files(caption = "Select your re-rooted phylotree made from PATRIC/BV-BRC"))
+  # phylo.pruned <- read.tree(tk_choose.files(caption = "Select your re-rooted phylotree made from PATRIC/BV-BRC"))
+  phylo.pruned <- read.tree(rstudioapi::selectFile(caption = "Select your re-rooted phylotree made using BV-BRC", label = "Select re-rooted phylotree .nwk", path = data_dir, existing = TRUE, filter = "Newick Files (*.nwk)"))
   phylo.pruned$tip.label <- gsub("'","",phylo.pruned$tip.label, fixed = TRUE)
   Sys.sleep(3)
 #  stop()
@@ -3142,7 +3182,7 @@ Sys.sleep(2)
 dev.off()
 Sys.sleep(2)
 print("Pipeline is complete!")
-print("Output plots will be in your ~/pomelo_outputs directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
+print("Output plots will be in your specified directory, with additional plots in the subfolders /supplemental_plots_ec_by_taxon_per_pathway & /supplemental_plots_taxon_by_pathway")
 
 print("P.S.: note that BV-BRC may not have included annotation of the following pathways.")
 paths_groupAandB_statsmissing <- paths_groupAandB_stats3 %>%
@@ -3170,9 +3210,13 @@ paths_groupAandB_statsmissingtopull <- paths_groupAandB_stats3 %>%
 print(unique(paths_groupAandB_statsmissingtopull$pathway_name))
 print("These pathways will have PML scores of 0 but may still be important.")
 
-## adding removing the pathway files at end of run
-unlink("~/pomelo_outputs/listA.*")
-unlink("~/pomelo_outputs/listB.*")
+## also removing any pathway files at end of run...change to data_dir via paste0
+# unlink("~/pomelo_outputs/listA.*")
+# unlink("~/pomelo_outputs/listB.*")
+listofAs <- paste0(data_dir,"/listA.*" )
+unlink(listofAs)
+listofBs <- paste0(data_dir,"/listB.*" )
+unlink(listofBs)
 
 ####################################################################################################################
 ####################################################################################################################
