@@ -9,7 +9,7 @@ output:
 ```{r setup, include=FALSE, echo=FALSE}
 ##################################################################################################################################################################
 ############################################### ONLY RUN THESE LINES THE FIRST TIME ##############################################################################
-# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi","reticulate") # package names
+# pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi","aplot", "reticulate") # package names
 # install.packages(pkgs)
 # install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)

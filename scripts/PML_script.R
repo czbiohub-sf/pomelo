@@ -4,7 +4,7 @@
 ########################### ONLY RUN THESE LINES THE FIRST TIME ################################
 # pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra",
 #          "ape","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro",
-#          "phytools","openxlsx","coop","tidyverse", "rstudioapi") # package names
+#          "phytools","openxlsx","coop","tidyverse", "rstudioapi", "aplot") # package names
 # install.packages(pkgs)
 # install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
@@ -1699,7 +1699,13 @@ pathwaysbyspecies <- pathwaysbyspecies + scale_fill_gradientn(name = "Pathway \n
 pathwaysbyspecies <- pathwaysbyspecies + theme(axis.ticks=element_blank()) + ylab("Species") + xlab("Pathway Name with PML")
 #pathwaysbyspecies <- pathwaysbyspecies + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for focus", plot_title, "pathways missing in target group"))
 #pathwaysbyspecies <- pathwaysbyspecies + theme_dark(base_family="Helvetica")
-pathwaysbyspecies <- pathwaysbyspecies + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  pathwaysbyspecies <- pathwaysbyspecies + theme_classic(base_family="Helvetica")
+} else {
+  pathwaysbyspecies <- pathwaysbyspecies + theme_classic(base_family="sans")
+}
 ## background not white but lightest shade of mutedGnBu
 pathwaysbyspecies <- pathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 ## other backgrounds
@@ -1727,7 +1733,14 @@ pathwaysbygenus <- pathwaysbygenus + scale_fill_gradientn(name = "Pathway \npres
 #pathwaysbygenus <- pathwaysbygenus + scale_fill_distiller(name = "Pathway \npresence", palette = "YlGnBu", direction = 1, na.value = "#ffffd9")
 pathwaysbygenus <- pathwaysbygenus + theme(axis.ticks=element_blank()) + ylab("Genus") + xlab("Pathway Name with PML")
 #pathwaysbygenus <- pathwaysbygenus + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for focus", plot_title, "pathways missing in target group"))
-pathwaysbygenus <- pathwaysbygenus + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  pathwaysbygenus <- pathwaysbygenus + theme_classic(base_family="Helvetica")
+} else {
+  pathwaysbygenus <- pathwaysbygenus + theme_classic(base_family="sans")
+}
+
 pathwaysbygenus <- pathwaysbygenus + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 #pathwaysbygenus <- pathwaysbygenus + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), axis.text.y = element_text(size = 6), panel.background = element_rect(fill = '#ffffd9', color = '#ffffd9'))
 #pathwaysbygenus <- pathwaysbygenus + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
@@ -1740,7 +1753,13 @@ pathwaysbygroup <- pathwaysbygroup + scale_fill_gradientn(name = "Pathway \npres
 ## GnBu palette f7fcf0
 #pathwaysbygroup <- pathwaysbygroup + scale_fill_distiller(name = "Pathway \npresence", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 pathwaysbygroup <- pathwaysbygroup + theme(axis.ticks=element_blank()) + ylab("Group") + xlab("Pathway Name with PML")
-pathwaysbygroup <- pathwaysbygroup + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  pathwaysbygroup <- pathwaysbygroup + theme_classic(base_family="Helvetica")
+} else {
+  pathwaysbygroup <- pathwaysbygroup + theme_classic(base_family="sans")
+}
 pathwaysbygroup <- pathwaysbygroup + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 pathwaysbygroup
 
@@ -1902,7 +1921,14 @@ pathwaysbyspecies <- pathwaysbyspecies + theme(axis.ticks=element_blank()) + yla
 ## trying to add plot title to bottom as second lined of xlabel...not ideal - instead adding to legend???
 #pathwaysbyspecies <- pathwaysbyspecies + theme(axis.ticks=element_blank()) + ylab("Species") + xlab(paste("Pathway Name with PML\n\nPathway presences by species for focus", plot_title, "pathways missing in target group"))
 #pathwaysbyspecies <- pathwaysbyspecies + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for focus", plot_title, "pathways missing in target group"))
-pathwaysbyspecies <- pathwaysbyspecies + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  pathwaysbyspecies <- pathwaysbyspecies + theme_classic(base_family="Helvetica")
+} else {
+  pathwaysbyspecies <- pathwaysbyspecies + theme_classic(base_family="sans")
+}
+
 pathwaysbyspecies <- pathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 #pathwaysbyspecies <- pathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 45, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#440154', color = '#440154'))
 #pathwaysbyspecies <- pathwaysbyspecies + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
@@ -1913,7 +1939,13 @@ pathwaysbygenus <- pathwaysbygenus + geom_tile(aes(fill = perc_in_genus_bypathwa
 pathwaysbygenus <- pathwaysbygenus + scale_fill_gradientn(name = paste("Pathway presences\nby genus for focus\n", plot_title, "pathways\nmissing in target group\n\n"), colors = mutedGnBu)
 pathwaysbygenus <- pathwaysbygenus + theme(axis.ticks=element_blank()) + ylab("Genus") + xlab("Pathway Name with PML")
 #pathwaysbygenus <- pathwaysbygenus + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for focus", plot_title, "pathways missing in target group"))
-pathwaysbygenus <- pathwaysbygenus + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  pathwaysbygenus <- pathwaysbygenus + theme_classic(base_family="Helvetica")
+} else {
+  pathwaysbygenus <- pathwaysbygenus + theme_classic(base_family="sans")
+}
 pathwaysbygenus <- pathwaysbygenus + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 #pathwaysbygenus <- pathwaysbygenus + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 pathwaysbygenus
@@ -1924,7 +1956,13 @@ pathwaysbygroup <- pathwaysbygroup + geom_tile(aes(fill = perc_in_group_bypathwa
 ## GnBu palette f7fcf0
 pathwaysbygroup <- pathwaysbygroup + scale_fill_gradientn(name = paste("Pathway presences\nin target vs. non-target\ngroup for focus\n", plot_title, "pathways\nmissing in target group\n\n"), colors = mutedGnBu)
 pathwaysbygroup <- pathwaysbygroup + theme(axis.ticks=element_blank()) + ylab("Group") + xlab("Pathway Name with PML")
-pathwaysbygroup <- pathwaysbygroup + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  pathwaysbygroup <- pathwaysbygroup + theme_classic(base_family="Helvetica")
+} else {
+  pathwaysbygroup <- pathwaysbygroup + theme_classic(base_family="sans")
+}
 pathwaysbygroup <- pathwaysbygroup + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 pathwaysbygroup
 
@@ -1966,7 +2004,13 @@ allpathwaysbyspecies <- allpathwaysbyspecies + geom_tile(aes(fill = perc_in_spec
 allpathwaysbyspecies <- allpathwaysbyspecies + scale_fill_gradientn(name = "Pathway \npresence", colors = mutedGnBu)
 allpathwaysbyspecies <- allpathwaysbyspecies + theme(axis.ticks=element_blank()) + ylab("Species") + xlab("Pathway Name with PML")
 #allpathwaysbyspecies <- allpathwaysbyspecies + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways missing in target group"))
-allpathwaysbyspecies <- allpathwaysbyspecies + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  allpathwaysbyspecies <- allpathwaysbyspecies + theme_classic(base_family="Helvetica")
+} else {
+  allpathwaysbyspecies <- allpathwaysbyspecies + theme_classic(base_family="sans")
+}
 allpathwaysbyspecies <- allpathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 #allpathwaysbyspecies <- allpathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 45, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#440154', color = '#440154'))
 #allpathwaysbyspecies <- allpathwaysbyspecies + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
@@ -1979,7 +2023,13 @@ allpathwaysbygenus <- allpathwaysbygenus + geom_tile(aes(fill = perc_in_genus_by
 allpathwaysbygenus <- allpathwaysbygenus + scale_fill_gradientn(name = "Pathway \npresence", colors = mutedGnBu)
 allpathwaysbygenus <- allpathwaysbygenus + theme(axis.ticks=element_blank()) + ylab("Genus") + xlab("Pathway Name with PML")
 #allpathwaysbygenus <- allpathwaysbygenus + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways missing in target group"))
-allpathwaysbygenus <- allpathwaysbygenus + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  allpathwaysbygenus <- allpathwaysbygenus + theme_classic(base_family="Helvetica")
+} else {
+  allpathwaysbygenus <- allpathwaysbygenus + theme_classic(base_family="sans")
+}
 allpathwaysbygenus <- allpathwaysbygenus + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 #allpathwaysbygenus <- allpathwaysbygenus + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 allpathwaysbygenus
@@ -1990,7 +2040,13 @@ allpathwaysbygroup <- allpathwaysbygroup + geom_tile(aes(fill = perc_in_group_by
 ## GnBu palette f7fcf0
 allpathwaysbygroup <- allpathwaysbygroup + scale_fill_gradientn(name = "Pathway \npresence", colors = mutedGnBu)
 allpathwaysbygroup <- allpathwaysbygroup + theme(axis.ticks=element_blank()) + ylab("Group") + xlab("Pathway Name with PML")
-allpathwaysbygroup <- allpathwaysbygroup + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  allpathwaysbygroup <- allpathwaysbygroup + theme_classic(base_family="Helvetica")
+} else {
+  allpathwaysbygroup <- allpathwaysbygroup + theme_classic(base_family="sans")
+}
 allpathwaysbygroup <- allpathwaysbygroup + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 allpathwaysbygroup
 
@@ -2084,7 +2140,13 @@ allpathwaysbyspecies <- allpathwaysbyspecies + geom_tile(aes(fill = perc_in_spec
 allpathwaysbyspecies <- allpathwaysbyspecies + scale_fill_gradientn(name = paste("Pathway presences\nby species for all\n", plot_title, "\npathways"), colors = mutedGnBu)
 allpathwaysbyspecies <- allpathwaysbyspecies + theme(axis.ticks=element_blank()) + ylab("Species") + xlab("Pathway Name with PML")
 #allpathwaysbyspecies <- allpathwaysbyspecies + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways missing in target group"))
-allpathwaysbyspecies <- allpathwaysbyspecies + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  allpathwaysbyspecies <- allpathwaysbyspecies + theme_classic(base_family="Helvetica")
+} else {
+  allpathwaysbyspecies <- allpathwaysbyspecies + theme_classic(base_family="sans")
+}
 allpathwaysbyspecies <- allpathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 #allpathwaysbyspecies <- allpathwaysbyspecies + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 45, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#440154', color = '#440154'))
 #allpathwaysbyspecies <- allpathwaysbyspecies + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
@@ -2098,7 +2160,13 @@ allpathwaysbygenus <- allpathwaysbygenus + geom_tile(aes(fill = perc_in_genus_by
 allpathwaysbygenus <- allpathwaysbygenus + scale_fill_gradientn(name = paste("Pathway presences\nby genera for all\n", plot_title, "\npathways"), colors = mutedGnBu)
 allpathwaysbygenus <- allpathwaysbygenus + theme(axis.ticks=element_blank()) + ylab("Genus") + xlab("Pathway Name with PML")
 #allpathwaysbygenus <- allpathwaysbygenus + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways missing in target group"))
-allpathwaysbygenus <- allpathwaysbygenus + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  allpathwaysbygenus <- allpathwaysbygenus + theme_classic(base_family="Helvetica")
+} else {
+  allpathwaysbygenus <- allpathwaysbygenus + theme_classic(base_family="sans")
+}
 allpathwaysbygenus <- allpathwaysbygenus + theme(plot.title=element_text(hjust=0), 
                                                  axis.text.x = element_text(angle = 80, hjust=1), 
                                                  panel.background = element_rect(fill = '#fafcf6'))
@@ -2111,7 +2179,13 @@ allpathwaysbygroup <- allpathwaysbygroup + geom_tile(aes(fill = perc_in_group_by
 ## GnBu palette f7fcf0
 allpathwaysbygroup <- allpathwaysbygroup + scale_fill_gradientn(name = paste("Pathway presences\nin target vs. non-target\ngroup for all", plot_title, "\npathways"), colors = mutedGnBu)
 allpathwaysbygroup <- allpathwaysbygroup + theme(axis.ticks=element_blank()) + ylab("Group") + xlab("Pathway Name with PML")
-allpathwaysbygroup <- allpathwaysbygroup + theme_classic(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  allpathwaysbygroup <- allpathwaysbygroup + theme_classic(base_family="Helvetica")
+} else {
+  allpathwaysbygroup <- allpathwaysbygroup + theme_classic(base_family="sans")
+}
 allpathwaysbygroup <- allpathwaysbygroup + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 allpathwaysbygroup
 
@@ -2301,7 +2375,14 @@ ggtestallb <- ggtestallb + geom_tile(aes(fill = genepercentage_group_by_ecnumber
 ggtestallb <- ggtestallb + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallb <- ggtestallb + theme(axis.ticks=element_blank())
 ggtestallb <- ggtestallb + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for", plot_title, "focus pathways missing in target group"))
-ggtestallb <- ggtestallb + theme_bw(base_family="Helvetica")
+#ggtestallb <- ggtestallb + theme_bw(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  ggtestallb <- ggtestallb + theme_bw(base_family="Helvetica")
+} else {
+  ggtestallb <- ggtestallb + theme_bw(base_family="sans")
+}
 #ggtestallb <- ggtestallb + theme_dark(base_family="Helvetica")
 ggtestallb <- ggtestallb + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(angle = 45, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallb <- ggtestallb + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
@@ -2321,7 +2402,14 @@ ggtestallb2 <- ggtestallb2 + geom_tile(aes(fill = genepercentage_group_by_ecnumb
 ggtestallb2 <- ggtestallb2 + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallb2 <- ggtestallb2 + theme(axis.ticks=element_blank())
 ggtestallb2 <- ggtestallb2 + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for", plot_title, "focus pathways missing in target group"))
-ggtestallb2 <- ggtestallb2 + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+#ggtestallb2 <- ggtestallb2 + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  ggtestallb2 <- ggtestallb2 + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+} else {
+  ggtestallb2 <- ggtestallb2 + theme_bw(base_family="sans") + geom_vline(xintercept = total_genomes_A + 0.5)
+}
 ggtestallb2 <- ggtestallb2 + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 80, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallb2 <- ggtestallb2 + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 #ggtestallb2
@@ -2336,7 +2424,14 @@ ggtestallc <- ggtestallc + geom_tile(aes(fill = genepercentage_group_by_ecnumber
 ggtestallc <- ggtestallc + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallc <- ggtestallc + theme(axis.ticks=element_blank())
 ggtestallc <- ggtestallc + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways"))
-ggtestallc <- ggtestallc + theme_bw(base_family="Helvetica")
+#ggtestallc <- ggtestallc + theme_bw(base_family="Helvetica")
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  ggtestallc <- ggtestallc + theme_bw(base_family="Helvetica")
+} else {
+  ggtestallc <- ggtestallc + theme_bw(base_family="sans")
+}
 ggtestallc <- ggtestallc + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 6, angle = 45, hjust=1), axis.text.y = element_text(size = 2), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallc <- ggtestallc + facet_wrap(~ pathway_name, scales = "free_y", labeller = labeller(pathway_name = label_wrap_gen(40))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 #ggtestallc
@@ -2348,7 +2443,14 @@ ggtestallc2 <- ggtestallc2 + geom_tile(aes(fill = genepercentage_group_by_ecnumb
 ggtestallc2 <- ggtestallc2 + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallc2 <- ggtestallc2 + theme(axis.ticks=element_blank())
 ggtestallc2 <- ggtestallc2 + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways"))
-ggtestallc2 <- ggtestallc2 + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+#ggtestallc2 <- ggtestallc2 + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  ggtestallc2 <- ggtestallc2 + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+} else {
+  ggtestallc2 <- ggtestallc2 +theme_bw(base_family="sans") + geom_vline(xintercept = total_genomes_A + 0.5)
+}
 ggtestallc2 <- ggtestallc2 + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 2, angle = 80, hjust=1), axis.text.y = element_text(size = 2), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallc2 <- ggtestallc2 + facet_wrap(~ pathway_name, scales = "free_y", labeller = labeller(pathway_name = label_wrap_gen(40))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 #ggtestallc2
@@ -2404,7 +2506,14 @@ gsize <- gsize + scale_fill_distiller(name = "Mbp", palette = "GnBu", direction 
 #gsize <- gsize + scale_fill_viridis_c(name = "Genome Size, \nMbp", na.value = "transparent")
 gsize <- gsize + theme(axis.ticks=element_blank())
 gsize <- gsize + labs(x=NULL, y=NULL, title="")
-gsize <- gsize + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+#gsize <- gsize + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  gsize <- gsize + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+} else {
+  gsize <- gsize + theme_bw(base_family="sans") + geom_vline(xintercept = total_genomes_A + 0.5)
+}
 size <- gsize + theme(plot.title=element_text(hjust=0), axis.ticks=element_blank(), axis.text.y = element_blank(), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 gsize <- gsize + facet_wrap(~ pathway_name, scales = "free_y") + theme(aspect.ratio = 1)
 gsize
@@ -3101,7 +3210,14 @@ ggtestallb2withphylo <- ggtestallb2withphylo + geom_tile(aes(fill = genepercenta
 ggtestallb2withphylo <- ggtestallb2withphylo + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallb2withphylo <- ggtestallb2withphylo + theme(axis.ticks=element_blank())
 ggtestallb2withphylo <- ggtestallb2withphylo + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for", plot_title, "focus pathways missing in target group"))
-ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5) # ...lastly below changing from angle 80 & size 4 to angle 90 & size 6 (no, only for gsizeforphylo plot!)
+#ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5) # ...lastly below changing from angle 80 & size 4 to angle 90 & size 6 (no, only for gsizeforphylo plot!)
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+} else {
+  ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="sans") + geom_vline(xintercept = total_genomes_A + 0.5)
+}
 ggtestallb2withphylo <- ggtestallb2withphylo + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 80, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallb2withphylo <- ggtestallb2withphylo + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 #ggtestallb2withphylo
@@ -3125,6 +3241,13 @@ gsizeforphylo <- gsizeforphylo + scale_fill_distiller(name = "Mbp", palette = "G
 # gsizeforphylo <- gsizeforphylo + theme(axis.ticks=element_blank())  - theme(legend.key.width=unit(4,"cm"))
 gsizeforphylo <- gsizeforphylo + labs(x=NULL, y=NULL, title="")
 gsizeforphylo <- gsizeforphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+
+## adding an if/then for Macs vs PCs - former use Helvetica font, latter just specify 'sans' to avoid font warnings
+if (grepl("apple", sessionInfo()[2]) == TRUE) {
+  gsizeforphylo <- gsizeforphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
+} else {
+  gsizeforphylo <- gsizeforphylo + theme_bw(base_family="sans") + geom_vline(xintercept = total_genomes_A + 0.5)
+}
 #gsizeforphylo <- gsizeforphylo + theme(plot.title=element_text(hjust=0), axis.ticks=element_blank(), axis.text.y = element_blank(), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
 ## need this command to line up phylogeny, moving legend to the left...lastly changing from angle 80 & size 4 to angle 90 & size 6, 6 too small trying 8
 gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 8, angle = 90, hjust=1), axis.text.y = element_text(size = 0), panel.background = element_rect(fill = '#fafcf6'))

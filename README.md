@@ -11,7 +11,7 @@ To run PoMeLo, R & RStudio must be installed. PoMeLo was developed using R v4.2.
 When running PoMeLo the very first time, install all needed R packages by running the 6 lines at the start of the script (which are commented out). _Note that if you install the required packages as suggested by RStudio, you will still need to manually run the last 4 lines of these 6:_
 
 ```
-pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi")
+pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi", "aplot")
 install.packages(pkgs)
 install.packages("BiocManager", repos = "https://cloud.r-project.org")
 library(BiocManager, warn.conflicts = FALSE)
@@ -57,10 +57,11 @@ When the pipeline finishes, there will be a list of 'warning messages' depending
   cannot open URL 'ftp://ftp.bvbrc.org/genomes/2884482.5/2884482.5.PATRIC.pathway.tab': FTP status was '550 Requested action not taken; file unavailable'
 ```
 This means that one or more genomes in your list were not downloaded because the pathway data is missing from BV-BRC.
-Another common error when running PoMeLo on a PC are warnings about fonts, though the plots all appear similar:
+Another common error when running PoMeLo is that the output sub-directories already exist, this can be ignored:
 ```
-7. In grid.Call(C_stringMetric, as.graphicsAnnot(x$label)) :
-  font family not found in Windows font database
+2: In dir.create(suppdir1tocreate) :
+  '/Users/alice.baker/pomelo_outputs/supplemental_plots_taxon_by_pathway' already exists
+
 ```
 
 
