@@ -473,22 +473,6 @@ Import the Newick tree file
 ```{python}
 #t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Rickettsia2023-03-07.nwk'))[0]
 #t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Mycoplasma2023-03-08.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Treponema2023-03-15.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Mycobacterium2023-03-08.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Listeria2023-02-07.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Streptococcus2023-03-09.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Klebsiella2023-03-22.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Neisseria2023-03-09.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Haemophilus2023-03-23.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Campylobacter2023-03-09.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Chlamydia2023-03-30.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Yersinia2023-04-05.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Bartonella2023-03-16.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Francisella2023-04-05.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Burkholderia2023-03-07.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Yersinia2023-03-09.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Mycobacterium2023-02-10.nwk'))[0]
-#t=glob.glob(os.path.join(base_path,'PATRICphylotree_midpointrooted_withlabels_Borrelia2023-03-22.nwk'))[0]
 t=r.py_phylo00
 ## note if there are colons in tip names, run will fail...
 print(t)
@@ -708,22 +692,6 @@ ax2.set_yticklabels(ylabels) ## label tips
 ###### old manual way of saving
 # path was plt.savefig('/Users/.../pathogen_metabolism_project/PIC_Streptococcus_Enterococcus250.pdf',dpi=300,bbox_inches='tight')
 #plt.savefig(os.path.join(base_path,'PIC_Rickettsia20.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Campylobacter5.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Klebsiella5.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Haemophilus5.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Chlamydia10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Bartonella10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Francisella10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Yersinia10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Mycobacterium10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Yersinia5.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Burkholderia95.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Bartonella1_Brucella50_10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Mycoplasma10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Neisseria5.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_TreponemaBorellia95.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Borellia10.pdf'),dpi=300,bbox_inches='tight')
-#plt.savefig(os.path.join(base_path,'PIC_Streptococcus_Enterococcus_test.pdf'),dpi=300,bbox_inches='tight')
 
 ### lets also save the PDF via the loaded species name from the R code... - use r.basepath
 ## saving both as png & pdf - but png is missing genome sizes, only has tree, so use pdf

@@ -51,18 +51,12 @@ To generate a phylogeny of bacterial species calculating genome size change via 
 
 For running the main PoMeLo pipeline, users can simply click "Source" and pop-up windows will appear when required input files need to be selected. The script will also provide notes as it progreses, indicating progress or warnings if there are errors. For example based on the input species names, the pipeline will select a taxonomic name that is included in all output filenames - the script informs the user of this name and suggests changing the filenames if it is incorrect. If the user does not wish to include a phylogeny in the final steps, they can simply select the 'cancel' button in the last two prompts for .nwk and .csv files, and the script will end there. Also note that if there are only two species in the analysis, the last steps incorporating a phylogeny will fail. When downloading genome lists from BV-BRC, note that the file will by default be called PATRIC_genome.csv. Change the name of your download to match which dataset it is.
 
-When the pipeline finishes, there will be a list of 'warning messages' depending on your analysis. Some very common messages look like:
+When the pipeline finishes, there will be a list of 'warning messages' depending on your analysis. One common message looks like:
 ```
 1: In download.file(listAurl[i], destinations[i], mode = "wb",  ... :
   cannot open URL 'ftp://ftp.bvbrc.org/genomes/2884482.5/2884482.5.PATRIC.pathway.tab': FTP status was '550 Requested action not taken; file unavailable'
 ```
 This means that one or more genomes in your list were not downloaded because the pathway data is missing from BV-BRC.
-Another common error when running PoMeLo is that the output sub-directories already exist, this can be ignored:
-```
-2: In dir.create(suppdir1tocreate) :
-  '/Users/alice.baker/pomelo_outputs/supplemental_plots_taxon_by_pathway' already exists
-
-```
 
 
 ## Citation

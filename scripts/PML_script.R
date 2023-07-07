@@ -1836,8 +1836,8 @@ pathwaysbygroupPML <- grid.arrange(df_grob,pathwaysbygroup_grob, layout_matrix =
 ## note new way to do it more generically 
 suppdir1tocreate <- paste0(data_dir,"/supplemental_plots_taxon_by_pathway" )
 suppdir2tocreate <- paste0(data_dir,"/supplemental_plots_ec_by_taxon_per_pathway" )
-dir.create(suppdir1tocreate)
-dir.create(suppdir2tocreate)
+suppressWarnings(dir.create(suppdir1tocreate))
+suppressWarnings(dir.create(suppdir2tocreate))
 
 ggsave(filename = paste("supplemental_plots_taxon_by_pathway/heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".png", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
 ggsave(filename = paste("heatmaps_focuspathways_byspecies_and_pathway_",plot_title,Sys.Date(),".pdf", sep=""), pathwaysbyspeciesPML, width = 32, height = 16, units = "in", limitsize = FALSE)
