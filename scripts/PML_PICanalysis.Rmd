@@ -153,19 +153,19 @@ phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$ge
 phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
 
-## universal version
-phylo.data$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$genome_name))
-phylo.data$genome_name <- gsub("__","_",phylo.data$genome_name)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character.
+# ## universal version
+# phylo.data$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$genome_name))
+# phylo.data$genome_name <- gsub("__","_",phylo.data$genome_name)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character.
 
-# phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -191,19 +191,19 @@ phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Specie
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
 
-## universal version
-phylo.data$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$Species))
-phylo.data$Species <- gsub("__","_",phylo.data$Species)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character.
+# ## universal version
+# phylo.data$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$Species))
+# phylo.data$Species <- gsub("__","_",phylo.data$Species)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character.
 
-# phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)

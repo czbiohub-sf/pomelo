@@ -165,18 +165,18 @@ listAf$genomename <- gsub("NCTC ","NCTC_",listAf$genomename)
 listAf$genomename <- gsub("MAG ","MAG_",listAf$genomename)
 listAf$genomename <- gsub("USDA ","USDA_",listAf$genomename)
 
-## universal version
-listAf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$genomename))
-listAf$genomename <- gsub("__","_",listAf$genomename)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
-# listAf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Culex ","endo_Culex_",listAf$genomename)
-# listAf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listAf$genomename)
+# ## universal version
+# listAf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$genomename))
+# listAf$genomename <- gsub("__","_",listAf$genomename)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+listAf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listAf$genomename)
+listAf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$genomename)
+listAf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$genomename)
+listAf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$genomename)
+listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomename)
+listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
+listAf$genomename <- gsub("endo_Culex ","endo_Culex_",listAf$genomename)
+listAf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listAf$genomename)
 
 listAf$genomename <- gsub("[","",listAf$genomename, fixed = TRUE)
 listAf$genomename <- gsub("]","",listAf$genomename, fixed = TRUE)
@@ -207,19 +207,19 @@ listAf$Species <- gsub("NCTC ","NCTC_",listAf$Species)
 listAf$Species <- gsub("MAG ","MAG_",listAf$Species)
 listAf$Species <- gsub("USDA ","USDA_",listAf$Species)
 
-## universal version
-listAf$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$Species))
-listAf$Species <- gsub("__","_",listAf$Species)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# ## universal version
+# listAf$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$Species))
+# listAf$Species <- gsub("__","_",listAf$Species)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
-# listAf$Species <- gsub("endo_Brugia ","endo_Brugia_",listAf$Species)
-# listAf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$Species)
-# listAf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$Species)
-# listAf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$Species)
-# listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
-# listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
-# listAf$Species <- gsub("endo_Aedes ","endo_Aedes_",listAf$Species)
-# listAf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$Species)
+listAf$Species <- gsub("endo_Brugia ","endo_Brugia_",listAf$Species)
+listAf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listAf$Species)
+listAf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listAf$Species)
+listAf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listAf$Species)
+listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
+listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
+listAf$Species <- gsub("endo_Aedes ","endo_Aedes_",listAf$Species)
+listAf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$Species)
 ## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
 listAf$Species <- gsub(".*sp.$","null",listAf$Species)
 
@@ -303,19 +303,19 @@ listBf$genomename <- gsub("NCTC ","NCTC_",listBf$genomename)
 listBf$genomename <- gsub("MAG ","MAG_",listBf$genomename)
 listBf$genomename <- gsub("USDA ","USDA_",listBf$genomename)
 
-## universal version
-listBf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listBf$genomename))
-listBf$genomename <- gsub("__","_",listBf$genomename)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# ## universal version
+# listBf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listBf$genomename))
+# listBf$genomename <- gsub("__","_",listBf$genomename)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
-# listBf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listBf$genomename)
-# listBf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$genomename)
+listBf$genomename <- gsub("endo_Brugia ","endo_Brugia_",listBf$genomename)
+listBf$genomename <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$genomename)
+listBf$genomename <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$genomename)
+listBf$genomename <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$genomename)
+listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomename)
+listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
+listBf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listBf$genomename)
+listBf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$genomename)
 
 listBf$genomename <- gsub("[","",listBf$genomename, fixed = TRUE)
 listBf$genomename <- gsub("]","",listBf$genomename, fixed = TRUE)
@@ -348,19 +348,19 @@ listBf$Species <- gsub("USDA ","USDA_",listBf$Species)
 ## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
 listBf$Species <- gsub(".*sp.$","null",listBf$Species)
 
-## universal version
-listBf$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listBf$Species))
-listBf$Species <- gsub("__","_",listBf$Species)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# ## universal version
+# listBf$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listBf$Species))
+# listBf$Species <- gsub("__","_",listBf$Species)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
-# listBf$Species <- gsub("endo_Brugia ","endo_Brugia_",listBf$Species)
-# listBf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$Species)
-# listBf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$Species)
-# listBf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$Species)
-# listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
-# listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
-# listBf$Species <- gsub("endo_Aedes ","endo_Aedes_",listBf$Species)
-# listBf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$Species)
+listBf$Species <- gsub("endo_Brugia ","endo_Brugia_",listBf$Species)
+listBf$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",listBf$Species)
+listBf$Species <- gsub("endo_Epithemia ","endo_Epithemia_",listBf$Species)
+listBf$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",listBf$Species)
+listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
+listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
+listBf$Species <- gsub("endo_Aedes ","endo_Aedes_",listBf$Species)
+listBf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$Species)
 
 listBf$Species <- gsub("[","",listBf$Species, fixed = TRUE)
 listBf$Species <- gsub("]","",listBf$Species, fixed = TRUE)
@@ -594,19 +594,19 @@ paths_groupAandB$genome_name <- gsub("MAG ","MAG_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("USDA ","USDA_",paths_groupAandB$genome_name)
 
 unique(paths_groupAandB$genome_name)
-## universal version
-paths_groupAandB$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", paths_groupAandB$genome_name))
-paths_groupAandB$genome_name <- gsub("__","_",paths_groupAandB$genome_name)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# ## universal version
+# paths_groupAandB$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", paths_groupAandB$genome_name))
+# paths_groupAandB$genome_name <- gsub("__","_",paths_groupAandB$genome_name)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
-# paths_groupAandB$genome_name <- gsub("endo_Brugia ","endo_Brugia_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Aedes ","endo_Aedes_",paths_groupAandB$genome_name)
-# paths_groupAandB$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Brugia ","endo_Brugia_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Aedes ","endo_Aedes_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",paths_groupAandB$genome_name)
 
 paths_groupAandB$genome_name <- gsub("[","",paths_groupAandB$genome_name, fixed = TRUE)
 paths_groupAandB$genome_name <- gsub("]","",paths_groupAandB$genome_name, fixed = TRUE)
@@ -2508,19 +2508,19 @@ phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$ge
 phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
 
-## universal version
-phylo.data$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$genome_name))
-phylo.data$genome_name <- gsub("__","_",phylo.data$genome_name)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# ## universal version
+# phylo.data$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$genome_name))
+# phylo.data$genome_name <- gsub("__","_",phylo.data$genome_name)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
-# phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
-# phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -2547,19 +2547,19 @@ phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Specie
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
 
-## universal version
-phylo.data$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$Species))
-phylo.data$Species <- gsub("__","_",phylo.data$Species)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
+# ## universal version
+# phylo.data$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$Species))
+# phylo.data$Species <- gsub("__","_",phylo.data$Species)
+# # In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
-# phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
-# phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)
@@ -3101,8 +3101,8 @@ ggtestallb2withphylo <- ggtestallb2withphylo + geom_tile(aes(fill = genepercenta
 ggtestallb2withphylo <- ggtestallb2withphylo + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallb2withphylo <- ggtestallb2withphylo + theme(axis.ticks=element_blank())
 ggtestallb2withphylo <- ggtestallb2withphylo + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for", plot_title, "focus pathways missing in target group"))
-ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5) # ...lastly below changing from angle 80 & size 4 to angle 90 & size 6
-ggtestallb2withphylo <- ggtestallb2withphylo + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 6, angle = 90, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
+ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5) # ...lastly below changing from angle 80 & size 4 to angle 90 & size 6 (no, only for gsizeforphylo plot!)
+ggtestallb2withphylo <- ggtestallb2withphylo + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 80, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallb2withphylo <- ggtestallb2withphylo + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 #ggtestallb2withphylo
 
@@ -3113,9 +3113,9 @@ ggtestallb2withphylo <- ggtestallb2withphylo + facet_wrap(~ pathway_name_with_PM
 ######################################################
 ## adding one genome size plot to each enriched...
 ### NOTE NEW IDEA - CHANGE ORDER FROM GENOME SIZE TO PHYLO ORDER, THEN BELOW YOU WILL PLOT PHYLO...
-
 gsizeforphylo <- ggplot(paths_groupAandB_stats3_gsize_plotswithphylo, aes(x=genusspecies, y=ec_number)) + scale_y_discrete(limits=rev)
-gsizeforphylo <- gsizeforphylo + geom_tile(aes(fill = genome_size_mbp), color="white", linewidth=0.1) + geom_text(aes(label = genome_size_mbp), color="red", size=2.5, position=position_jitter(width=0,height=0.2)) #height was 1 but multiple sizes
+## also lately removing labels in next line
+gsizeforphylo <- gsizeforphylo + geom_tile(aes(fill = genome_size_mbp), color="white", linewidth=0.1) # + geom_text(aes(label = genome_size_mbp), color="red", size=2.5, position=position_jitter(width=0,height=0.2)) #height was 1 but multiple sizes
 #gsizeforphylo <- gsizeforphylo + scale_fill_gradientn(name = "Mbp", colors = mutedGnBu)
 gsizeforphylo <- gsizeforphylo + scale_fill_distiller(name = "Mbp", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 #gsizeforphylo <- gsizeforphylo + scale_fill_viridis_c(name = "", na.value = "transparent")
@@ -3126,8 +3126,8 @@ gsizeforphylo <- gsizeforphylo + scale_fill_distiller(name = "Mbp", palette = "G
 gsizeforphylo <- gsizeforphylo + labs(x=NULL, y=NULL, title="")
 gsizeforphylo <- gsizeforphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
 #gsizeforphylo <- gsizeforphylo + theme(plot.title=element_text(hjust=0), axis.ticks=element_blank(), axis.text.y = element_blank(), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
-## need this command to line up phylogeny, moving legend to the left...lastly changing from angle 80 & size 4 to angle 90 & size 6
-gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 6, angle = 90, hjust=1), axis.text.y = element_text(size = 0), panel.background = element_rect(fill = '#fafcf6'))
+## need this command to line up phylogeny, moving legend to the left...lastly changing from angle 80 & size 4 to angle 90 & size 6, 6 too small trying 8
+gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 8, angle = 90, hjust=1), axis.text.y = element_text(size = 0), panel.background = element_rect(fill = '#fafcf6'))
 # gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 45, hjust=1), axis.text.y = element_text(size = 4))
 # gsizeforphylo <- gsizeforphylo + theme(legend.position="none", axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 45, hjust=1), axis.text.y = element_text(size = 4))
 gsizeforphylo <- gsizeforphylo + facet_wrap(~ pathway_name, scales = "free_y") + theme(aspect.ratio = 1)
