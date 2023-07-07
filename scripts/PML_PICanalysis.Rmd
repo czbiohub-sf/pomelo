@@ -7,18 +7,18 @@ output:
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
-### NOTE ####
-### ONLY RUN NEXT 6 LINES VERY FIRST TIME - AFTER THAT THEY ARE INSTALLED AND CAN SKIP (BEST TO COMMENT OUT)
+##################################################################################################################################################################
+############################################### ONLY RUN THESE LINES THE FIRST TIME ##############################################################################
 # pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi","reticulate") # package names
 # install.packages(pkgs)
 # install.packages("BiocManager", repos = "https://cloud.r-project.org")
 # library(BiocManager, warn.conflicts = FALSE)
 # BiocManager::install("remotes")
 # BiocManager::install("YuLab-SMU/treedataverse")
-
-## for this long Rmd script, trying to suppress messages - note instead add results = FALSE in setup line
-## doesn't work: r setup, include = FALSE, echo = FALSE, results = FALSE, message = FALSE, warning = FALSE
-#options(warn=-1)
+###### similarly run ONLY THE VERY FIRST TIME for installation of Python packages ######
+# py_install(packages = "matplotlib")
+# py_install(packages = "baltic", pip = TRUE)
+##################################################################################################################################################################
 
 library(igraph, warn.conflicts = FALSE)
 library(RColorBrewer, warn.conflicts = FALSE)
@@ -56,10 +56,6 @@ library(reticulate, warn.conflicts = FALSE)
 # from abc import xyz as uvw
 #    means in R
 # uvw <- import('abc.xyz')
-
-## run these 2 lines ONLY THE VERY FIRST TIME for installation of Python packages
-# py_install(packages = "matplotlib")
-# py_install(packages = "baltic", pip = TRUE)
 
 ```
 
@@ -156,14 +152,20 @@ phylo.data$genome_name <- gsub("'","",phylo.data$genome_name, fixed = TRUE)
 phylo.data$genome_name <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont of ","endo_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
-phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+
+## universal version
+phylo.data$genome_name <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$genome_name))
+phylo.data$genome_name <- gsub("__","_",phylo.data$genome_name)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character.
+
+# phylo.data$genome_name <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
+# phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -188,14 +190,20 @@ phylo.data$Species <- gsub("'","",phylo.data$Species, fixed = TRUE)
 phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont strain_TRS of ","endo_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
-phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+
+## universal version
+phylo.data$Species <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", phylo.data$Species))
+phylo.data$Species <- gsub("__","_",phylo.data$Species)
+# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character.
+
+# phylo.data$Species <- gsub("endo_Brugia ","endo_Brugia_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Rhopalodia ","endo_Rhopalodia_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Epithemia ","endo_Epithemia_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Onchocerca ","endo_Onchocerca_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
+# phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)
@@ -264,19 +272,8 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genusspecies1 != "Rickettsia_raoultii") %>%
   dplyr::filter(genusspecies1 != "Rickettsia_amblyommii")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genusspecies1 != "Burkholderia_sp_TSV202") %>%
-  dplyr::filter(genome_id != "1795874.3")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genusspecies1 != "Borreliella_bavariensis")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genusspecies1 != "Strawberry_lethal") %>%
   dplyr::filter(genusspecies1 != "Mycoplasma_ovipneumoniae")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Brucella melitensis biovar Abortus 2308")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Klebsiella oxytoca strain_4928STDY7071328")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_id != "1660071.3") %>%
   dplyr::filter(genome_id != "1660070.3") %>%
@@ -284,26 +281,12 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_id != "1244531.3") %>%
   dplyr::filter(genome_id != "1660063.4")
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genusspecies1 != "Francisella_novicida") %>%
-  dplyr::filter(genusspecies1 != "Thiomicrospira_crunogena")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Corynebacterium glutamicum SCgG2")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
-  dplyr::filter(genome_name != "Serratia_sp_ATCC_39006")
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
   dplyr::filter(genome_id != "1458985.3")
+
 #and the tree!
 phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
-phylo <- ape::drop.tip(phylo, c("1795874.3", "1439853.3"))
-phylo <- ape::drop.tip(phylo, c("664662.50"))
-phylo <- ape::drop.tip(phylo, c("1232383.3"))
 phylo <- ape::drop.tip(phylo, c("980422.3", "29562.18"))
-phylo <- ape::drop.tip(phylo, c("359391.4"))
-phylo <- ape::drop.tip(phylo, c("571.706"))
 phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4","1244531.3"))
-phylo <- ape::drop.tip(phylo, c("401614.12", "317025.14"))
-phylo <- ape::drop.tip(phylo, c("1232383.3"))
-phylo <- ape::drop.tip(phylo, c("104623.6"))
 phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
 ## check again for duplicates
@@ -312,7 +295,7 @@ if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% uniqu
 } else {
   print("Your BV-BRC phylogeny has some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
-  print("You will have to manually add two commands (one with dplyr::filter & one with ape::drop.tip) to filter out these names")
+  print("You will have to manually add two commands (one with dplyr::filter & one with ape::drop.tip) to filter out the genome_id numbers of all duplicates!")
   print("Look for the code snippets after 'IF YOU HAVE DUPLICATES, REMOVE HERE' and replicate")
   print("Then re-run the pipeline")
   stop()
@@ -603,7 +586,7 @@ effects=[path_effects.Stroke(linewidth=3.0, foreground='w'),
          path_effects.Stroke(linewidth=0.5, foreground='k')]
 
 ####################################### HERE IS WHERE YOU CHANGE THE PIC THESHOLD IN THE LABELLING ####################################
-########################## add delta PIC if it exceeds 20% - note change to 15%  abs(k.traits['delta_pic'])>=15.0. ######################## changing to py_PICthreshold
+############################################### changing to py_PICthreshold, entered by user ##########################################
 threshold=r.py_PICthreshold
 ll2.addText(ax,x_attr=lambda k: k.height-k.length/2,y_attr=lambda k: k.y+0.15,target=lambda k: 'delta_pic' in k.traits and abs(k.traits['delta_pic'])>=threshold,text=lambda k: '+%.1f%%'%(k.traits['delta_pic']) if k.traits['delta_pic']>0 else '%.1f%%'%(k.traits['delta_pic']),path_effects=effects,size=10,va='bottom',ha='center')
 

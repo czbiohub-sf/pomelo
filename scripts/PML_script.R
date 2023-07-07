@@ -446,7 +446,6 @@ paths_groupAandB$genome_id <- as.character(paths_groupAandB$genome_id)
 
 ###################################################################################################################
 ## one-off code to get 4 missing pathways added back - after line 390...
-## BTW THIS NEXT LINE WILL BE CRITICAL TO REMOVE PATHWAY INFO FROM INITIAL FILE, AND TO MAP BACK ALL PATHWAYS FROM THE MAPPING FILE!!
 # paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
 #   summarize_all(first) ## update to use across instead of _all
 paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
@@ -1366,8 +1365,7 @@ write.table(PML_bypathway, file = paste("Summary_of_ranked_pathways",plot_title,
 
 ################################################################################################
 
-#### ERIC CODE TO PROCESS & PLOT
-### NEED TO JUSTIFY THIS 170 VALUE.....removes pathways with nearly all missing data (>80% missing in both A & B)
+### why 170.....removes pathways with nearly all missing data (>80% missing in both A & B)
 ## adding second dplyr::filter to remove pathways with bvbrc_genes_inpathway = 0
 paths_groupAandB_stats3nonasnofullymissing_PML <- paths_groupAandB_stats3nonas_PML %>% dplyr::filter((perc_missing_in_target_group_bypathway + perc_missing_in_nontarget_group_bypathway < 170)) %>% 
   dplyr::filter(bvbrc_genes_inpathway != "0")
@@ -2334,7 +2332,7 @@ ggsave(filename = paste("heatmaps_focuspathways_byspecies_without_refECs_",plot_
 ###########################
 ## everything plots - all pathways (no including PML score in the name)
 ggtestallc <- ggplot(paths_groupAandB_stats3nonasnofullymissing_PML, aes(x=group, y=ec_number)) + scale_x_discrete(limits=rev) + scale_y_discrete(limits=rev)
-ggtestallc <- ggtestallc + geom_tile(aes(fill = genepercentage_group_by_ecnumber), color="white", linewidth=0.1) + geom_text(data = subset(paths_groupAandB_stats3nonasnofullymissing_PML, genepercentage_group_by_ecnumber > 0.2), aes(label = genepercentage_group_by_ecnumber), color="blue", size = 1.5)
+ggtestallc <- ggtestallc + geom_tile(aes(fill = genepercentage_group_by_ecnumber), color="white", linewidth=0.1) + geom_text(data = subset(paths_groupAandB_stats3nonasnofullymissing_PML, genepercentage_group_by_ecnumber > 0.2), aes(label = genepercentage_group_by_ecnumber), color="red", size = 1.5)
 ggtestallc <- ggtestallc + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallc <- ggtestallc + theme(axis.ticks=element_blank())
 ggtestallc <- ggtestallc + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for all", plot_title, "pathways"))
@@ -2544,10 +2542,6 @@ phylo.data$Species <- gsub("]","",phylo.data$Species, fixed = TRUE)
 phylo.data$Species <- gsub('"',"",phylo.data$Species, fixed = TRUE)
 phylo.data$Species <- gsub("'","",phylo.data$Species, fixed = TRUE)
 
-## universal version
-listAf$genomename <- gsub(" ", "_", gsub("endo_(\\S+)", "endo_\\1 ", listAf$genomename))
-listAf$genomename <- gsub("__","_",listAf$genomename)
-# In this code, gsub() function is used twice. The inner gsub() is used to find matches of the pattern "endo_(\S+)" in the 'colla' column of the 'dabba' dataframe. The (\\S+) captures all non-whitespace characters after "endo_" in the match. The outer gsub() is then used to replace the space character with an underscore "" in the matched patterns, using the captured group \\1 to retain the original characters after "endo" and include the space character. The modified 'colla' column is updated in the 'dabba' dataframe. Finally, the modified 'colla' column is printed using print(dabba$colla).
 
 phylo.data$Species <- gsub("endosymbiont wPip_Mol of ","endo_",phylo.data$Species)
 phylo.data$Species <- gsub("endosymbiont of ","endo_",phylo.data$Species)
@@ -2648,6 +2642,7 @@ phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
 #and the tree!
 phylo <- ape::drop.tip(phylo, c("226665.5", "369822.3", "1105111.3"))
 phylo <- ape::drop.tip(phylo, c("1795874.3", "1439853.3"))
+phylo <- ape::drop.tip(phylo, c("980422.3", "29562.18"))
 phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4","1244531.3"))
 phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
@@ -3106,8 +3101,8 @@ ggtestallb2withphylo <- ggtestallb2withphylo + geom_tile(aes(fill = genepercenta
 ggtestallb2withphylo <- ggtestallb2withphylo + scale_fill_distiller(name = "Species+Gene \n Percentage of Group", palette = "GnBu", direction = 1, na.value = "#f7fcf0")
 ggtestallb2withphylo <- ggtestallb2withphylo + theme(axis.ticks=element_blank())
 ggtestallb2withphylo <- ggtestallb2withphylo + labs(x=NULL, y=NULL, title=paste("Species+Gene percentages in target group vs. non-target group \n     for", plot_title, "focus pathways missing in target group"))
-ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
-ggtestallb2withphylo <- ggtestallb2withphylo + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 80, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
+ggtestallb2withphylo <- ggtestallb2withphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5) # ...lastly below changing from angle 80 & size 4 to angle 90 & size 6
+ggtestallb2withphylo <- ggtestallb2withphylo + theme(plot.title=element_text(hjust=0), axis.text.x = element_text(size = 6, angle = 90, hjust=1), axis.text.y = element_text(size = 4), panel.background = element_rect(fill = '#fafcf6'))
 ggtestallb2withphylo <- ggtestallb2withphylo + facet_wrap(~ pathway_name_with_PML_score, scales = "free_y", labeller = labeller(pathway_name_with_PML_score = label_wrap_gen(56))) + theme(aspect.ratio = 1) + theme(strip.text.x = element_text(size = 6))
 #ggtestallb2withphylo
 
@@ -3131,8 +3126,8 @@ gsizeforphylo <- gsizeforphylo + scale_fill_distiller(name = "Mbp", palette = "G
 gsizeforphylo <- gsizeforphylo + labs(x=NULL, y=NULL, title="")
 gsizeforphylo <- gsizeforphylo + theme_bw(base_family="Helvetica") + geom_vline(xintercept = total_genomes_A + 0.5)
 #gsizeforphylo <- gsizeforphylo + theme(plot.title=element_text(hjust=0), axis.ticks=element_blank(), axis.text.y = element_blank(), axis.text.x = element_text(angle = 80, hjust=1), panel.background = element_rect(fill = '#fafcf6'))
-## need this command to line up phylogeny, moving legend to the left...
-gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 80, hjust=1), axis.text.y = element_text(size = 0), panel.background = element_rect(fill = '#fafcf6'))
+## need this command to line up phylogeny, moving legend to the left...lastly changing from angle 80 & size 4 to angle 90 & size 6
+gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 6, angle = 90, hjust=1), axis.text.y = element_text(size = 0), panel.background = element_rect(fill = '#fafcf6'))
 # gsizeforphylo <- gsizeforphylo + theme(legend.position="left", legend.key.width=unit(0.1,"cm"), axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 45, hjust=1), axis.text.y = element_text(size = 4))
 # gsizeforphylo <- gsizeforphylo + theme(legend.position="none", axis.ticks=element_blank(), plot.title=element_text(hjust=0), axis.text.x = element_text(size = 4, angle = 45, hjust=1), axis.text.y = element_text(size = 4))
 gsizeforphylo <- gsizeforphylo + facet_wrap(~ pathway_name, scales = "free_y") + theme(aspect.ratio = 1)
