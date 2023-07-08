@@ -6,7 +6,9 @@ output:
   toc_float: true
 ---
 
-```{r setup, include=FALSE, echo=FALSE}
+```{r setup, echo=TRUE}
+print('to console')
+               ##    removed ', include=FALSE, echo=FALSE'
 ##################################################################################################################################################################
 ############################################### ONLY RUN THESE LINES THE FIRST TIME ##############################################################################
 # pkgs = c("igraph","RColorBrewer", "hexbin", "scales","grid", "lattice", "gdata", "gridExtra", "ape", "tcltk","reshape2", "ggplot2", "seqinr", "phangorn", "fs", "hash","ggdendro", "phytools","openxlsx","coop","tidyverse", "rstudioapi","aplot", "reticulate") # package names
@@ -166,6 +168,9 @@ phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$
 phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Donacia ","endo_Donacia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Macroplea ","endo_Macroplea_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Plateumaris ","endo_Plateumaris_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -204,6 +209,9 @@ phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Spec
 phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Donacia ","endo_Donacia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Macroplea ","endo_Macroplea_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Plateumaris ","endo_Plateumaris_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)
@@ -249,6 +257,7 @@ if (nrow(phylotips_withname_guidetree %>% dplyr::filter(is.na(.[["taxon_id"]])|i
   print(phylotips_withname_guidetree %>% dplyr::filter(is.na(.[["taxon_id"]])|is.na(.[["genome_size_mbp"]])))
   stop()
 }
+Sys.sleep(1)
 
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree %>% unite("genome_name_length", genusspecies, genome_size_mbp, sep = " ", remove = FALSE)
 ## adding gsub to remove ':', also check to make sure no duplicates
@@ -256,8 +265,7 @@ phylotips_withname_guidetree2$genusspecies <- gsub(":","-",phylotips_withname_gu
 phylotips_withname_guidetree2$genome_name_length <- gsub(":","-",phylotips_withname_guidetree2$genome_name_length)
 phylotips_withname_guidetree2$genome_name <- gsub(":","-",phylotips_withname_guidetree2$genome_name)
 
-# phylotips_withname_guidetree2 %>%
-#   dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))
+# phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))
 
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
   print("Your BV-BRC phylogeny has no duplicate taxon names!")
@@ -265,6 +273,7 @@ if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% uniqu
   print("Your BV-BRC phylogeny has some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
 }
+Sys.sleep(1)
 
 ## IF YOU HAVE DUPLICATES, REMOVE HERE...
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
@@ -289,6 +298,19 @@ phylo <- ape::drop.tip(phylo, c("980422.3", "29562.18"))
 phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4","1244531.3"))
 phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
+## new tack - if not true above, take phylotips_withname_guidetree2 and group by genusspecies, then take only first...
+phylotips_withname_guidetree22 <- phylotips_withname_guidetree2 %>% 
+  group_by(genusspecies) %>% 
+  summarize(across(everything(), first)) %>% ungroup() %>% relocate(genusspecies, .before = genusspecies1)
+## BUT NEED TO NOTE THE GENOME_ID OF THOSE DROPPED AND ALSO DROP THEM FROM PHYLO!!
+phylotips_withname_guidetree_todrop <- anti_join(phylotips_withname_guidetree2,phylotips_withname_guidetree22)
+phylo_todrop <- phylotips_withname_guidetree_todrop$genome_id
+###
+rm(phylotips_withname_guidetree2)
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree22
+rm(phylotips_withname_guidetree22)
+phylo <- ape::drop.tip(phylo, phylo_todrop)
+
 ## check again for duplicates
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
   print("Your BV-BRC phylogeny has no duplicate taxon names!")
@@ -300,7 +322,7 @@ if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% uniqu
   print("Then re-run the pipeline")
   stop()
 }
-
+Sys.sleep(1)
 
 ### printing...
 species <-  phylotips_withname_guidetree2$genome_name_length

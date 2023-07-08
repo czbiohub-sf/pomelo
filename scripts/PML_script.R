@@ -177,6 +177,9 @@ listAf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$genomenam
 listAf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$genomename)
 listAf$genomename <- gsub("endo_Culex ","endo_Culex_",listAf$genomename)
 listAf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listAf$genomename)
+listAf$genomename <- gsub("endo_Donacia ","endo_Donacia_",listAf$genomename)
+listAf$genomename <- gsub("endo_Macroplea ","endo_Macroplea_",listAf$genomename)
+listAf$genomename <- gsub("endo_Plateumaris ","endo_Plateumaris_",listAf$genomename)
 
 listAf$genomename <- gsub("[","",listAf$genomename, fixed = TRUE)
 listAf$genomename <- gsub("]","",listAf$genomename, fixed = TRUE)
@@ -220,6 +223,9 @@ listAf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listAf$Species)
 listAf$Species <- gsub("endo_Culex ","endo_Culex_",listAf$Species)
 listAf$Species <- gsub("endo_Aedes ","endo_Aedes_",listAf$Species)
 listAf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listAf$Species)
+listAf$Species <- gsub("endo_Donacia ","endo_Donacia_",listAf$Species)
+listAf$Species <- gsub("endo_Macroplea ","endo_Macroplea_",listAf$Species)
+listAf$Species <- gsub("endo_Plateumaris ","endo_Plateumaris_",listAf$Species)
 ## also just in Species field change XXX sp. at end of field to null, to force use of the genome name - specify the metacharacter $ after the sp_ to signify the end of the string
 listAf$Species <- gsub(".*sp.$","null",listAf$Species)
 
@@ -316,6 +322,9 @@ listBf$genomename <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$genomenam
 listBf$genomename <- gsub("endo_Culex ","endo_Culex_",listBf$genomename)
 listBf$genomename <- gsub("endo_Aedes ","endo_Aedes_",listBf$genomename)
 listBf$genomename <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$genomename)
+listBf$genomename <- gsub("endo_Donacia ","endo_Donacia_",listBf$genomename)
+listBf$genomename <- gsub("endo_Macroplea ","endo_Macroplea_",listBf$genomename)
+listBf$genomename <- gsub("endo_Plateumaris ","endo_Plateumaris_",listBf$genomename)
 
 listBf$genomename <- gsub("[","",listBf$genomename, fixed = TRUE)
 listBf$genomename <- gsub("]","",listBf$genomename, fixed = TRUE)
@@ -361,6 +370,9 @@ listBf$Species <- gsub("endo_Drosophila ","endo_Drosophila_",listBf$Species)
 listBf$Species <- gsub("endo_Culex ","endo_Culex_",listBf$Species)
 listBf$Species <- gsub("endo_Aedes ","endo_Aedes_",listBf$Species)
 listBf$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",listBf$Species)
+listBf$Species <- gsub("endo_Donacia ","endo_Donacia_",listBf$Species)
+listBf$Species <- gsub("endo_Macroplea ","endo_Macroplea_",listBf$Species)
+listBf$Species <- gsub("endo_Plateumaris ","endo_Plateumaris_",listBf$Species)
 
 listBf$Species <- gsub("[","",listBf$Species, fixed = TRUE)
 listBf$Species <- gsub("]","",listBf$Species, fixed = TRUE)
@@ -607,6 +619,9 @@ paths_groupAandB$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",paths
 paths_groupAandB$genome_name <- gsub("endo_Culex ","endo_Culex_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Aedes ","endo_Aedes_",paths_groupAandB$genome_name)
 paths_groupAandB$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Donacia ","endo_Donacia_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Macroplea ","endo_Macroplea_",paths_groupAandB$genome_name)
+paths_groupAandB$genome_name <- gsub("endo_Plateumaris ","endo_Plateumaris_",paths_groupAandB$genome_name)
 
 paths_groupAandB$genome_name <- gsub("[","",paths_groupAandB$genome_name, fixed = TRUE)
 paths_groupAandB$genome_name <- gsub("]","",paths_groupAandB$genome_name, fixed = TRUE)
@@ -2630,6 +2645,9 @@ phylo.data$genome_name <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$
 phylo.data$genome_name <- gsub("endo_Culex ","endo_Culex_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Donacia ","endo_Donacia_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Macroplea ","endo_Macroplea_",phylo.data$genome_name)
+phylo.data$genome_name <- gsub("endo_Plateumaris ","endo_Plateumaris_",phylo.data$genome_name)
 
 ## repeat for Species field
 phylo.data$Species <- gsub("Candidatus ","",phylo.data$Species)
@@ -2669,6 +2687,9 @@ phylo.data$Species <- gsub("endo_Drosophila ","endo_Drosophila_",phylo.data$Spec
 phylo.data$Species <- gsub("endo_Culex ","endo_Culex_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Aedes ","endo_Aedes_",phylo.data$Species)
 phylo.data$Species <- gsub("endo_Amblyomma ","endo_Amblyomma_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Donacia ","endo_Donacia_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Macroplea ","endo_Macroplea_",phylo.data$Species)
+phylo.data$Species <- gsub("endo_Plateumaris ","endo_Plateumaris_",phylo.data$Species)
 
 phylo.data <- phylo.data %>% mutate(Species = na_if(Species, "null"))
 #phylo.data$Species <- gsub("null ","",phylo.data$Species)
@@ -2714,6 +2735,7 @@ if (nrow(phylotips_withname_guidetree %>% dplyr::filter(is.na(.[["taxon_id"]])|i
   print(phylotips_withname_guidetree %>% dplyr::filter(is.na(.[["taxon_id"]])|is.na(.[["genome_size_mbp"]])))
   stop()
 }
+Sys.sleep(1)
 
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree %>% unite("genome_name_length", genusspecies, genome_size_mbp, sep = " ", remove = FALSE)
 ## adding gsub to remove ':', also check to make sure no duplicates
@@ -2721,8 +2743,7 @@ phylotips_withname_guidetree2$genusspecies <- gsub(":","-",phylotips_withname_gu
 phylotips_withname_guidetree2$genome_name_length <- gsub(":","-",phylotips_withname_guidetree2$genome_name_length)
 phylotips_withname_guidetree2$genome_name <- gsub(":","-",phylotips_withname_guidetree2$genome_name)
 
-# phylotips_withname_guidetree2 %>%
-#   dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))
+# phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))
 
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
   print("Your BV-BRC phylogeny has no duplicate taxon names!")
@@ -2730,6 +2751,7 @@ if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% uniqu
   print("Your BV-BRC phylogeny has some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
 }
+Sys.sleep(1)
 
 ## IF YOU HAVE DUPLICATES, REMOVE HERE...
 phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>%
@@ -2755,6 +2777,20 @@ phylo <- ape::drop.tip(phylo, c("980422.3", "29562.18"))
 phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4","1244531.3"))
 phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
+## new tack - if not true above, take phylotips_withname_guidetree2 and group by genusspecies, then take only first...
+phylotips_withname_guidetree22 <- phylotips_withname_guidetree2 %>% 
+  group_by(genusspecies) %>% 
+  summarize(across(everything(), first)) %>% ungroup() %>% relocate(genusspecies, .before = genusspecies1)
+## BUT NEED TO NOTE THE GENOME_ID OF THOSE DROPPED AND ALSO DROP THEM FROM PHYLO!!
+phylotips_withname_guidetree_todrop <- anti_join(phylotips_withname_guidetree2,phylotips_withname_guidetree22)
+phylo_todrop <- phylotips_withname_guidetree_todrop$genome_id
+###
+rm(phylotips_withname_guidetree2)
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree22
+rm(phylotips_withname_guidetree22)
+phylo <- ape::drop.tip(phylo, phylo_todrop)
+
+
 ## check again for duplicates
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
   print("Your BV-BRC phylogeny has no duplicate taxon names!")
@@ -2766,7 +2802,7 @@ if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% uniqu
   print("Then re-run the pipeline")
   stop()
 }
-
+Sys.sleep(1)
 
 ### printing...
 species <-  phylotips_withname_guidetree2$genome_name_length
