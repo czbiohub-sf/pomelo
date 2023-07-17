@@ -66,7 +66,7 @@ If you use PoMeLo, please cite our publication:
 
 Abigail Leigh Glascock, Eric Waltari, Gytis Dudas, Joan Wong, Vida Ahyong
 
-tk 2023; doi: https://doi.org/tk
+bioRxiv 2023; https://www.biorxiv.org/search/Glascock%252C%252BDudas%252C%252BWong%252C%252BAhyong
 
 The folders ```supplemental_materials_Treponema_run``` & ```supplemental_materials_Rickettsia_run``` contain the inputs and outputs for the Treponema example in _Glascock et al_ & the Rickettsia example in the companion paper by _Medicielo et al._:
 
@@ -74,4 +74,4 @@ The folders ```supplemental_materials_Treponema_run``` & ```supplemental_materia
 
 Josette Medicielo, Eric Waltari, Abigail Leigh Glascock, Gytis Dudas, Brian DeFelice, Ira Gray, Cristina M. Tato, Joan Wong, Vida Ahyong
 
-tk 2023
+bioRxiv 2023; https://www.biorxiv.org/search/Medicielo%252C%252BTato%252C%252BWong%252C%252BAhyong
