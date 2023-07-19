@@ -255,7 +255,7 @@ phylotips_withname_guidetree2$genome_name <- gsub(":","-",phylotips_withname_gui
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
   print("Your BV-BRC phylogeny has no duplicate taxon names!")
 } else {
-  print("Your BV-BRC phylogeny may have some duplicate taxon names:")
+  print("Your BV-BRC phylogeny may still have some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
 }
 Sys.sleep(1)
@@ -390,15 +390,15 @@ if (Ntip(phylo) < 500) {
   # plot.phylo(phylo, edge.width=1, cex = 2.2, align.tip.label = TRUE, adj = 0, label.offset = 0, no.margin = FALSE)
   plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
 } else {
-  plot.phylo(phyloguide.focus.extract, edge.width=2, cex = 0.5, align.tip.label = TRUE, adj = 1, label.offset = 0)
+  print("Your phylogeny has more than 500 tips, we recommend thinning!")
+  plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
 }
 dev.off()
 
 Sys.sleep(2)
 
 ##########
-## FOR PIC ANALYSES - TAKE THE "PHYLOGENY_FOCUS..." TAB FILE & THE "PATRICphylotree..." NWK FILE, AND RUN THEM ON GD JUPYTER NOTEBOOK...
-## but use midpoint rooted phylo!
+## FOR PIC ANALYSES - use midpoint rooted phylo!
 write.tree(midpoint(phylo), file = paste(data_dir,"/PATRICphylotree_midpointrooted_withlabels_",plot_title,Sys.Date(),".nwk", sep=""))
 
 ## now save just pathname of this tree. data_dir

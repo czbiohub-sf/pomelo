@@ -2587,10 +2587,6 @@ plot.phylo(phylo)
 Sys.sleep(2)
 ##  also import the same custom datasets's accompanying CSV file...
 
-# phylo.data <- read_csv(tk_choose.files(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
-#                        , col_types = list(
-#                          "Genome ID" = col_character(), "Genome Name" = col_character(), "NCBI Taxon ID" = col_character()))
-
 print("Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file")
 Sys.sleep(1)
 phylo.data <- read_csv(rstudioapi::selectFile(caption = "Select your downloaded table (.csv) of the genome group matching the phylotree .nwk file", label = "Select matching .csv table", path = data_dir, existing = TRUE, filter = "CSV Files (*.csv)")
@@ -2606,11 +2602,6 @@ phylo.data <- phylo.data %>%
   select(genome_id, genome_name, Species, taxon_id, genome_length)
 
 ## some correcting (not thinning)
-# phylo.data <- phylo.data
-# phylo.data$genome_name <- gsub("Strawberry lethal yellows phytoplasma","Candidatus Phytoplasma australiense",phylo.data$genome_name)
-# Strawberry lethal yellows phytoplasma (CPA) str. NZSb11
-# Species	Candidatus Phytoplasma australiense
-
 phylo.data$genome_name <- gsub("Candidatus ","",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("uncultured ","",phylo.data$genome_name)
 phylo.data$genome_name <- gsub("sp. ","sp_",phylo.data$genome_name)
@@ -2748,7 +2739,7 @@ phylotips_withname_guidetree2$genome_name <- gsub(":","-",phylotips_withname_gui
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
   print("Your BV-BRC phylogeny has no duplicate taxon names!")
 } else {
-  print("Your BV-BRC phylogeny has some duplicate taxon names:")
+  print("Your BV-BRC phylogeny may still some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
 }
 Sys.sleep(1)
@@ -2778,24 +2769,36 @@ phylo <- ape::drop.tip(phylo, c("1660071.3", "1660070.3", "1244528.3","1660063.4
 phylo <- ape::drop.tip(phylo, c("1458985.3"))
 
 ## new tack - if not true above, take phylotips_withname_guidetree2 and group by genusspecies, then take only first...
+## issue is we lose the order in guidetree22...need to save original order as new column, then reorder by this
+phylotips_withname_guidetree2 <- phylotips_withname_guidetree2 %>% dplyr::mutate(row = row_number())
 phylotips_withname_guidetree22 <- phylotips_withname_guidetree2 %>% 
   group_by(genusspecies) %>% 
-  summarize(across(everything(), first)) %>% ungroup() %>% relocate(genusspecies, .before = genusspecies1)
+  summarize(across(everything(), first)) %>% ungroup() %>% relocate(genusspecies, .before = genusspecies1) %>% arrange(row)
 ## BUT NEED TO NOTE THE GENOME_ID OF THOSE DROPPED AND ALSO DROP THEM FROM PHYLO!!
 phylotips_withname_guidetree_todrop <- anti_join(phylotips_withname_guidetree2,phylotips_withname_guidetree22)
 phylo_todrop <- phylotips_withname_guidetree_todrop$genome_id
 ###
-rm(phylotips_withname_guidetree2)
-phylotips_withname_guidetree2 <- phylotips_withname_guidetree22
-rm(phylotips_withname_guidetree22)
-phylo <- ape::drop.tip(phylo, phylo_todrop)
-
+## only drop tips if there are tips to drop... check phylo$tip.label[1], maybe root by this?
+## issue is we lose the order in guidetree22...need to save original order as new column, then reorder by this
+if (n_distinct(phylotips_withname_guidetree_todrop$genome_id) > 0) {
+  phylo <- ape::drop.tip(phylo, phylo_todrop)
+  rm(phylotips_withname_guidetree2)
+  phylotips_withname_guidetree2 <- phylotips_withname_guidetree22
+  rm(phylotips_withname_guidetree22)
+  phylo <- ape::root(phylo, 1)
+  print("Your BV-BRC phylogeny had some duplicate taxon names that have been removed.")
+  print("Carefully check your resulting phylogeny to make sure the topology is correct.")
+  print("If there are changes, we recommend removing the duplicates in BV-BRC and re-calculating your phylogeny.")
+  print("Then re-run the pipeline")
+} else {
+}
+Sys.sleep(3)
 
 ## check again for duplicates
 if (nrow(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])]))) == 0) {
-  print("Your BV-BRC phylogeny has no duplicate taxon names!")
+  print("Your BV-BRC phylogeny now has no duplicate taxon names!")
 } else {
-  print("Your BV-BRC phylogeny has some duplicate taxon names:")
+  print("Your BV-BRC phylogeny still has some duplicate taxon names:")
   print(phylotips_withname_guidetree2 %>% dplyr::filter(genusspecies %in% unique(.[["genusspecies"]][duplicated(.[["genusspecies"]])])))
   print("You will have to manually add two commands (one with dplyr::filter & one with ape::drop.tip) to filter out the genome_id numbers of all duplicates!")
   print("Look for the code snippets after 'IF YOU HAVE DUPLICATES, REMOVE HERE' and replicate")
@@ -2806,9 +2809,7 @@ Sys.sleep(1)
 
 ### printing...
 species <-  phylotips_withname_guidetree2$genome_name_length
-#plot_title <- unlist(strsplit(species[14], "_"))[1]
-#focusplot_title <- unlist(strsplit(species[4], "_"))[1]
-#focusplot_title <- "Yersinia"
+# plot_title <- unlist(strsplit(species[14], "_"))[1]
 # print("We've guessed that your taxon plot title should be")
 # print(plot_title)
 # print("Please rename if this is a bad guess!")
@@ -2834,12 +2835,6 @@ if ((n_distinct(phylo$tip.label) == n_distinct(phylotips_withname_guidetree2$gen
   stop()
 }
 
-# phylo0$tip.label <- phylotips_withname_guidetree2$genusspecies
-# phylo$tip.label <- phylotips_withname_guidetree2$genome_name_length
-# phylo$tip.label[1]
-# plot.phylo(phylo)
-# phylo0$tip.label[1]
-
 # Margins area
 par(oma=c(1,2,1,2)) # left & right have 3 lines of space
 # par(mar=c(2,4,2,4) + 0.1)
@@ -2850,11 +2845,8 @@ par(oma=c(1,2,1,2)) # left & right have 3 lines of space
 # plot.phylo(phylo, edge.width=2, cex = 0.5, align.tip.label = TRUE, adj = 0, label.offset = 0)
 plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
 
-# par(mai=c(1.02,0.82,0.82,0.42))
-# par(mai=c(1.02,0.42,0.82,0.32))
 ## outer margins seem to help more!!
 # ## bottom, left, top, right
-# par(oma = rep(2, 4))
 par(oma=c(1,4,1,5))
 
 # par(“mai”)/par(“mar”)
@@ -2863,38 +2855,21 @@ par(oma=c(1,4,1,5))
 ### saving a plot...
 png(filename = paste("supplemental_plots_ec_by_taxon_per_pathway/phylogeny_focus_",plot_title,Sys.Date(),".png", sep=""), width = 16, height = 24, units = "in", res = 300)
 # ggsave(filename = paste("phylogeny_thintips_withlabels8x8_",plot_title,Sys.Date(),".png", sep=""), dendro_plot2c, width = 8, height = 8, units = "in", limitsize = FALSE)
-# par(oma=c(1,1,1,3)) # left & right have 3 lines of space
-# par(oma=c(1,5,1,5)) # left & right have 3 lines of space
-# par(mar=c(2,4,2,6))
-
-# par(mar=c(5,6,4,2)+0.1)
-# par(mai=c(1.02,0.82,0.82,0.42))
 par(oma=c(1,4,1,5))
 
 if (Ntip(phylo) < 500) {
   # plot.phylo(phylo, edge.width=1, cex = 2.2, align.tip.label = TRUE, adj = 0, label.offset = 0, no.margin = FALSE)
   plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
 } else {
-  plot.phylo(phyloguide.focus.extract, edge.width=2, cex = 0.5, align.tip.label = TRUE, adj = 1, label.offset = 0)
+  print("Your phylogeny has more than 500 tips, we recommend thinning!")
+  plot.phylo(midpoint(phylo), edge.width=1.4, cex = 0.6, align.tip.label = TRUE, adj = 0, label.offset = 0.01, no.margin = FALSE)
 }
 dev.off()
 
 Sys.sleep(2)
-## don't need an extra tree since we save midpoint rooted just below
-# write.tree(phylo, file = paste("PATRICphylotree_withlabels_",plot_title,Sys.Date(),".nwk", sep=""))
-
-# phylo.toplot <- plot.phylo(phylo, edge.width=0.8, cex = 1.8, align.tip.label = TRUE, adj = 0, label.offset = 0, no.margin = FALSE)
-# ggsave(filename = paste("phylogeny_thintips_withlabels8x8_",plot_title,Sys.Date(),".png", sep=""), phylo.toplot, width = 8, height = 8, units = "in", limitsize = FALSE)
-
 ##########
-## FOR PIC ANALYSES - TAKE THE "PHYLOGENY_FOCUS..." TAB FILE & THE "PATRICphylotree..." NWK FILE, AND RUN THEM ON GD JUPYTER NOTEBOOK...
-## but use midpoint rooted phylo!
+## FOR PIC ANALYSES - use midpoint rooted phylo!
 write.tree(midpoint(phylo), file = paste("supplemental_plots_ec_by_taxon_per_pathway/PATRICphylotree_midpointrooted_withlabels_",plot_title,Sys.Date(),".nwk", sep=""))
-
-## note for mycoplasmas - midpoint rooting did not help, had to manually root with known outgroups in Geneious and then export .nwk file...
-## also for bartonella, had to manually root in Geneious
-
-## if manually rooting in Geneious, reimport just below where we define phylo.pruned
 
 #### END PIC ANALYSIS CODE
 ################################################################################################################################
@@ -2902,7 +2877,7 @@ write.tree(midpoint(phylo), file = paste("supplemental_plots_ec_by_taxon_per_pat
 
 ################################################################################################################################
 ################################################################################################################################
-### making it for ggdendrogram
+### making phylogeny for ggdendrogram
 
 tree.unmatched <- multi2di(phylo, random=FALSE) 
 #Let's plot our new tree.  Huzzah!
@@ -3116,11 +3091,6 @@ if ((phylo.pruned$tip.label[1] == ordering[1]) == TRUE) {
 #  stop()
 }
 
-## if manually rooting in Geneious, reimport here
-# phylo0_mp <- read.tree(tk_choose.files(caption = "Select your re-rooted phylotree made from PATRIC/BV-BRC"))
-# plot.phylo(phylo0_mp)
-# phylo0_mp$tip.label <- gsub("'","",phylo0_mp$tip.label, fixed = TRUE)
-
 ####################################################################################################################
 
 ## moving this to below to change tree order depending on whether phylogeny has target species first or last...
@@ -3155,7 +3125,7 @@ if ((phylo.pruned$tip.label[1] == ordering[1]) == TRUE) {
   stop()
 }
 
-## below commands moved into if else if depending on order...
+## below commands moved into if else depending on order...
 ### back to regular commands
 
 clade_position <- data.frame(clade_name,
@@ -3197,7 +3167,7 @@ dendro_plotref_forphyloheatmapwithmargin <- print(dendro_plotref1) + scale_y_rev
 ##########################################################################################################################################################################################################
 
 #########################
-## plots with phylogenies included (need to update some of the names)
+## plots with phylogenies included
 
 ## NOW REPEATING LATEST PLOT COMMANDS BUT ORDERED FOR PHYLOGENY...
 ## new files...
@@ -3207,8 +3177,7 @@ paths_enrichedinBnonas_plotswithphylo <- paths_enrichedinBnonas %>% ungroup()
 unique(paths_enrichedinBnonas_plotswithphylo$genusspecies)
 
 ################################################
-## CHECK TO MAKE SURE ORDERING & ORDERING_BYPHYLO ARE THE SAME except for reference_set?, IF NOT SHOULD STOP
-#ordering by phylo = 78
+## CHECK TO MAKE SURE ORDERING & ORDERING_BYPHYLO ARE THE SAME
 ## note when removing reference set from "ordering" do not subtract 1
 # sum(table(ordering)) - 1
 # sum(table(ordering_byphylo))
@@ -3312,17 +3281,6 @@ layouthkl4 <- rbind(c(1,1,1,2),
 
 layouthkl22 <- rbind(c(1,2),
                     c(1,3))
-
-# layouthkl7 <- rbind(c(1,1,1,1,1,1,NA),
-#                     c(1,1,1,1,1,1,NA),
-#                     c(1,1,1,1,1,1,NA),
-#                     c(1,1,1,1,1,1,2),
-#                     c(1,1,1,1,1,1,3),
-#                     c(1,1,1,1,1,1,NA),
-#                     c(1,1,1,1,1,1,NA))
-# layouthkl8 <- rbind(c(1,1,1,1,1,1,2),
-#                     c(1,1,1,1,1,1,3),
-#                     c(4,5,6,7,8,9,NA))
 
 ## grid arrange
 twoplots_enrichedinB_withphylo <- grid.arrange(ggtestallb2withphylo,gsizeforphylo,dendro_plotref_forphyloheatmap, layout_matrix = layouthkl4)
