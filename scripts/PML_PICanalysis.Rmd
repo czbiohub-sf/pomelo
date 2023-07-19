@@ -306,6 +306,7 @@ if (n_distinct(phylotips_withname_guidetree_todrop$genome_id) > 0) {
   print("If there are changes, we recommend removing the duplicates in BV-BRC and re-calculating your phylogeny.")
   print("Then re-run the pipeline")
 } else {
+  print("Your BV-BRC phylogeny still has no duplicate taxon names!")
 }
 Sys.sleep(3)
 
@@ -585,8 +586,8 @@ for k in ll2.getExternal(): ## iterate over tips
   elif any(x in k.name for x in ['Ehrlichia','Anaplasma','Wolbachia','Neorickettsia']): ## label vacuolars
     ax.add_patch(Rectangle((x,y),0.05,width,facecolor='#7F6E85',edgecolor='none',alpha=1.0,clip_on=False))
 
-ax.text(x+0.012,26.5,'cytoplasmic',color='w',size=18,rotation=-90,va='center',ha='center') ## manually add legend to label
-ax.text(x+0.012,10,'vacuolar',color='w',size=18,rotation=-90,va='center',ha='center')
+# ax.text(x+0.012,26.5,'cytoplasmic',color='w',size=18,rotation=-90,va='center',ha='center') ## manually add legend to label
+# ax.text(x+0.012,10,'vacuolar',color='w',size=18,rotation=-90,va='center',ha='center')
 
 ##############################
 

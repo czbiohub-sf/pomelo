@@ -2791,6 +2791,7 @@ if (n_distinct(phylotips_withname_guidetree_todrop$genome_id) > 0) {
   print("If there are changes, we recommend removing the duplicates in BV-BRC and re-calculating your phylogeny.")
   print("Then re-run the pipeline")
 } else {
+  print("Your BV-BRC phylogeny still has no duplicate taxon names!")
 }
 Sys.sleep(3)
 
