@@ -413,7 +413,7 @@ basepath <- r_to_py(data_dir0)
 
 ## for PIC python code, prompt user for threshold??
 Sys.sleep(2)
-PICthreshold <- readline(prompt = "Enter your desired PIC percentage thrshold (as an integer) : ")
+PICthreshold <- readline(prompt = "Enter your desired PIC percentage threshold (as an integer) : ")
 PICthreshold <- as.integer(PICthreshold)
 py_PICthreshold <- r_to_py(PICthreshold)
 Sys.sleep(2)
@@ -487,7 +487,7 @@ for k in ll.getExternal(): ## iterate over tips
     k.traits['genome_length']=int(genome_data[k.name]['genome_length'])
 
 
-for k in ll.getInternal(): ## iterate over internl nodes
+for k in ll.getInternal(): ## iterate over internal nodes
   if 'pic' in k.traits: del k.traits['pic'] ## remove phylogenetically independent contrasts if they already exist (means this cell was run before)
   if 'delta_pic' in k.traits: del k.traits['delta_pic'] ## remove differences in phylogenetically independent contrasts if they exist
 
