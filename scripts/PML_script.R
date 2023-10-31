@@ -457,104 +457,52 @@ paths_groupAandB$group <- gsub("2","group B",paths_groupAandB$group)
 paths_groupAandB$genome_id <- as.character(paths_groupAandB$genome_id)
 
 ###################################################################################################################
-## one-off code to get 4 missing pathways added back - after line 390...
+## removed one-off code to get 4 missing pathways using 'pathwayfree' code next
+###################################################################################################################
+
+###### PATHWAYFREE CODE TO ADD ALL PATHWAY DATA FROM MAPPING FILE
+
+## ALLOW USER TO FIND THE FILE - these first steps are now added earlier
+# paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+
+# using rstudioapi - request the path to an existing .csv file on disk
+print("Select the 'mapping_BVBRC_allECs.tab' file, found in the pomelo-main/scripts folder")
+Sys.sleep(1)
+paths_ref2b <- read_tsv(rstudioapi::selectFile(caption = "Find the 'mapping_BVBRC_allECs.tab' file", label = "Select mapping_BVBRC_allECs.tab", path = data_dir, existing = TRUE, filter = "Tab Files (*.tab)"), show_col_types = FALSE)
+
+## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
+# 1058, 471, 472, 473, 72, 231
+## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
+## immediately remove .- as well..
+paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
+paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
+## now steps to pull back in any missing EC stats very early...check 1.1.1.133 & 5.4.3.5 !! also 1.6.99.5
+paths_ref2b_a <- paths_ref2b %>% dplyr::filter(group == "group A") %>% select(ec_number,pathway_id,pathway_name)
+
 # paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
 #   summarize_all(first) ## update to use across instead of _all
 paths_groupAandB_topull <- paths_groupAandB %>% group_by(genome_name,ec_number) %>%
   summarize(across(everything(), first))
-## need to pull every instance, so need a big filter for each of the four
-paths_groupAandB_topull220 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.2.1.38")|
-                  (ec_number == "1.4.1.2")|
-                  (ec_number == "1.4.1.4")|
-                  (ec_number == "2.1.3.3")|
-                  (ec_number == "2.3.1.1")|
-                  (ec_number == "2.3.1.35")|
-                  (ec_number == "2.6.1.1")|
-                  (ec_number == "2.6.1.11")|
-                  (ec_number == "2.6.1.2")|
-                  (ec_number == "2.7.2.2")|
-                  (ec_number == "2.7.2.8")|
-                  (ec_number == "3.5.1.14")|
-                  (ec_number == "3.5.1.16")|
-                  (ec_number == "3.5.1.2")|
-                  (ec_number == "3.5.1.5")|
-                  (ec_number == "3.5.1.54")|
-                  (ec_number == "3.5.3.1")|
-                  (ec_number == "3.5.3.6")|
-                  (ec_number == "4.3.2.1")|
-                  (ec_number == "6.3.1.2")|
-                  (ec_number == "6.3.4.5")|
-                  (ec_number == "6.3.4.6"))
-paths_groupAandB_topull220$pathway_id <- 220
-paths_groupAandB_topull220$pathway_name <- "Arginine biosynthesis"
+## USE distinct here
+paths_groupAandB_topull2 <- paths_groupAandB %>% distinct(genome_name, ec_number, .keep_all = TRUE)
+## note difference if using instead of genome_name + ec_number, JUST ec_number !!!
+#paths_groupAandB_topull2 <- paths_groupAandB %>% distinct(ec_number, .keep_all = TRUE)
 
-paths_groupAandB_topull270 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.1.1.37")|
-                  (ec_number == "1.1.1.95")|
-                  (ec_number == "2.6.1.42")|
-                  (ec_number == "2.6.1.52")|
-                  (ec_number == "3.5.99.7")|
-                  (ec_number == "6.3.2.2")|
-                  (ec_number == "6.3.2.3"))
-paths_groupAandB_topull270$pathway_id <- 270
-paths_groupAandB_topull270$pathway_name <- "Cysteine and methionine metabolism"
+paths_groupAandB_topull0 <- paths_groupAandB_topull %>% select(!c(pathway_id, pathway_name))
 
-paths_groupAandB_topull470 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.2.1.26")|
-                  (ec_number == "1.4.1.12")|
-                  (ec_number == "1.4.3.3")|
-                  (ec_number == "2.6.1.21")|
-                  (ec_number == "3.5.1.2")|
-                  (ec_number == "3.5.4.22")|
-                  (ec_number == "4.1.1.20")|
-                  (ec_number == "4.3.1.18")|
-                  (ec_number == "4.4.1.15")|
-                  (ec_number == "5.1.1.13")|
-                  (ec_number == "5.1.1.7")|
-                  (ec_number == "5.1.1.8")|
-                  (ec_number == "6.3.2.4")|
-                  (ec_number == "6.3.2.8")|
-                  (ec_number == "6.3.2.9"))
-paths_groupAandB_topull470$pathway_id <- 470
-paths_groupAandB_topull470$pathway_name <- "D-Amino acid metabolism"
+paths_groupAandB_full <- left_join(paths_groupAandB_topull0, paths_ref2b_a, multiple = "all") %>% ungroup()
 
-paths_groupAandB_topull541 <- paths_groupAandB_topull %>%
-  dplyr::filter((ec_number == "1.1.1.133")|
-                  (ec_number == "1.1.1.136")|
-                  (ec_number == "1.1.1.22")|
-                  (ec_number == "1.1.1.271")|
-                  (ec_number == "1.1.1.336")|
-                  (ec_number == "2.3.1.201")|
-                  (ec_number == "2.5.1.56")|
-                  (ec_number == "2.5.1.97")|
-                  (ec_number == "2.7.7.13")|
-                  (ec_number == "2.7.7.23")|
-                  (ec_number == "2.7.7.24")|
-                  (ec_number == "2.7.7.33")|
-                  (ec_number == "2.7.7.43")|
-                  (ec_number == "2.7.7.9")|
-                  (ec_number == "4.2.1.115")|
-                  (ec_number == "4.2.1.45")|
-                  (ec_number == "4.2.1.46")|
-                  (ec_number == "4.2.1.47")|
-                  (ec_number == "5.1.3.13")|
-                  (ec_number == "5.1.3.14")|
-                  (ec_number == "5.1.3.2")|
-                  (ec_number == "5.1.3.23")|
-                  (ec_number == "5.3.1.8")|
-                  (ec_number == "5.4.2.8"))
-paths_groupAandB_topull541$pathway_id <- 541
-paths_groupAandB_topull541$pathway_name <- "O-Antigen nucleotide sugar biosynthesis"
-
-##  note we're simply replacing the pathway_id & pathway_name for each of these four
-## FINALLY APPEND THESE TO paths_groupAandB
-paths_groupAandBn <- bind_rows(paths_groupAandB, paths_groupAandB_topull220, paths_groupAandB_topull270, paths_groupAandB_topull470, paths_groupAandB_topull541)
+paths_groupAandBog <- paths_groupAandB
 rm(paths_groupAandB)
-paths_groupAandB <- paths_groupAandBn
+paths_groupAandB <- paths_groupAandB_full
 Sys.sleep(2)
-## end one-off code to get 4 missing pathways added back - after line 390...
-###################################################################################################################
+######## end PATHWAYFREE CODE TO ADD ALL PATHWAY DATA FROM MAPPING FILE ##################
 
 ### this makes new column pathwayid not number but character p1-p1000
 paths_groupAandB$pathwayid0 <- "p"
@@ -669,7 +617,6 @@ paths_groupAandB <- paths_groupAandB %>% mutate(genusspecies = coalesce(genusspe
 ## now new columns based on updated species
 paths_groupAandB <- paths_groupAandB %>% unite("genusspeciespathway", genusspecies, pathwayid, sep = "_", remove = FALSE) %>% relocate(genusspeciespathway, .after = genusspecies)
 paths_groupAandB <- paths_groupAandB %>% unite("genuspathway", genus, pathwayid, sep = "_", remove = FALSE) %>% relocate(genuspathway, .after = genus)
-
 
 ## some stats
 # paths_groupAandB %>% group_by(group) %>% summarise_at(vars(genusspecies), n_distinct) ## update to use across instead of _at
@@ -798,32 +745,25 @@ paths_groupAandB_statswide2b <- paths_groupAandB_statswide2b %>% select(-group)
 ## what we need are in PML_bypathway to have similar columns but instead of by group, by each unique genusspecies, and also by genus
 
 ######################
-### USING MAPPING FILE FOR SET OF REFERENCE PATHWAYS IN PATRIC
-
-## ALLOW USER TO FIND THE FILE - these first steps are now added earlier
-# paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
-
-# using rstudioapi - request the path to an existing .csv file on disk
-print("Select the 'mapping_BVBRC_allECs.tab' file, found in the pomelo-main/scripts folder")
-Sys.sleep(1)
-paths_ref2b <- read_tsv(rstudioapi::selectFile(caption = "Find the 'mapping_BVBRC_allECs.tab' file", label = "Select mapping_BVBRC_allECs.tab", path = data_dir, existing = TRUE, filter = "Tab Files (*.tab)"), show_col_types = FALSE)
-
-
-## immediately remove .- as well..
-paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$ec_number, invert = TRUE) , ]
-
-## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
-# 1058, 471, 472, 473, 72, 231
-## note there are still a few pathways >1000 - 1040,1051,1053,1055,1056,1057,1059
-paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
-paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
-
+# ### USING MAPPING FILE FOR SET OF REFERENCE PATHWAYS IN PATRIC
+# 
+# ## ALLOW USER TO FIND THE FILE - these first steps are now added earlier
+# # paths_ref2b <- read_tsv(tk_choose.files(caption = "Find the 'mapping_GO_to_ecgene_and_ecpathway_toPATRIC.tab' file"), show_col_types = FALSE)
+# 
+# # using rstudioapi - request the path to an existing .csv file on disk
+# print("Select the 'mapping_BVBRC_allECs.tab' file, found in the pomelo-main/scripts folder")
+# Sys.sleep(1)
+# paths_ref2b <- read_tsv(rstudioapi::selectFile(caption = "Find the 'mapping_BVBRC_allECs.tab' file", label = "Select mapping_BVBRC_allECs.tab", path = data_dir, existing = TRUE, filter = "Tab Files (*.tab)"), show_col_types = FALSE)
+# ## immediately remove .- as well..
+# ## removing some pathways that have been deleted from KEGG: https://www.genome.jp/kegg/docs/upd_map.html
+# paths_ref2b <- paths_ref2b[ grep(".-", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p471", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p472", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p473", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("Synthesis and degradation of ketone bodies", paths_ref2b$pathway_name, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p231", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p4070", paths_ref2b$pathwayid, invert = TRUE) , ]
+# paths_ref2b <- paths_ref2b[ grep("p4150", paths_ref2b$pathwayid, invert = TRUE) , ]
 
 ## now steps to pull back in any missing EC stats very early...check 1.1.1.133 & 5.4.3.5 !! also 1.6.99.5
 paths_ref2b_a <- paths_ref2b %>% dplyr::filter(group == "group A")
@@ -1384,6 +1324,7 @@ write.table(PML_bypathway, file = paste("Summary_of_ranked_pathways",plot_title,
 ## adding second dplyr::filter to remove pathways with bvbrc_genes_inpathway = 0
 paths_groupAandB_stats3nonasnofullymissing_PML <- paths_groupAandB_stats3nonas_PML %>% dplyr::filter((perc_missing_in_target_group_bypathway + perc_missing_in_nontarget_group_bypathway < 170)) %>% 
   dplyr::filter(bvbrc_genes_inpathway != "0")
+
 
 
 ## note difference when you look at full dataset vs one row per pathway...
